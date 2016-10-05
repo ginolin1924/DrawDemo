@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <!-- react -->
+    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    
+    <!-- bootstrap 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexming.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  </head>
+  <body>
+  <style type="text/css">
+    .admin {
+      display: none;
+    }
+    /* rest */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:focus, a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .pure-g [class *="pure-u"] {
+      font-family: PingFang;
+    }
+
+    /* End of reset*/
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    /*::-webkit-scrollbar-track {
+        background-color: #eaeaea;
+        border-left: 1px solid #ccc;
+    }*/
+    ::-webkit-scrollbar-thumb {
+        background-color: #999;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #333;
+    }
+    
+    /* font */
+    @font-face {
+    font-family: PingFang;
+      src: url(font/DroidSansFallback.ttf);
+    }
+    body {
+      line-height: 1;
+      font-family: PingFang;
+    }
+    
+    /* GLOBAL */
+    h2 {
+      font-size: 23px;
+    }
+    h3 {
+      font-size: 22px;
+    }
+    .input_wrap {
+      position: relative;
+    }
+    .input {
+      line-height: 65px;
+      border-radius: 100px;
+      padding-left: 70px;
+      border: 2px solid transparent;
+      color:#162038;
+      width: calc(100% - 70px);
+    }
+    .input:hover {
+      border-color: #B6B6B6;
+    }
+    .input:focus {
+      outline: none;
+      border-color: #36CEBC;
+    }
+    .input_wrap:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translate(0, -50%);
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+    }
+    .button {
+      text-align: center;
+      display: inline-block;
+      border-radius: 40px;
+      color: #fff;
+      line-height: 65px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .button-green {
+      background: #36CEBC;
+    }
+    .button-green:hover {
+      background: #29B3A4;
+    }
+    .button-green.disabled {
+      background: rgba(54,206,187,0.50);
+      cursor: default;
+    }
+    .button-thin {
+      display: inline-block;
+      font-size: 13px;
+      padding: 10px 25px;
+      border: 2px solid #7b7b7b;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .button-thin:hover {
+      background-color: #7B7B7B;
+      color: #fff;
+    }
+    .icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      vertical-align: middle;
+    }
+    .icon-Back-Black {
+      background-image: url('image/icon/Back-Black.svg');
+    }
+    .icon-Back-Reload-Black {
+      background-image: url('image/icon/Reload-Black.svg');
+    }
+    .icon-Gallery-Black {
+      background-image: url('image/icon/Gallery-Black.svg');
+    }
+    .icon-Player-Black {
+      background-image: url('image/icon/Player-Black.svg');
+    }
+    .icon-Player-Grey, .input-Player-Grey:after {
+      background-image: url('image/icon/Player-Grey.svg');
+    }
+    .icon-Idea-Black {
+      background-image: url('image/icon/Idea-Black.svg');
+    }
+    .icon-BrushLarge-Black {
+      background-image: url('image/icon/BrushLarge-Black.svg');
+    }
+    .icon-EaserLarge-Black {
+      background-image: url('image/icon/EaserLarge-Black.svg');
+    }
+    .icon-Talk-Black {
+      background-image: url('image/icon/Talk-Black.svg');
+    }    
+    .icon-Shared-Black {
+      background-image: url('image/icon/Shared-Black.svg');
+    }
+    .icon-Public-Green {
+      background-image: url('image/icon/Public-Green.svg');
+    }
+    .icon-Public-White {
+      background-image: url('image/icon/Public-White.svg');
+    }
+    .icon-Public-GreenFill {
+      background-image: url('image/icon/Public-GreenFill.svg');
+    }
+    .icon-Private-GreyFill {
+      background-image: url('image/icon/Private-GreyFill.svg');
+    }
+    .icon-Password-Black {
+      background-image: url('image/icon/Password-Black.svg');
+    }
+    .icon-Password-Grey, .input-Password-Grey:after {
+      background-image: url('image/icon/Password-Grey.svg');
+    }
+    .icon-Password-White {
+      background-image: url('image/icon/Password-White.svg');
+    }
+    .icon-Feedback-Grey {
+      background-image: url('image/icon/Feedback-Grey.svg');
+    }
+    .icon-Next-Dark {
+      background-image: url('image/icon/Next-Dark.svg');
+    }
+    
+    .card {
+      display:block;
+      background: #fff;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      margin: 15px;
+      height: 340px;
+      position: relative;
+      cursor: pointer;
+    }
+    .card:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      border: 1px solid #ccc;
+      border-radius: 0 0 10px 10px;
+      border-width: 0 1px 3px 1px;
+      bottom: -1px;
+      left: -1px;
+    }
+    .card:hover {
+      -webkit-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+      -moz-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+      box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+    }
+    .card:hover:after {
+      border-color: #aaa;
+    }
+    .card_bottom {
+      position: absolute;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, 0);
+      bottom: 17px;
+      width:100%;
+      border-top: 1px solid #ebebeb;
+    }
+    .card_bottom_content {
+      white-space: nowrap;
+      width: calc(100% - 40px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 17px auto 0;
+    }
+    
+    .cross:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-top: 1px solid #fff;
+      width: 100%;
+    }
+    .cross:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-right: 1px solid #fff;
+      height: 100%;
+    }
+    
+    .hover_spin_item:hover .spin_target {
+      -webkit-animation-name: spin90;
+      -webkit-animation-duration: 400ms;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: linear;
+      -moz-animation-name: spin90;
+      -moz-animation-duration: 400ms;
+      -moz-animation-iteration-count: 1;
+      -moz-animation-timing-function: linear;
+      -ms-animation-name: spin90;
+      -ms-animation-duration: 400ms;
+      -ms-animation-iteration-count: 1;
+      -ms-animation-timing-function: linear;
+      
+      animation-name: spin90;
+      animation-duration: 400ms;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+    }
+    
+    @-ms-keyframes spin90 {
+        from { -ms-transform: rotate(0deg); }
+        to { -ms-transform: rotate(90deg); }
+    }
+    @-moz-keyframes spin90 {
+        from { -moz-transform: rotate(0deg); }
+        to { -moz-transform: rotate(90deg); }
+    }
+    @-webkit-keyframes spin90 {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(90deg); }
+    }
+    @keyframes spin90 {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(90deg);
+        }
+    }
+    
+    .tabs {
+      display: flex;
+    }
+    .tabs li {
+      flex: 1;
+      line-height: 60px;
+      text-align: center;
+      color: #7B7B7B;
+      cursor: pointer;
+    }
+    .tabs li:hover {
+      color: #000;
+    }
+    .tabs li.active {
+      border-bottom: 2px solid #36CEBC;
+      color: #000;
+    }
+    /* End GLOBAL */
+    
+    html, body, #App, .page {
+      height: 100%;
+    }
+    body.body_disable_scorll {
+      position: fixed;
+      overflow-y:scroll;
+      width:100%;
+    }
+    .main_content {
+      background: #fafafa;
+      height: calc(100% - 80px);
+      position: relative;
+    }
+    .header {
+      position: relative;
+      height: 80px;
+      
+      padding: 0 30px;
+    }
+    .header:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .logo {
+      float: left;
+      padding-top: 25px;
+      padding-right: 60px;
+    }
+    .logo img {
+      height: 30px;
+    }
+    .logo span {
+      letter-spacing: 3px;
+      padding-left: 10px;
+      font-weight: bold;
+    }
+    .nav_link {
+      position:absolute;
+      top: 50%;
+      right: 25px;
+      margin-left: -50%;
+      transform: translate(0, -50%);
+    }
+    .nav_link li {
+      display: inline-block;
+      padding-left: 30px;
+    }
+    .nav_link li a {
+      display: inline-block;
+      line-height: 40px;
+    }
+    .nav_link i {
+      margin-right: 10px;
+    }
+    .nav_link i, .nav_link span {
+      vertical-align: middle;
+    }
+    .nav_link_mob, .leave_link_mob {
+      display: none;
+    }
+    .nav_create_button {
+      width: 180px;
+      text-align: center;
+      display: inline-block;
+      background: #36CEBC;
+      border-radius: 20px;
+      color: #fff;
+    }
+    .nav_create_button:hover {
+      background: #29B3A4;
+    }
+    .nav_create_button span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .nav_create_button .cross {
+      vertical-align: initial;
+      width: 10px;
+      height: 10px;
+      position: relative;
+      margin-right: 10px;
+    }
+    .nav_create_button .cross:after, .nav_create_button .cross:before {
+      border-width: 3px;
+    }
+    
+    /*** Nav Profile ***/
+    .nav_profile_content {
+      height: 640px;
+      width: 300px;
+      top:0;
+      right: 0; 
+      background: #212B41;
+      color: #B6B6B6;
+      position: absolute;
+    }
+    .nav_profile_content a:hover {
+      color: #fff;
+    }
+    .nav_profile_content:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 5.5px 8px 5.5px;
+      border-color: transparent transparent #212B41 transparent;
+      position: absolute; 
+      top: -8px;
+      right: 80px;
+    }
+    .profile_info {
+      text-align: center;
+      padding: 30px 0;
+    }
+    .profile_info img {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+    }
+    .member_handle {
+      color: #fff;
+      font-size: 24px;
+      padding: 10px 0;
+    }
+    .member_email {
+      padding-bottom: 20px;
+    }
+    .profile_gallery {
+      text-align: center;
+    }
+    .profile_gallery > div {
+      display: inline-block;
+      width: 130px;
+    }
+    .profile_gallery a {
+      display: block;
+    }
+    .profile_gallery .count {
+      padding-top: 10px;
+      font-size: 32px;
+    }
+    .nav_profile_content .list {
+      margin-top: 40px;
+    }
+    .nav_profile_content .list a {
+      display: block;
+      padding: 17px 15px;
+      border-bottom: 1px solid #4F5C7C;
+    }
+    .nav_profile_content .list .icon {
+      margin-right: 15px;
+    }
+    /*** Lobby ***/
+    .lobby {
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .lobby_content {
+      max-width:910px;
+      margin: 0 auto;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .lobby_photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 100%;
+      border: 1px solid transparent;
+      overflow: hidden;
+      background: #EBEBEB;
+      margin: 0px auto;
+    }
+    .lobby_photo img {
+      width: 60px;
+      height: 60px;
+      margin: -1px 0;
+      background: #fff;
+    }
+    .lobby_photo_wrap {
+      margin: 30px;
+      position: relative;
+    }
+    .lobby_photo_wrap .icon {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    .lobby_photo_wrap .icon-Public-White {
+      border-radius: 100%;
+      background-color: #36CEBC;
+    }
+    .lobby_room_name {
+      color: #000;
+      text-align: center;
+      font-size: 22px;
+      font-family: PingFang;
+      padding-bottom: 30px;
+    }
+    .create_room_button {
+      border-radius: 100%;
+      margin: 30px auto;
+      position: relative;
+      height: 120px;
+      width: 120px;
+    }
+    .create_room_button:before {
+      content: '';
+      display: block;
+      background: #EBEBEB;
+      height: 90px;
+      width: 90px;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -45px;
+      margin-left: -45px;
+    }
+    .create_room_button:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: #36CEBC;
+      border-radius: 100%;
+    }
+    .create_room_button .cross {
+      height: 20px;
+      width: 20px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    .create_room_button .cross:after, .create_room_button .cross:before {
+      border-width: 5px;
+    }
+    
+    .lobby_cell:hover .create_room_button:before {
+      -webkit-animation-name: scan;
+      -webkit-animation-duration: 1200ms;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: ease-in-out;
+      -moz-animation-name: scan;
+      -moz-animation-duration: 1200ms;
+      -moz-animation-iteration-count: infinite;
+      -moz-animation-timing-function: ease-in-out;
+      -ms-animation-name: scan;
+      -ms-animation-duration: 1200ms;
+      -ms-animation-iteration-count: infinite;
+      -ms-animation-timing-function: ease-in-out;
+      
+      animation-name: scan;
+      animation-duration: 1200ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    @-ms-keyframes scan {
+        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
+        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+    }
+    @-moz-keyframes scan {
+        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
+        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+    }
+    @-webkit-keyframes scan {
+        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
+        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+    }
+    @keyframes scan {
+        0% {
+            width: 90px; height: 90px; margin-top: -45px; margin-left: -45px;
+        }
+        50% {
+            width: 120px; height: 120px; margin-top: -60px; margin-left: -60px;
+        }
+        100% {
+            width: 90px; height: 90px; margin-top: -45px; margin-left: -45px;
+        }
+    }
+    .create_room_disc {
+      font-size: 16px;
+      color: #7B7B7B;
+      padding: 0 20px;
+    }
+    .password_popup {
+      position: absolute;
+      bottom: 0;
+      height: 200px;
+      background-color: rgba(22, 32, 56, 0.85);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation-name: passwordPopup; /* Chrome, Safari, Opera */
+      -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+      animation-name: passwordPopup;
+      animation-duration: 0.5s;
+    }
+    .password_popup_content {
+      min-width: 400px;
+    }
+    .password_popup .popup_title {
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    .password_popup_bottom_section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .password_popup_bottom_section .input_wrap {
+      flex: 2;
+    }
+    .password_popup_bottom_section .button {
+      margin-left: 20px;
+      flex: 1;
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes passwordPopup {
+        0%   {bottom: -200px;}
+        100% {bottom: 0;}
+    }
+
+    /* Standard syntax */
+    @keyframes passwordPopup {
+        0%   {bottom: -200px;}
+        100% {bottom: 0;}
+    }
+    
+    /*** End of Lobby ***/
+    
+    /*** Create Room ***/
+    .create_room {
+      max-width: 470px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+    .create_room_input_wrap {
+      width: 100%;
+      position: relative;
+      height: 100px;
+      margin-bottom: 30px;
+    }
+    .create_room_input_wrap:before {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      position: absolute;
+      border-radius: 100%;
+    }
+    .create_room_input_wrap:after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid #EBEBEB;
+      position: absolute;
+      bottom: -30px;
+    }
+    .create_room_input_wrap.hover:after,.create_room_input_wrap.complete:after {
+      border-color: #B6B6B6;
+    }
+    .create_room_input_wrap.focus:after {
+      border-color: #36CEBC;
+    }
+    .create_room_input {
+      position: absolute;
+      top: 50%;
+      left: 130px;
+      transform: translate(0, -50%);
+      outline: none;
+      border: none;
+      background: transparent;
+      font-size: 24px;
+      cursor: pointer;
+      color:#162038;
+    }
+    .room_name_count {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+    }
+    .create_room .row {
+      display: -webkit-flex;
+      display: flex;
+      padding: 30px 0;
+      align-items: center;
+    }
+    .create_room .label {
+      -webkit-flex: 5;
+      flex: 5;
+    }
+    .create_room .options {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex: 2;
+      flex: 2;
+    }
+    .create_room .option {
+      -webkit-flex: 1;
+      flex: 1;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+    }
+    .create_room .option.selected {
+      color: #36CEBC;
+      cursor: default;
+    }
+    .create_room .option.selected:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      width: 53px;
+      height: 35px;
+      border: 2px solid #36CEBC;
+      border-radius: 100px;
+    }
+    .create_room .option .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+    /*** End of Create Room ***/
+    
+    /*** Gallery Category ***/
+    .gallery_landing {
+      max-width: 910px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+    .gellery_cell .gallery_img {
+      max-width: 125px;
+      padding: 0 10px;
+      margin: 30px auto;
+    }
+    .gellery_cell .gallery_date {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      padding-bottom: 16px;
+    }
+    .gellery_cell .gallery_name {
+      text-align: center;
+      font-size: 22px;
+    }
+    
+    
+    /*** Gallery Detail ***/
+    .gallery_detail {
+      position: relative;
+    }
+    .gellery_list {
+      width: 350px;
+      padding: 12px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+    }
+    .gellery_list_cell {
+      padding: 12px 24px;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .gellery_list_cell.selected {
+      background: #fafafa;
+      cursor: default;
+    }
+    .gellery_list_cell .gallery_img {
+      width: 65px;
+      height: 65px;
+      padding-right: 10px;
+    }
+    .gellery_list_cell img {
+      width: 100%;
+    }
+    .gellery_list_cell .gallery_info {
+      -webkit-flex: 1;
+      flex: 1;
+    }
+    .gellery_list_cell .gallery_name {
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+    .gellery_list_cell .gallery_players {
+      font-size: 13px;
+      color: #7B7B7B;
+      overflow : hidden;
+      text-overflow : ellipsis;
+      white-space : nowrap;
+      width : 200px;
+    }
+    
+    
+    /*** Edit Profile ***/
+    .user_setting {
+      max-width: 470px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+    .user_setting .tab_content {
+      padding-top: 40px;
+    }
+    .edit_photo {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+    .edit_photo img {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      margin-right: 40px;
+    }
+    .edit_photo_info {
+      -webkit-flex: 1;
+      flex: 1;
+    }
+    .edit_photo_info .email {
+      padding-bottom: 15px;
+      color: #B6B6B6;
+    }
+    .edit_profile .input_wrap {
+      padding: 30px 0;
+    }
+  </style>
+
+  <div id="App" class=""></div>
+
+  <script type="text/babel">
+    var App = React.createClass({
+      getInitialState() {
+        return {
+          userName: 'Gino',
+          userPhoto: 'http://images5.fanpop.com/image/photos/28800000/sbob-spongebob-squarepants-28841799-500-500.jpg',
+          userEmail: 'gino_lin@gmail.com',
+          currentPage: window.location.hash.replace('#', '') || 'lobby',
+          //  lobby:      大廳
+          //  createRoom: 建立遊戲
+          //  gallery:    畫廊
+          //  feedback:   意見回覆
+          navProfileTab: 0
+        };
+      },
+      componentDidMount() {
+      },
+      setCurrentPage: function(page) {
+        this.setState({currentPage: page});
+        location.hash = page;
+      },
+      toggleNavProfile: function() {
+        this.setState({navProfileTab: this.state.navProfileTab ? 0 : 1});
+      },
+      setUserPhoto: function(url) {
+        this.setState({userPhoto: url});
+      },
+      render: function() {
+        return (
+          <div className='page'>
+            <Header 
+              currentPage={this.state.currentPage}
+              setCurrentPage={this.setCurrentPage}
+              userName={this.state.userName}
+              userPhoto={this.state.userPhoto}
+              navProfileTab={this.state.navProfileTab}
+              toggleNavProfile={this.toggleNavProfile}
+            />
+            <MainContent 
+              currentPage={this.state.currentPage}
+              setCurrentPage={this.setCurrentPage}
+              userName={this.state.userName}
+              userPhoto={this.state.userPhoto}
+              setUserPhoto={this.setUserPhoto}
+              userEmail={this.state.userEmail}
+              navProfileTab={this.state.navProfileTab}
+              toggleNavProfile={this.toggleNavProfile}
+            />
+          </div>
+        );
+      }
+    });
+
+    var Header = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+        return (
+          <div className='header'>
+            <HeaderDefault
+              currentPage={this.props.currentPage}
+              setCurrentPage={this.props.setCurrentPage}
+              userName={this.props.userName}
+              navProfileTab={this.props.navProfileTab}
+              toggleNavProfile={this.props.toggleNavProfile}
+            />
+          </div>
+        );
+      }
+    });
+    
+    var HeaderDefault = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='header_default'>
+            <Logo 
+              currentPage={this.props.currentPage}
+              setCurrentPage={this.props.setCurrentPage}
+            />
+            <ul className='nav_link'>
+              
+              <li>
+                {this.props.currentPage == 'lobby' ?
+                  <a className='nav_create_button hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}><span className='cross hover_spin spin_target'></span>建立新遊戲</a>
+                  :
+                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i> <span>回上頁</span></a>
+                 }
+              </li>
+              <li><a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i>畫廊</a></li>
+              <li className={this.props.navProfileTab ? 'nav_profile active' : 'nav_profile'}>
+                <a onClick={this.props.toggleNavProfile}><i className='icon icon-Player-Black'></i>{this.props.userName}</a>
+              </li>
+            </ul>
+          </div>
+        );
+      }
+    });
+    
+    var Logo = React.createClass({
+      render: function() {
+        return (
+          <a className='logo' onClick={this.props.setCurrentPage.bind(this,'lobby')}>
+            <img src='image/LogoSmall-Black.svg' />
+          </a>
+        );
+      }
+    });
+
+    var MainContent = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='main_content'>
+            <div className='admin'>{this.props.currentPage}</div>
+            {this.props.currentPage == 'lobby' ?
+              <Lobby 
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+              />
+            :''}
+            {this.props.currentPage == 'createRoom' ?
+              <CreateRoom 
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+              />
+            :''}
+            {this.props.currentPage == 'gallery' ?
+              <Gallery
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+              />
+            :''}
+            {this.props.currentPage.match(/editProfile|changePassword|feedback/) ?
+              <UserSetting
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+                userName={this.props.userName}
+                userPhoto={this.props.userPhoto}
+                setUserPhoto={this.props.setUserPhoto}
+                userEmail={this.props.userEmail}
+              />
+            :''}
+            {this.props.navProfileTab ? 
+              <NavProfileContent 
+                userName={this.props.userName}
+                userPhoto={this.props.userPhoto}
+                userEmail={this.props.userEmail}
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+                toggleNavProfile={this.props.toggleNavProfile}
+              />
+            :''}
+          </div>
+        );
+      }
+    });
+
+    var NavProfileContent = React.createClass({
+      getInitialState() {
+        return {
+        };
+      },
+      componentDidMount() {        
+
+      },
+      linkClick: function(linkTo) {
+        this.props.setCurrentPage(linkTo);
+        this.props.toggleNavProfile();
+      },
+      render: function() {
+
+        return (
+          <div className='nav_profile_content'>
+            <div className='profile_info'>
+              <img className='member_photo' src={this.props.userPhoto} />
+              <div className='member_handle'>{this.props.userName}</div>
+              <div className='member_email'>{this.props.userEmail}</div>
+              <div onClick={this.linkClick.bind(this, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
+            </div>
+            <div className='profile_gallery'>
+              <div>
+                <label>畫廊</label>
+                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>999+</a>
+              </div>
+              <div>
+                <label>你的畫廊</label>
+                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>33</a>
+              </div>
+            </div>
+            <ul className='list'>
+              <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
+              <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
+              <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
+            </ul>
+          </div>
+        );
+      }
+    });
+    
+    var UserSetting = React.createClass({
+      getInitialState() {
+        return {
+          currentTab: this.props.currentPage
+        };
+      },
+      componentDidUpdate() {
+        if(this.props.currentPage != this.state.currentTab) {
+          this.setState({currentTab: this.props.currentPage});
+        }
+      },
+      setTab: function(name) {
+          this.setState({currentTab: name});
+      },
+      render: function() {
+
+        return (
+          <div className='user_setting'>
+            <ul className={'tabs'}>
+              <li className={this.state.currentTab == 'editProfile' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'editProfile')}>編輯</li>
+              <li className={this.state.currentTab == 'changePassword' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'changePassword')}>更改密碼</li>
+              <li className={this.state.currentTab == 'feedback' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'feedback')}>意見回饋</li>
+            </ul>
+            <div className={'tab_content'}>
+              {this.state.currentTab == 'editProfile' ? 
+                <div className='edit_profile'>
+                  <div className='edit_photo'>
+                    <img src={this.props.userPhoto} />
+                    <div className='edit_photo_info'>
+                      <div className='email'>{this.props.userEmail}</div>
+                      <div className='button-thin'>編輯頭像</div>
+                    </div>
+                  </div>
+                  <div className='input_wrap input-Player-Grey'>
+                    <input 
+                      className='input'
+                      type='test'
+                      value={this.props.userName}
+                      ref=''
+                    />
+                  </div>
+                  <div className='button button-green'>確認</div>
+                </div>
+              : ''}
+              {this.state.currentTab == 'changePassword' ?
+                'changePassword'
+              :''}
+              {this.state.currentTab == 'feedback' ?
+                'feedback'
+              :''}
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    
+    var Lobby = React.createClass({
+      getInitialState() {
+        return {
+          joinRoomName: '',
+          joinRoomId: '',
+          joinRoomPassword: '',
+          showPasswordPopup: 0,
+          list:[
+            {
+              id: 1,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            { 
+              id: 2,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            {
+              id: 3,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 4,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 5,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            { 
+              id: 2,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            {
+              id: 3,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 4,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 5,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            { 
+              id: 2,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            },
+            {
+              id: 3,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 4,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 0
+            },
+            {
+              id: 5,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              photos: [
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
+                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
+                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
+                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
+              ],
+              private: 1
+            }
+          ]
+        };
+      },
+      componentDidMount() {        
+
+      },
+      clickLobbyCell: function(roomInfo) {
+        if(roomInfo.is_private) {
+          this.setState({
+            joinRoomName: roomInfo.name,
+            joinRoomId: roomInfo.id,
+            joinRoomPassword: '',
+            showPasswordPopup: 1
+          });
+        } else {
+          alert('join room:'+roomInfo.name+' id:'+roomInfo.id)
+        }
+      },
+      inputChange: function() {
+        this.setState({
+           joinRoomPassword: this.refs.passwordInput.value
+        });
+      },
+      buttonClick: function() {
+        alert('join room:'+this.state.joinRoomName+' id:'+this.state.joinRoomId+' password:'+this.state.joinRoomPassword)
+      },
+      render: function() {
+        var list = [];
+
+        this.state.list.forEach(function(room) {
+          var photos  = [],
+              players = [],
+              roomInfo = {};
+
+          roomInfo.name = room.name;
+          roomInfo.id = room.id;
+          roomInfo.is_private = room.private;
+              
+          room.photos.forEach(function(photo){
+            if(photos.length < 3) {
+              photos.push(
+                <img src={photo} />
+              );
+            }
+
+          }.bind(this));
+          
+          room.players.forEach(function(player){
+            if(players.length == 0) {
+              players.push(
+                player
+              );
+            } else {
+              players.push(
+                ', '+player
+              );
+            }
+
+          }.bind(this));
+          
+          list.push(
+            <div className='pure-u-1-4'>
+              <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(this, roomInfo)}>
+                <div className='lobby_photo_wrap'>
+                  <div className='lobby_photo'>{photos}</div>
+                  {room.private ? <i className='icon icon-Private-GreyFill'></i> : <i className='icon icon-Public-White'></i>}
+                </div>
+                <div className='lobby_room_name'>{room.name}</div>
+                <div className='card_bottom'><div className='card_bottom_content'>{players}</div></div>
+              </div>
+            </div>
+          );
+        }.bind(this));
+        return (
+          <div className='lobby'>
+            <div className='lobby_content pure-g'>
+              <div className='pure-u-1-4'>
+                <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
+                  <div className='create_room_button spin_target'><span className='cross'></span></div>
+                  <div className='lobby_room_name'>建立新遊戲</div>
+                  <div className='create_room_disc'>立即建立新遊戲 邀請朋友一起玩</div>
+                </a>
+              </div>
+              {list}
+            </div>
+            {this.state.showPasswordPopup ? 
+              <div className='password_popup'>
+                <div className='password_popup_content'>
+                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人全群組</div>
+                  <div className='password_popup_bottom_section'>
+                    <div className='input_wrap input-Password-Grey'>
+                      <input 
+                        className='input'
+                        type='passwrod'
+                        value={this.state.joinRoomPassword}
+                        placeholder='請輸入群組密碼'
+                        ref='passwordInput'
+                        onChange={this.inputChange}
+                      />
+                    </div>
+                    <div className='button button-green' onClick={this.buttonClick}>確認</div>
+                  </div>
+                </div>
+              </div>
+            :''}
+          </div>
+        );
+      }
+    });
+
+    var CreateRoom = React.createClass({
+      getInitialState() {
+        return {
+          roomName: '',
+          inputState: '',
+          playerSetting: 5,
+          privateSetting: 0
+        };
+      },
+      componentDidMount() {        
+
+      },
+      inputChange:function() {
+        if(this.refs.roomNameInput.value.length < 8 ) { //>
+          this.setState({
+             roomName: this.refs.roomNameInput.value
+          });
+        }
+        
+      },
+      mouseOver:function() {
+        $('.create_room_input_wrap').addClass('hover');
+      },
+      mouseOut:function() {
+        $('.create_room_input_wrap').removeClass('hover')
+      },
+      focus:function() {
+        $('.create_room_input_wrap').addClass('focus');
+      },
+      blur:function() {
+        $('.create_room_input_wrap').removeClass('focus');
+        if(this.refs.roomNameInput.value.length > 0){
+          $('.create_room_input_wrap').addClass('complete');
+        } else {
+          $('.create_room_input_wrap').removeClass('complete');
+        }
+      },
+      setPlayer: function(num) {
+        this.setState({playerSetting: num});
+      },
+      setPrivate: function(isPrivate) {
+        this.setState({privateSetting: isPrivate});
+      },
+      createGame: function() {
+         if(!!this.state.roomName) {
+          alert('create a room: ' + this.state.roomName + ' need ' + this.state.playerSetting + ' players and Private is' + this.state.privateSetting);
+         }
+      },
+      render: function() {
+
+        return (
+          <div className='create_room'>
+            <div className='create_room_input_wrap'>
+              <input
+                className='create_room_input'
+                type='text'
+                value={this.state.roomName}
+                placeholder='輸入群組名稱'
+                ref='roomNameInput'
+                onChange={this.inputChange}
+                onMouseOver={this.mouseOver}
+                onMouseOut={this.mouseOut}
+                onFocus={this.focus}
+                onBlur={this.blur}
+              />
+              <span className='room_name_count'>{this.state.roomName.length}/7</span>
+            </div>
+            <div className='row'>
+              <div className='label'>請選擇遊戲人數</div>
+              <div className='options'>
+                <div className={this.state.playerSetting == 5 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,5)}>5</div>
+                <div className={this.state.playerSetting == 7 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,7)}>7</div>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='label'>公開或需要密碼</div>
+              {this.state.privateSetting == 0 ?
+                <div className='options'>
+                  <div className='option selected'><i className='icon icon-Public-Green'></i></div>
+                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,1)}></i></div>
+                </div>
+               :
+                <div className='options'>
+                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,0)}></i></div>
+                  <div className='option selected'><i className='icon icon-Password-Grey'></i></div>
+                </div>
+              } 
+            </div>
+            <a className={this.state.roomName ? 'button button-green' : 'button button-green disabled'} onClick={this.createGame}>建立新遊戲</a>
+          </div>
+        );
+      }
+    });
+    
+    var Gallery = React.createClass({
+      getInitialState() {
+        return {
+          pageView: 'landing',
+          galleryList:[
+            {
+              id: 1,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              date: '3/5'
+            },
+            {
+              id: 2,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              date: '3/5'
+            },
+            {
+              id: 3,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              date: '3/5'
+            },
+            {
+              id: 4,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              date: '3/5'
+            },
+            {
+              id: 5,
+              name:'大湖遊藝場',
+              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
+              date: '3/5'
+            }
+          ],
+          currentGalleryId: ''
+          
+        };
+      },
+      componentDidMount() {        
+
+      },
+      setPageView: function(view) {
+        this.setState({pageView:view});
+      },
+      setCurrentGalleryId: function(id) {
+        this.setState({currentGalleryId:id});
+      },
+      render: function() {
+
+        return (
+          <div className='gallery'>
+            {this.state.pageView == 'landing' ? 
+              <GalleryLanding 
+                galleryList={this.state.galleryList}
+                setPageView={this.setPageView}
+                setCurrentGalleryId={this.setCurrentGalleryId }
+              />
+            :''}
+            {this.state.pageView == 'detail' ? 
+              <GalleryDetail
+                galleryList={this.state.galleryList}
+                currentGalleryId={this.state.currentGalleryId}
+                setCurrentGalleryId={this.setCurrentGalleryId}
+              />
+            :''}
+          </div>
+        );
+      }
+    });
+    
+    var GalleryLanding = React.createClass({
+      getInitialState() {
+        return {
+        };
+      },
+      componentDidMount() {        
+
+      },
+      cellClick: function(id) {
+        this.props.setPageView('detail');
+        this.props.setCurrentGalleryId(id);
+      },
+      render: function() {
+        var list = [];
+
+        this.props.galleryList.forEach(function(data) {
+          var players = '', i = 0;
+          data.players.forEach(function(player){
+            if(i == 0) {
+              players = player;
+            } else {
+              players += ', '+player;
+            }
+            i++;
+          }.bind(this));
+
+          list.push(
+            <div className='pure-u-1-4'>
+              <div className='card gellery_cell' onClick={this.cellClick.bind(this, data.id)}>
+                <div className='gallery_img'><img src='image/Cat.svg' /></div>
+                <div className='gallery_date'>{data.date}</div>
+                <div className='gallery_name'>{data.name}</div>
+                <div className='card_bottom'><div className='card_bottom_content'>{players}</div></div>
+              </div>
+            </div>
+          );
+        }.bind(this));
+        return (
+          <div className='gallery_landing pure-g'>
+            {list}
+          </div>
+        );
+      }
+    });
+    
+    var GalleryDetail = React.createClass({
+      getInitialState() {
+        return {
+    
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+        var list = [];
+
+        this.props.galleryList.forEach(function(data) {
+          var players = '', i = 0;
+          data.players.forEach(function(player){
+            if(i == 0) {
+              players = player;
+            } else {
+              players += ', '+player;
+            }
+            i++;
+          }.bind(this));
+
+          list.push(
+            <div className={data.id == this.props.currentGalleryId ? 'gellery_list_cell selected' : 'gellery_list_cell'}
+                 onClick={this.props.setCurrentGalleryId.bind(this, data.id)}
+              >
+              <div className='gallery_img'><img src='image/Cat.svg' /></div>
+              <div className='gallery_info'>
+                <div className='gallery_name'>{data.name}</div>
+                <div className='gallery_players'>{players}</div>
+              </div>
+            </div>
+          );
+        }.bind(this));
+        return (
+          <div className='gallery_detail'>
+            <div className='gellery_list'>
+              {list}
+            </div>
+            <div className='gallery_detail_content'>
+            
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    
+    
+    
+    React.render(
+      <App />,
+      document.getElementById('App')
+    );
+  </script>
+  </body>
+</html>
