@@ -1,0 +1,1 @@
+var slices = [{"objectID":"DBB2E90B-C179-4213-93A9-8756CC430E5D","type":"slice","name":"Icons/End-GreyFill","rect":{"x":617,"y":190,"width":30,"height":30},"exportSizes":[{"sliceName":"slices/Icons/End-GreyFill.svg","scale":"1.000000","suffix":"","format":"svg"}]}];
