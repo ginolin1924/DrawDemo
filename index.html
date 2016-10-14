@@ -538,10 +538,12 @@
       overflow: hidden;
     }
     .lobby_content {
-      max-width:910px;
-      margin: 0 auto;
       height: 100%;
       overflow-y: auto;
+    }
+    .lobby_content .pure-g  {
+      max-width:910px;
+      margin: 0 auto;
     }
     .lobby_photo {
       width: 120px;
@@ -1457,20 +1459,22 @@
         }.bind(this));
         return (
           <div className='lobby'>
-            <div className='lobby_content pure-g'>
-              <div className='pure-u-1-4'>
-                <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
-                  <div className='create_room_button spin_target'><span className='cross'></span></div>
-                  <div className='lobby_room_name'>建立新遊戲</div>
-                  <div className='create_room_disc'>立即建立新遊戲 邀請朋友一起玩</div>
-                </a>
+            <div className='lobby_content'>
+              <div className='pure-g'>
+                <div className='pure-u-1-4'>
+                  <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
+                    <div className='create_room_button spin_target'><span className='cross'></span></div>
+                    <div className='lobby_room_name'>建立新遊戲</div>
+                    <div className='create_room_disc'>立即建立新遊戲 邀請朋友一起玩</div>
+                  </a>
+                </div>
+                {list}
               </div>
-              {list}
             </div>
             {this.state.showPasswordPopup ? 
               <div className='password_popup'>
                 <div className='password_popup_content'>
-                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人全群組</div>
+                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
                   <div className='password_popup_bottom_section'>
                     <div className='input_wrap input-Password-Grey'>
                       <input 
@@ -1696,8 +1700,10 @@
           );
         }.bind(this));
         return (
-          <div className='gallery_landing pure-g'>
-            {list}
+          <div className='gallery_landing'>
+            <div className='pure-g'>
+              {list}
+            </div>
           </div>
         );
       }
