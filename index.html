@@ -377,6 +377,9 @@
     html, body, #App, .page {
       height: 100%;
     }
+    .page {
+      overflow: hidden;
+    }
     body.body_disable_scorll {
       position: fixed;
       overflow-y:scroll;
@@ -535,7 +538,6 @@
     .lobby {
       height: 100%;
       position: relative;
-      overflow: hidden;
     }
     .lobby_content {
       height: 100%;
@@ -681,25 +683,48 @@
     .password_popup {
       position: absolute;
       bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      height: 0;
+      transition: height 0.5s;
+    }
+    .password_popup.show {
+      height: calc( 100% + 80px );
+    }
+    .password_popup_mask {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .password_popup_content {
+      position: absolute;
+      bottom: -200px;
       height: 200px;
       background-color: rgba(22, 32, 56, 0.85);
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-transition: bottom 0.5s; /* Safari */
+      transition: bottom 0.5s;
+      /*
       -webkit-animation-name: passwordPopup; /* Chrome, Safari, Opera */
       -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
       animation-name: passwordPopup;
       animation-duration: 0.5s;
+      */
     }
-    .password_popup_content {
-      min-width: 400px;
+    .password_popup.show .password_popup_content {
+      bottom: 0;
     }
     .password_popup .popup_title {
       font-size: 24px;
       color: #fff;
       text-align: center;
-      padding-bottom: 30px;
+      padding-right: 30px;
     }
     .password_popup_bottom_section {
       display: flex;
@@ -1410,6 +1435,9 @@
       buttonClick: function() {
         alert('join room:'+this.state.joinRoomName+' id:'+this.state.joinRoomId+' password:'+this.state.joinRoomPassword)
       },
+      popup_click: function() {
+        this.setState({showPasswordPopup:0});
+      },
       render: function() {
         var list = [];
 
@@ -1471,26 +1499,25 @@
                 {list}
               </div>
             </div>
-            {this.state.showPasswordPopup ? 
-              <div className='password_popup'>
-                <div className='password_popup_content'>
-                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
-                  <div className='password_popup_bottom_section'>
-                    <div className='input_wrap input-Password-Grey'>
-                      <input 
-                        className='input'
-                        type='passwrod'
-                        value={this.state.joinRoomPassword}
-                        placeholder='請輸入群組密碼'
-                        ref='passwordInput'
-                        onChange={this.inputChange}
-                      />
-                    </div>
-                    <div className='button button-green' onClick={this.buttonClick}>確認</div>
+            <div className={this.state.showPasswordPopup ? 'password_popup show' : 'password_popup'}>
+              <div className='password_popup_mask' onClick={this.popup_click}></div>
+              <div className='password_popup_content'>
+                <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
+                <div className='password_popup_bottom_section'>
+                  <div className='input_wrap input-Password-Grey'>
+                    <input 
+                      className='input'
+                      type='passwrod'
+                      value={this.state.joinRoomPassword}
+                      placeholder='請輸入群組密碼'
+                      ref='passwordInput'
+                      onChange={this.inputChange}
+                    />
                   </div>
+                  <div className='button button-green' onClick={this.buttonClick}>確認</div>
                 </div>
               </div>
-            :''}
+            </div>
           </div>
         );
       }
