@@ -601,6 +601,24 @@
       left: 50%;
       margin-top: -45px;
       margin-left: -45px;
+
+      -webkit-animation-name: scan;
+      -webkit-animation-duration: 1200ms;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: ease-in-out;
+      -moz-animation-name: scan;
+      -moz-animation-duration: 1200ms;
+      -moz-animation-iteration-count: infinite;
+      -moz-animation-timing-function: ease-in-out;
+      -ms-animation-name: scan;
+      -ms-animation-duration: 1200ms;
+      -ms-animation-iteration-count: infinite;
+      -ms-animation-timing-function: ease-in-out;
+      
+      animation-name: scan;
+      animation-duration: 1200ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
     }
     .create_room_button:after {
       content: '';
@@ -628,26 +646,6 @@
     }
     .create_room_button .cross:after, .create_room_button .cross:before {
       border-width: 5px;
-    }
-    
-    .lobby_cell:hover .create_room_button:before {
-      -webkit-animation-name: scan;
-      -webkit-animation-duration: 1200ms;
-      -webkit-animation-iteration-count: infinite;
-      -webkit-animation-timing-function: ease-in-out;
-      -moz-animation-name: scan;
-      -moz-animation-duration: 1200ms;
-      -moz-animation-iteration-count: infinite;
-      -moz-animation-timing-function: ease-in-out;
-      -ms-animation-name: scan;
-      -ms-animation-duration: 1200ms;
-      -ms-animation-iteration-count: infinite;
-      -ms-animation-timing-function: ease-in-out;
-      
-      animation-name: scan;
-      animation-duration: 1200ms;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
     }
     @-ms-keyframes scan {
         0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
@@ -1473,7 +1471,7 @@
           }.bind(this));
           
           list.push(
-            <div className='pure-u-1-4'>
+            <div className='pure-u-1-4 pure-u-md-1-3'>
               <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(this, roomInfo)}>
                 <div className='lobby_photo_wrap'>
                   <div className='lobby_photo'>{photos}</div>
@@ -1489,7 +1487,7 @@
           <div className='lobby'>
             <div className='lobby_content'>
               <div className='pure-g'>
-                <div className='pure-u-1-4'>
+                <div className='pure-u-1-4 pure-u-lg-1-3'>
                   <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
                     <div className='create_room_button spin_target'><span className='cross'></span></div>
                     <div className='lobby_room_name'>建立新遊戲</div>
@@ -1716,7 +1714,7 @@
           }.bind(this));
 
           list.push(
-            <div className='pure-u-1-4'>
+            <div className='pure-u-1-4 pure-u-sm-1-1'>
               <div className='card gellery_cell' onClick={this.cellClick.bind(this, data.id)}>
                 <div className='gallery_img'><img src='image/Cat.svg' /></div>
                 <div className='gallery_date'>{data.date}</div>
