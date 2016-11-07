@@ -395,8 +395,6 @@
     .header {
       position: relative;
       height: 80px;
-      
-      padding: 0 30px;
     }
     .header:after {
       content: '';
@@ -406,7 +404,10 @@
       left: 0;
       border-bottom: 1px solid #ccc;
     }
-    .logo {
+    .header_default {
+      padding: 0 30px;
+    }
+    .header_default .logo {
       float: left;
       padding-top: 25px;
       padding-right: 60px;
@@ -759,7 +760,7 @@
     .create_room {
       max-width: 470px;
       margin: 0 auto;
-      padding-top: 60px;
+      padding: 60px 30px;
     }
     .create_room_input_wrap {
       width: 100%;
@@ -964,6 +965,42 @@
     .edit_profile .input_wrap {
       padding: 30px 0;
     }
+
+
+
+    /*** MOBonly ***/
+    .header_mobile {
+      display: none;
+    }
+    .header_mobile .left_nav {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      margin-right: -50%;
+      transform: translate(0, -50%); 
+    }
+    .header_mobile .page_name {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%); 
+    }
+     .header_mobile .right_nav {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      margin-left: -50%;
+      transform: translate(0, -50%); 
+    }
+    @media screen and (max-width: 768px)  {
+      .header_default {
+        display: none;
+      }
+      .header_mobile {
+        display: block;
+      }
+    }
   </style>
 
   <div id="App" class=""></div>
@@ -1040,6 +1077,12 @@
               navProfileTab={this.props.navProfileTab}
               toggleNavProfile={this.props.toggleNavProfile}
             />
+            <HeaderMobile 
+              currentPage={this.props.currentPage}
+              setCurrentPage={this.props.setCurrentPage}
+              userName={this.props.userName}
+              navProfileTab={this.props.navProfileTab}
+            />
           </div>
         );
       }
@@ -1081,6 +1124,39 @@
       }
     });
     
+    var HeaderMobile = React.createClass({
+      getInitialState() {
+        return {
+          map: {
+            lobby:      <Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />,
+            createRoom: '開新遊戲',
+            gallery:    '畫廊'
+          }
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+        var page_title = this.state.map[this.props.currentPage] || '<Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />';
+        return (
+          <div className='header_mobile'>
+            <div className='left_nav'>
+              {this.props.currentPage != 'lobby' ?
+                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i></a>
+                  :
+                  <a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i></a>
+              }
+            </div>
+            <div className='page_name'>{page_title}</div>
+            <div className='right_nav'>
+              <a onClick={this.props.toggleNavProfile}><i className='icon icon-Player-Black'></i></a>
+            </div>
+          </div>
+        );
+      }
+    });
+
     var Logo = React.createClass({
       render: function() {
         return (
@@ -1475,7 +1551,7 @@
           }.bind(this));
           
           list.push(
-            <div className='pure-u-lg-1-4 pure-u-md-1-3 pure-u-1-2'>
+            <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
               <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(this, roomInfo)}>
                 <div className='lobby_photo_wrap'>
                   <div className='lobby_photo'>{photos}</div>
@@ -1491,7 +1567,7 @@
           <div className='lobby'>
             <div className='lobby_content'>
               <div className='pure-g'>
-                <div className='pure-u-lg-1-4 pure-u-md-1-3 pure-u-1-2'>
+                <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
                   <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
                     <div className='create_room_button spin_target'><span className='cross'></span></div>
                     <div className='lobby_room_name'>建立新遊戲</div>
