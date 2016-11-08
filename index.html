@@ -124,7 +124,7 @@
       position: relative;
     }
     .input {
-      line-height: 65px;
+      line-height: 59px;
       border-radius: 100px;
       padding-left: 70px;
       border: 2px solid transparent;
@@ -391,6 +391,7 @@
       background: #fafafa;
       height: calc(100% - 80px);
       position: relative;
+      overflow-y: auto;
     }
     .header {
       position: relative;
@@ -526,15 +527,15 @@
       padding-top: 10px;
       font-size: 32px;
     }
-    .nav_profile_content .list {
+    .nav_profile_content .list, .mob_profile_content .list {
       margin-top: 40px;
     }
-    .nav_profile_content .list a {
+    .nav_profile_content .list a, .mob_profile_content .list a {
       display: block;
       padding: 17px 15px;
       border-bottom: 1px solid #4F5C7C;
     }
-    .nav_profile_content .list .icon {
+    .nav_profile_content .list .icon, .mob_profile_content .list .icon {
       margin-right: 15px;
     }
     /*** Lobby ***/
@@ -702,15 +703,12 @@
       left: 0;
       right: 0;
     }
-    .password_popup_content {
+    .password_popup_body {
       position: absolute;
       bottom: -200px;
       height: 200px;
       background-color: rgba(22, 32, 56, 0.85);
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       -webkit-transition: bottom 0.5s; /* Safari */
       transition: bottom 0.5s;
       /*
@@ -720,19 +718,22 @@
       animation-duration: 0.5s;
       */
     }
-    .password_popup.show .password_popup_content {
+    .password_popup.show .password_popup_body {
       bottom: 0;
+    }
+    .password_popup_content {
+      max-width: 420px;
+      padding: 0 10px;
+      margin: 40px auto;
     }
     .password_popup .popup_title {
       font-size: 24px;
       color: #fff;
       text-align: center;
-      padding-right: 30px;
+      padding-bottom: 20px;
     }
     .password_popup_bottom_section {
       display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .password_popup_bottom_section .input_wrap {
       flex: 2;
@@ -741,6 +742,7 @@
       margin-left: 20px;
       flex: 1;
     }
+    
     
     /* Chrome, Safari, Opera */
     @-webkit-keyframes passwordPopup {
@@ -760,7 +762,7 @@
     .create_room {
       max-width: 470px;
       margin: 0 auto;
-      padding: 60px 30px;
+      padding: 60px 30px 20px;
     }
     .create_room_input_wrap {
       width: 100%;
@@ -802,6 +804,8 @@
       font-size: 24px;
       cursor: pointer;
       color:#162038;
+      width: 150px;
+      line-height: inherit;
     }
     .room_name_count {
       position: absolute;
@@ -811,7 +815,8 @@
     .create_room .row {
       display: -webkit-flex;
       display: flex;
-      padding: 30px 0;
+      padding-top: 30px;
+      min-height: 40px;
       align-items: center;
     }
     .create_room .label {
@@ -854,6 +859,9 @@
       left: 50%;
       margin-right: -50%;
       transform: translate(-50%, -50%);
+    }
+    .create_room .button {
+      margin-top: 30px;
     }
     /*** End of Create Room ***/
     
@@ -969,6 +977,21 @@
 
 
     /*** MOBonly ***/
+    .mob_profile_slider {
+      display: none;
+      top:0;
+      right: 0; 
+      bottom: 0;
+      left: 0;
+      position: absolute;
+    }
+    .mob_profile_content {
+      background: #212B41;
+      color: #B6B6B6;
+    }
+    .mob_profile_mask {
+
+    }
     .header_mobile {
       display: none;
     }
@@ -985,6 +1008,7 @@
       left: 50%;
       margin-right: -50%;
       transform: translate(-50%, -50%); 
+      font-size: 22px;
     }
      .header_mobile .right_nav {
       position: absolute;
@@ -994,12 +1018,33 @@
       transform: translate(0, -50%); 
     }
     @media screen and (max-width: 768px)  {
+      .nav_profile_content {
+        display: none;
+      }
+      /* input */
+      .input {
+        padding-left: 50px;
+        width: calc(100% - 50px);
+      }
+      .input_wrap:after {
+        left: 15px;
+      }
       .header_default {
         display: none;
       }
       .header_mobile {
         display: block;
       }
+      .create_room .label {
+        flex: 3;
+      }
+      .user_setting {
+        padding: 20px;
+      }
+      /*
+      .mob_profile_slider {
+        display: block;
+      }*/
     }
   </style>
 
@@ -1017,7 +1062,8 @@
           //  createRoom: 建立遊戲
           //  gallery:    畫廊
           //  feedback:   意見回覆
-          navProfileTab: 0
+          navProfileTab: 0,
+          mobProfile: 0
         };
       },
       componentDidMount() {
@@ -1032,6 +1078,9 @@
       setUserPhoto: function(url) {
         this.setState({userPhoto: url});
       },
+      toggleMobProfile: function() {
+        this.setState({mobProfile: this.state.mobProfile ? 0 : 1});
+      },
       render: function() {
         return (
           <div className='page'>
@@ -1042,6 +1091,7 @@
               userPhoto={this.state.userPhoto}
               navProfileTab={this.state.navProfileTab}
               toggleNavProfile={this.toggleNavProfile}
+              toggleMobProfile={this.toggleMobProfile}
             />
             <MainContent 
               currentPage={this.state.currentPage}
@@ -1052,6 +1102,15 @@
               userEmail={this.state.userEmail}
               navProfileTab={this.state.navProfileTab}
               toggleNavProfile={this.toggleNavProfile}
+            />
+            <MobProfileSlider
+              currentPage={this.state.currentPage}
+              setCurrentPage={this.setCurrentPage}
+              userName={this.state.userName}
+              userPhoto={this.state.userPhoto}
+              setUserPhoto={this.setUserPhoto}
+              userEmail={this.state.userEmail}
+              toggleMobProfile={this.toggleMobProfile}
             />
           </div>
         );
@@ -1081,7 +1140,7 @@
               currentPage={this.props.currentPage}
               setCurrentPage={this.props.setCurrentPage}
               userName={this.props.userName}
-              navProfileTab={this.props.navProfileTab}
+              toggleMobProfile={this.props.toggleMobProfile}
             />
           </div>
         );
@@ -1138,7 +1197,7 @@
 
       },
       render: function() {
-        var page_title = this.state.map[this.props.currentPage] || '<Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />';
+        var page_title = this.state.map[this.props.currentPage] || <Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />;
         return (
           <div className='header_mobile'>
             <div className='left_nav'>
@@ -1150,7 +1209,7 @@
             </div>
             <div className='page_name'>{page_title}</div>
             <div className='right_nav'>
-              <a onClick={this.props.toggleNavProfile}><i className='icon icon-Player-Black'></i></a>
+              <a onClick={this.props.setCurrentPage.bind(this,'editProfile')}><i className='icon icon-Player-Black'></i></a>
             </div>
           </div>
         );
@@ -1261,6 +1320,51 @@
               <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
               <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
             </ul>
+          </div>
+        );
+      }
+    });
+
+    var MobProfileSlider = React.createClass({
+      getInitialState() {
+        return {
+        };
+      },
+      componentDidMount() {        
+
+      },
+      linkClick: function(linkTo) {
+        this.props.setCurrentPage(linkTo);
+        this.props.toggleNavProfile();
+      },
+      render: function() {
+
+        return (
+          <div className='mob_profile_slider'>
+            <div className='mob_profile_content'>
+              <div className='profile_info'>
+                <img className='member_photo' src={this.props.userPhoto} />
+                <div className='member_handle'>{this.props.userName}</div>
+                <div className='member_email'>{this.props.userEmail}</div>
+                <div onClick={this.linkClick.bind(this, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
+              </div>
+              <div className='profile_gallery'>
+                <div>
+                  <label>畫廊</label>
+                  <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>999+</a>
+                </div>
+                <div>
+                  <label>你的畫廊</label>
+                  <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>33</a>
+                </div>
+              </div>
+              <ul className='list'>
+                <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
+                <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
+                <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
+              </ul>
+            </div>
+            <div className='mob_profile_mask'></div>
           </div>
         );
       }
@@ -1579,20 +1683,22 @@
             </div>
             <div className={this.state.showPasswordPopup ? 'password_popup show' : 'password_popup'}>
               <div className='password_popup_mask' onClick={this.popup_click}></div>
-              <div className='password_popup_content'>
-                <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
-                <div className='password_popup_bottom_section'>
-                  <div className='input_wrap input-Password-Grey'>
-                    <input 
-                      className='input'
-                      type='passwrod'
-                      value={this.state.joinRoomPassword}
-                      placeholder='請輸入群組密碼'
-                      ref='passwordInput'
-                      onChange={this.inputChange}
-                    />
-                  </div>
-                  <div className='button button-green' onClick={this.buttonClick}>確認</div>
+              <div className='password_popup_body'>
+                <div className='password_popup_content'>
+                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
+                  <div className='password_popup_bottom_section'>
+                    <div className='input_wrap input-Password-Grey'>
+                      <input 
+                        className='input'
+                        type='passwrod'
+                        value={this.state.joinRoomPassword}
+                        placeholder='請輸入群組密碼'
+                        ref='passwordInput'
+                        onChange={this.inputChange}
+                      />
+                    </div>
+                    <div className='button button-green' onClick={this.buttonClick}>確認</div>
+                  </div>                
                 </div>
               </div>
             </div>
@@ -1607,7 +1713,8 @@
           roomName: '',
           inputState: '',
           playerSetting: 5,
-          privateSetting: 0
+          privateSetting: 0,
+          joinRoomPassword: ''
         };
       },
       componentDidMount() {        
@@ -1649,6 +1756,11 @@
           alert('create a room: ' + this.state.roomName + ' need ' + this.state.playerSetting + ' players and Private is' + this.state.privateSetting);
          }
       },
+      inputPasswrodChange: function() {
+          this.setState({
+             joinRoomPassword: this.refs.passwordInput.value
+          });
+      },
       render: function() {
 
         return (
@@ -1689,6 +1801,20 @@
                 </div>
               } 
             </div>
+            {this.state.privateSetting == 0 ? '' :
+              <div className='row'>
+                <div className='input_wrap input-Password-Grey'>
+                  <input 
+                    className='input'
+                    type='passwrod'
+                    value={this.state.joinRoomPassword}
+                    placeholder='請輸入群組密碼'
+                    ref='passwordInput'
+                    onChange={this.inputPasswrodChange}
+                  />
+                </div>
+              </div>
+            }
             <a className={this.state.roomName ? 'button button-green' : 'button button-green disabled'} onClick={this.createGame}>建立新遊戲</a>
           </div>
         );
