@@ -391,7 +391,6 @@
       background: #fafafa;
       height: calc(100% - 80px);
       position: relative;
-      overflow-y: auto;
     }
     .header {
       position: relative;
@@ -981,19 +980,31 @@
 
     /*** MOBonly ***/
     .mob_profile_slider {
-      display: none;
       top:0;
-      right: 0; 
-      bottom: 0;
-      left: 0;
-      position: absolute;
+      right: -5px;
+      position: fixed;
+      overflow-x: hidden;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      margin-right: -100%;
+      transition: 0.5s;
     }
     .mob_profile_content {
       background: #212B41;
       color: #B6B6B6;
+      width: 265px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
     }
     .mob_profile_mask {
-
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
     .header_mobile {
       display: none;
@@ -1021,6 +1032,9 @@
       transform: translate(0, -50%); 
     }
     @media screen and (max-width: 768px)  {
+      .main_content {
+        overflow-y: auto;
+      }
       .nav_profile_content {
         display: none;
       }
@@ -1044,10 +1058,9 @@
       .user_setting {
         padding: 20px;
       }
-      /*
-      .mob_profile_slider {
-        display: block;
-      }*/
+      .open_slider .mob_profile_slider {
+        margin-right: 0;
+      }
     }
   </style>
 
@@ -1084,9 +1097,12 @@
       toggleMobProfile: function() {
         this.setState({mobProfile: this.state.mobProfile ? 0 : 1});
       },
+      closeMobProfile: function() {
+        this.setState({mobProfile: 0});
+      },
       render: function() {
         return (
-          <div className='page'>
+          <div className={this.state.mobProfile ? 'page open_slider' : 'page'} >
             <Header 
               currentPage={this.state.currentPage}
               setCurrentPage={this.setCurrentPage}
@@ -1113,7 +1129,9 @@
               userPhoto={this.state.userPhoto}
               setUserPhoto={this.setUserPhoto}
               userEmail={this.state.userEmail}
+              toggleNavProfile={this.toggleNavProfile}
               toggleMobProfile={this.toggleMobProfile}
+              closeMobProfile={this.closeMobProfile}
             />
           </div>
         );
@@ -1212,7 +1230,7 @@
             </div>
             <div className='page_name'>{page_title}</div>
             <div className='right_nav'>
-              <a onClick={this.props.setCurrentPage.bind(this,'editProfile')}><i className='icon icon-Player-Black'></i></a>
+              <a onClick={this.props.toggleMobProfile}><i className='icon icon-Player-Black'></i></a>
             </div>
           </div>
         );
@@ -1294,14 +1312,61 @@
       componentDidMount() {        
 
       },
-      linkClick: function(linkTo) {
-        this.props.setCurrentPage(linkTo);
-        this.props.toggleNavProfile();
-      },
       render: function() {
 
         return (
           <div className='nav_profile_content'>
+            <ProfileComponent 
+              userName={this.props.userName}
+              userPhoto={this.props.userPhoto}
+              userEmail={this.props.userEmail}
+              currentPage={this.props.currentPage}
+              setCurrentPage={this.props.setCurrentPage}
+              toggleNavProfile={this.props.toggleNavProfile}
+            />
+          </div>
+        );
+      }
+    });
+
+    var MobProfileSlider = React.createClass({
+      getInitialState() {
+        return {
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='mob_profile_slider'>
+            <div className='mob_profile_mask' onClick={this.props.closeMobProfile}></div>
+            <div className='mob_profile_content'>
+              <ProfileComponent 
+                userName={this.props.userName}
+                userPhoto={this.props.userPhoto}
+                userEmail={this.props.userEmail}
+                currentPage={this.props.currentPage}
+                setCurrentPage={this.props.setCurrentPage}
+                toggleNavProfile={this.props.toggleNavProfile}
+                closeMobProfile={this.props.closeMobProfile}
+              />
+            </div>
+          </div>
+        );
+      }
+    });
+
+    var ProfileComponent = React.createClass({
+      linkClick: function(linkTo) {
+        this.props.setCurrentPage(linkTo);
+        this.props.toggleNavProfile();
+        this.props.closeMobProfile();
+      },
+      render: function() {
+        return (
+          <div className='profile_component'>
             <div className='profile_info'>
               <img className='member_photo' src={this.props.userPhoto} />
               <div className='member_handle'>{this.props.userName}</div>
@@ -1323,51 +1388,6 @@
               <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
               <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
             </ul>
-          </div>
-        );
-      }
-    });
-
-    var MobProfileSlider = React.createClass({
-      getInitialState() {
-        return {
-        };
-      },
-      componentDidMount() {        
-
-      },
-      linkClick: function(linkTo) {
-        this.props.setCurrentPage(linkTo);
-        this.props.toggleNavProfile();
-      },
-      render: function() {
-
-        return (
-          <div className='mob_profile_slider'>
-            <div className='mob_profile_content'>
-              <div className='profile_info'>
-                <img className='member_photo' src={this.props.userPhoto} />
-                <div className='member_handle'>{this.props.userName}</div>
-                <div className='member_email'>{this.props.userEmail}</div>
-                <div onClick={this.linkClick.bind(this, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
-              </div>
-              <div className='profile_gallery'>
-                <div>
-                  <label>畫廊</label>
-                  <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>999+</a>
-                </div>
-                <div>
-                  <label>你的畫廊</label>
-                  <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>33</a>
-                </div>
-              </div>
-              <ul className='list'>
-                <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
-                <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
-                <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
-              </ul>
-            </div>
-            <div className='mob_profile_mask'></div>
           </div>
         );
       }
