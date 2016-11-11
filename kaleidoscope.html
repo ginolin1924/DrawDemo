@@ -772,7 +772,7 @@
               </li>
               <li onClick={this.props.setTool('eraser')} className={this.props.tool == 'eraser' ? 'active' : ''}><i className='icon icon-eraser'></i></li>
               <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-gallery'></i></li>
-              <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? '' : 'hide'}><i className='icon icon-rollback'></i></li>
+              <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? 'hide' : 'hide'}><i className='icon icon-rollback'></i></li>
             </ul>
             <ul className='color_picker'>
               {colorOption}
