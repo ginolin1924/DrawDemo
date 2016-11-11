@@ -162,8 +162,18 @@
     .App {
       padding: 30px;
     }
+    .drawtable {
+      position: relative;
+    }
     canvas {
       border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    #gridline {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
     .draw_tool {
       display: inline-block;
@@ -217,6 +227,10 @@
       margin-right: -50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      border: 3px solid;
+    }
+    .draw_tool .size_picker li.active:after {
+      border-color: #fff;
     }
     .draw_tool .size_picker li:first-child {
       border-top-right-radius: 100%;
@@ -254,6 +268,23 @@
     .size_5:after {
       width: 60px;
       height: 60px;
+    }
+    .grid_picker {
+      padding-bottom: 20px;
+    }
+    .grid_picker .option {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border: 2px solid;
+      margin: 10px;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+    .grid_picker .option.active {
+      border-color: #36CEBC;
     }
     .color_picker {
       display: -webkit-flex;
@@ -329,6 +360,9 @@
               flex: 1;
       margin: 0 10px;
     }
+    .btn_grid {
+      background: #2E91F4;
+    }
     .btn_complete {
       background: #36CEBC;
       margin-top: 30px;
@@ -377,6 +411,8 @@
       getInitialState() {
         return { 
           canvasSize: 900,
+          gridLine: 32,
+          showGrid: 1,
           tool: 'pencil',
           paint : false,
           clickX: [],
@@ -405,41 +441,25 @@
             color_6: '#2E91F4',
             color_7: '#ffffff',
           },
-          tempImage : 0,
-          cardView: 'showFront'
+          tempImage : 0
         };
       },
       componentDidMount: function () {
         var canvas = document.getElementById('canvas'),
-            context = canvas.getContext("2d");
+            context = canvas.getContext("2d"),
+            girdcanvas = document.getElementById('gridline'),
+            gridline = girdcanvas.getContext("2d");
 
-        this.setState({context: context});
+        this.setState({context: context, gridline: gridline});
         //$(context).attr('width',$(this.getDOMNode()).width());
 
         //context.rect(0, 0, context.canvas.width, context.canvas.height);
         //context.fillStyle='white';
         //context.fill();
 
-         context.beginPath();
-         context.moveTo(0,0);
-         context.lineTo(900,900);
-         context.moveTo(0,900);
-         context.lineTo(900,0);
-         context.moveTo(450,0);
-         context.lineTo(450,900);
-         context.moveTo(0,450);
-         context.lineTo(900,450);
-         context.moveTo(636,0);
-         context.lineTo(264,900);
-         context.moveTo(264,0);
-         context.lineTo(636,900);
-         context.moveTo(0,264);
-         context.lineTo(900,636);
-         context.moveTo(0,636);
-         context.lineTo(900,264);
-         context.stroke();
+        this.darwGridLine(gridline);
 
-        if (0 && localStorage.tmpImage) {
+        if (localStorage.tmpImage) {
             var image = new Image();
             image.src = localStorage.tmpImage;
             image.onload = function(){
@@ -517,14 +537,14 @@
             r = Math.sqrt(Tx*Tx + Ty*Ty),
             ang = Math.atan2(Ty, Tx);
 
-        var ang8 = Math.PI/8;
+         var ang8 = (2*Math.PI)/(this.state.gridLine);
 
           context.fillStyle = color;
           context.beginPath();
           context.arc(X, Y, size/2, 0, 2 * Math.PI);
           context.fill();
 
-          for (var i = 1; i < 16; i++) {
+          for (var i = 1; i < this.state.gridLine; i++) {
               var Nx = r * Math.cos(ang + ang8*i)+450,
                   Ny = 450 - (r * Math.sin(ang + ang8*i));
 
@@ -549,7 +569,6 @@
           context.closePath();
           context.stroke();
 
-          var ang8 = Math.PI/8;
           var Tx = positionX-450,
               Ty = 450-positionY,
               r = Math.sqrt(Tx*Tx + Ty*Ty),
@@ -559,9 +578,9 @@
               R = Math.sqrt(TX*TX + TY*TY),
               Ang = Math.atan2(TY, TX);
 
-          var ang8 = Math.PI/8;
+          var ang8 = (2*Math.PI)/(this.state.gridLine);
 
-            for (var i = 1; i < 16; i++) {
+            for (var i = 1; i < this.state.gridLine; i++) {
               var Nx = r * Math.cos(ang + ang8*i)+450,
                   Ny = 450 - (r * Math.sin(ang + ang8*i)),
                   NX = R * Math.cos(Ang + ang8*i)+450,
@@ -575,8 +594,38 @@
           }
         }
       },
+      darwGridLine: function(target) {
+        var context = target;
+
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(900,900);
+        context.moveTo(0,900);
+        context.lineTo(900,0);
+        context.moveTo(450,0);
+        context.lineTo(450,900);
+        context.moveTo(0,450);
+        context.lineTo(900,450);
+        context.moveTo(636,0);
+        context.lineTo(264,900);
+        context.moveTo(264,0);
+        context.lineTo(636,900);
+        context.moveTo(0,264);
+        context.lineTo(900,636);
+        context.moveTo(0,636);
+        context.lineTo(900,264);
+        context.stroke();
+      },
       setCanvasSize: function(val) {
           this.setState({canvasSize : val});
+      },
+      toggleGrid: function() {
+        this.setState({showGrid: this.state.showGrid ? 0 : 1});
+      },
+      setGridLine: function(val) {
+        return function () {
+            this.setState({gridLine : val});
+        }.bind(this);
       },
       setTool: function(tool) {
         return function () {
@@ -613,29 +662,6 @@
           context.clearRect(0, 0, context.canvas.width, context.canvas.height);
           //context.fillStyle='white';
           //context.fill();
-
-
-         context.beginPath();
-         context.strokeStyle = '#000';
-         context.lineJoin = "round";
-         context.lineWidth = 1;
-         context.moveTo(0,0);
-         context.lineTo(900,900);
-         context.moveTo(0,900);
-         context.lineTo(900,0);
-         context.moveTo(450,0);
-         context.lineTo(450,900);
-         context.moveTo(0,450);
-         context.lineTo(900,450);
-         context.moveTo(636,0);
-         context.lineTo(264,900);
-         context.moveTo(264,0);
-         context.lineTo(636,900);
-         context.moveTo(0,264);
-         context.lineTo(900,636);
-         context.moveTo(0,636);
-         context.lineTo(900,264);
-         context.stroke();
         }
       },
       revertDrawTable: function() {
@@ -647,12 +673,6 @@
             context.drawImage(image, 0, 0);
         }
         this.setState({tempImage:0});
-      },
-      googleTopic: function() {
-        window.open('http://images.google.com/search?tbm=isch&q='+this.props.topic);
-      },
-      rotateCard: function() {
-        this.setState({cardView: this.state.cardView == 'showFront' ? 'showBack' : 'showFront'});
       },
       render: function () {
 
@@ -674,9 +694,19 @@
               onTouchCancel={this.paintFalse}
             >
             </canvas>
+            <canvas
+              id='gridline'
+              className={this.state.showGrid ? '' : 'hide'}
+              width={this.state.canvasSize}
+              height={this.state.canvasSize}
+            >
+            </canvas>
             <DrawTool
               setCanvasSize={this.setCanvasSize}
               canvasSize={this.state.canvasSize}
+              toggleGrid={this.toggleGrid}
+              setGridLine={this.setGridLine}
+              gridLine={this.state.gridLine}
               setTool={this.setTool}
               tool={this.state.tool}
               sizeMap={this.state.sizeMap}
@@ -727,6 +757,14 @@
         
         return (          
           <div className='draw_tool'>
+            <ul className='grid_picker'>
+              <li>軸數</li>
+              <li onClick={this.props.setGridLine('4')} className={this.props.gridLine == 4 ? 'active option' : 'option'}>4</li>
+              <li onClick={this.props.setGridLine('8')} className={this.props.gridLine == 8 ? 'active option' : 'option'}>8</li>
+              <li onClick={this.props.setGridLine('16')} className={this.props.gridLine == 16 ? 'active option' : 'option'}>16</li>
+              <li onClick={this.props.setGridLine('32')} className={this.props.gridLine == 32 ? 'active option' : 'option'}>32</li>
+              <li onClick={this.props.setGridLine('64')} className={this.props.gridLine == 64 ? 'active option' : 'option'}>64</li>
+            </ul>
             <ul className='tool_picker'>
               <li onClick={this.props.setTool('pencil')} className={this.props.tool == 'pencil' ? 'size_picker active' : 'size_picker'}>
                 <a><i className='icon icon-draw'></i></a>
@@ -742,6 +780,7 @@
               {colorOption}
             </ul>
             <div className='btn-wrap'>
+              <div onClick={this.props.toggleGrid} className={'button btn_grid'}>顯示/隱藏 格線</div>
               <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
               <div onClick={this.props.sendButtonClick} className={'button button btn_complete'} id={'send_img'}>存成圖片</div>
             </div>
