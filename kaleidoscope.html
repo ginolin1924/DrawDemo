@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <!-- react -->
+    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    
+    <!-- bootstrap 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexming.css">
+  </head>
+  <body>
+  <style type="text/css">
+    /* rest */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font-weight: normal;
+      line-height: 1;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    a:focus, a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* End of reset*/
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    /*::-webkit-scrollbar-track {
+        background-color: #eaeaea;
+        border-left: 1px solid #ccc;
+    }*/
+    ::-webkit-scrollbar-thumb {
+        background-color: #999;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #333;
+    }
+    
+    /* font */
+    @font-face {
+    font-family: PingFang;
+      src: url(font/DroidSansFallback.ttf);
+    }
+    body {
+      line-height: 1;
+      font-family: PingFang;
+    }
+    
+    /* GLOBAL */
+    h2 {
+      font-size: 23px;
+    }
+    h3 {
+      font-size: 22px;
+    }
+    .button {
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .button-simple {
+      font-size: 0.75rem;
+      padding: 8px 26px;
+      display: inline-block;
+      border: 1px solid;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+    }
+    .icon-back {
+      background-image: url('image/icon/Back-Black.svg');
+    }
+    .icon-reload {
+      background-image: url('image/icon/Reload-Black.svg');
+    }
+    .icon-gallery {
+      background-image: url('image/icon/Gallery-Black.svg');
+    }
+    .icon-player {
+      background-image: url('image/icon/Player-Black.svg');
+    }
+    .icon-idea {
+      background-image: url('image/icon/Idea-Black.svg');
+    }
+    .icon-draw {
+      background-image: url('image/icon/BrushLarge-Black.svg');
+    }
+    .icon-eraser {
+      background-image: url('image/icon/EaserLarge-Black.svg');
+    }
+    .icon-talk {
+      background-image: url('image/icon/Talk-Black.svg');
+    }    
+    .icon-rollback {
+      background-image: url('image/icon/Shared-Black.svg');
+    }
+    
+    /* End GLOBAL */
+    .App {
+      padding: 30px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+    }
+    .draw_tool {
+      display: inline-block;
+      vertical-align: top;
+      width: 600px;
+      padding: 60px;
+    }
+    .draw_tool ul.tool_picker > li {
+      display: inline-block;
+      padding: 25px;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+    .draw_tool ul.tool_picker > li.hide {
+      display: none;
+    }
+    .draw_tool ul.tool_picker > li.active, .draw_tool ul.tool_picker > li:hover {
+      background: #dadada;
+    }
+    .draw_tool .size_picker {
+      position: relative;
+    }
+    .draw_tool .size_picker:hover {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .draw_tool .size_picker:hover ul {
+      display: block;
+    }
+    .draw_tool .size_picker ul {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: -70px;
+      width: 470px;
+    }
+    .draw_tool .size_picker li {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      background: #dadada;
+      position: relative;
+    }
+    .draw_tool .size_picker li:after {
+      content: '';
+      background: #000;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+    .draw_tool .size_picker li:first-child {
+      border-top-right-radius: 100%;
+      border-top-left-radius: 100%;
+    }
+    .draw_tool .size_picker li:first-child:before {
+      content: '';
+      position: absolute;
+      background: #dadada;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      right: 0;
+    }
+    .draw_tool .size_picker li:last-child {
+      border-top-right-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
+    .size_1:after {
+      width: 14px;
+      height: 14px;
+    }
+    .size_2:after {
+      width: 20px;
+      height: 20px;
+    }
+    .size_3:after {
+      width: 30px;
+      height: 30px;
+    }
+    .size_4:after {
+      width: 44px;
+      height: 44px;
+    }
+    .size_5:after {
+      width: 60px;
+      height: 60px;
+    }
+    .color_picker {
+      display: -webkit-flex;
+      display: flex;
+      padding-bottom: 10px;
+    }
+    .color_picker li {
+      -webkit-flex: 1;
+              flex: 1;
+      height: 60px;
+      position: relative;
+    }
+    .color_picker li:after {
+      content: '';
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      width: 37.5px;
+      height: 37.5px;
+    }
+    .color_picker li:before {
+      content: '';
+      background: #fff;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #cbcbcb;
+    }
+    .color_picker li.active:before {
+      border-color: #000;
+    }
+    .color_picker li.color_1:after, .bg_color_1 {
+      background: #000000;
+    }
+    .color_picker li.color_2:after, .bg_color_2 {
+      background: #EE534C;
+    }
+    .color_picker li.color_3:after, .bg_color_3 {
+      background: #F79A2D;
+    }
+    .color_picker li.color_4:after, .bg_color_4 {
+      background: #FDED19;
+    }
+    .color_picker li.color_5:after, .bg_color_5 {
+      background: #36CEBC;
+    }
+    .color_picker li.color_6:after, .bg_color_6 {
+      background: #2E91F4;
+    }
+    .color_picker li.color_7:after, .bg_color_7 {
+      background: #ffffff;
+    }
+    .hide {
+      display:none;
+    }
+    .btn-wrap {
+      display: -webkit-flex;
+      display: flex;
+      margin: 0 -10px;
+    }
+    .btn-wrap .button {
+      -webkit-flex: 1;
+              flex: 1;
+      margin: 0 10px;
+    }
+    .btn_complete {
+      background: #36CEBC;
+      margin-top: 30px;
+    }
+    .btn_reset_table {
+      background: #F16A51;
+      margin-top: 30px;
+    }
+    .mask {
+      position: fixed;
+      transition: all 1s ease-in-out;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #162038;
+      opacity: 0;
+      z-index: 1001;
+      cursor: pointer;
+      pointer-events: none;
+    }
+  </style>
+
+  <div id="App" class=""></div>
+
+  <script type="text/babel">
+    var App = React.createClass({
+      getInitialState() {
+        return {
+          size: 900
+        };
+      },
+      render: function() {
+        return (
+          <div className='App'>
+            <DrawTable
+              size={this.state.size}
+            />
+          </div>
+        );
+      }
+    });
+
+
+    var DrawTable = React.createClass({
+      getInitialState() {
+        return { 
+          canvasSize: 900,
+          tool: 'pencil',
+          paint : false,
+          clickX: [],
+          clickY: [],
+          clickDrag: [],
+          clickSize: [],
+          clickColor: [],
+          positionX: '',
+          positionY: '',
+          pointSize: 'size_1',
+          pointColor: 'color_1',
+          backgroundColor: 'color_7',
+          sizeMap: {
+            size_1  : 5,
+            size_2  : 9,
+            size_3  : 13,
+            size_4  : 17,
+            size_5  : 21
+          },
+          colorMap: {
+            color_1: '#000000',
+            color_2: '#EE534C',
+            color_3: '#F79A2D',
+            color_4: '#FDED19',
+            color_5: '#36CEBC',
+            color_6: '#2E91F4',
+            color_7: '#ffffff',
+          },
+          tempImage : 0,
+          cardView: 'showFront'
+        };
+      },
+      componentDidMount: function () {
+        var canvas = document.getElementById('canvas'),
+            context = canvas.getContext("2d");
+
+        this.setState({context: context});
+        //$(context).attr('width',$(this.getDOMNode()).width());
+
+        //context.rect(0, 0, context.canvas.width, context.canvas.height);
+        //context.fillStyle='white';
+        //context.fill();
+
+         context.beginPath();
+         context.moveTo(0,0);
+         context.lineTo(900,900);
+         context.moveTo(0,900);
+         context.lineTo(900,0);
+         context.moveTo(450,0);
+         context.lineTo(450,900);
+         context.moveTo(0,450);
+         context.lineTo(900,450);
+         context.moveTo(636,0);
+         context.lineTo(264,900);
+         context.moveTo(264,0);
+         context.lineTo(636,900);
+         context.moveTo(0,264);
+         context.lineTo(900,636);
+         context.moveTo(0,636);
+         context.lineTo(900,264);
+         context.stroke();
+
+        if (0 && localStorage.tmpImage) {
+            var image = new Image();
+            image.src = localStorage.tmpImage;
+            image.onload = function(){
+                context.drawImage(image, 0, 0);
+            }
+        }
+      },
+      onMouseDown: function(e) {
+        var mouseX = e.pageX - $('#canvas').offset().left,
+            mouseY = e.pageY - $('#canvas').offset().top,
+            size   = this.state.sizeMap[this.state.pointSize],
+            color  = this.state.colorMap[this.state.pointColor];
+            
+        localStorage.tmpImage = canvas.toDataURL();
+        this.setState({tempImage:1});
+
+        this.setState({paint:true});
+        this.setState({positionX:mouseX,positionY:mouseY});
+        this.drawDot(mouseX,mouseY,size,color);
+        
+      },
+      onHandleStart: function(e) {
+        e.preventDefault();
+        var touchX = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
+            touchY = e.targetTouches[0].pageY - $('#canvas').offset().top - 5,
+            size   = this.state.sizeMap[this.state.pointSize]/3,
+            color  = this.state.colorMap[this.state.pointColor];
+
+        localStorage.tmpImage = canvas.toDataURL();
+        this.setState({tempImage:1});
+          
+        this.setState({paint:true});
+        this.setState({positionX:touchX,positionY:touchY});
+        this.drawDot(touchX,touchY, size, color);
+      },
+      onMouseMove: function(e) {
+        if(this.state.paint) {
+          var mouseX    = e.pageX - $('#canvas').offset().left,
+              mouseY    = e.pageY - $('#canvas').offset().top,
+              positionX = this.state.positionX,
+              positionY = this.state.positionY,
+              size      = this.state.sizeMap[this.state.pointSize],
+              color     = this.state.colorMap[this.state.pointColor];
+          
+          this.setState({positionX:mouseX, positionY:mouseY});
+          this.drawLine(mouseX, mouseY, positionX, positionY, size, color);
+        }
+      },
+      onHandleMove: function(e) {
+        e.preventDefault();
+        if(this.state.paint) {
+          var touchX    = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
+              touchY    = e.targetTouches[0].pageY - $('#canvas').offset().top - 5,
+              positionX = this.state.positionX,
+              positionY = this.state.positionY,
+              size      = this.state.sizeMap[this.state.pointSize]/3,
+              color     = this.state.colorMap[this.state.pointColor];
+              
+          this.setState({positionX:touchX, positionY:touchY});
+          this.drawLine(touchX, touchY, positionX, positionY, size, color);
+        }
+      },
+      paintFalse: function() {
+        this.setState({paint:false});
+      },
+      drawDot: function(X, Y, size, color) {
+        var context = this.state.context;
+        
+        if(this.state.tool == 'eraser') {
+          context.clearRect(X-10, Y-10, 20, 20);
+        } else {
+
+        var Tx = X-450,
+            Ty = 450-Y,
+            r = Math.sqrt(Tx*Tx + Ty*Ty),
+            ang = Math.atan2(Ty, Tx);
+
+        var ang8 = Math.PI/8;
+
+          context.fillStyle = color;
+          context.beginPath();
+          context.arc(X, Y, size/2, 0, 2 * Math.PI);
+          context.fill();
+
+          for (var i = 1; i < 16; i++) {
+              var Nx = r * Math.cos(ang + ang8*i)+450,
+                  Ny = 450 - (r * Math.sin(ang + ang8*i));
+
+              context.beginPath();
+              context.arc(Nx, Ny, size/2, 0, 2 * Math.PI);
+              context.fill();
+          }
+        }
+      },
+      drawLine: function(X, Y, positionX, positionY, size, color) {
+        var context = this.state.context;
+        
+        if(this.state.tool == 'eraser') {
+          context.clearRect(X-10, Y-10, 20, 20);
+        } else {    
+          context.strokeStyle = color;
+          context.lineJoin = "round";
+          context.lineWidth = size;
+          context.beginPath();
+          context.moveTo(positionX,positionY);
+          context.lineTo(X,Y);
+          context.closePath();
+          context.stroke();
+
+          var ang8 = Math.PI/8;
+          var Tx = positionX-450,
+              Ty = 450-positionY,
+              r = Math.sqrt(Tx*Tx + Ty*Ty),
+              ang = Math.atan2(Ty, Tx),
+              TX = X-450,
+              TY = 450-Y,
+              R = Math.sqrt(TX*TX + TY*TY),
+              Ang = Math.atan2(TY, TX);
+
+          var ang8 = Math.PI/8;
+
+            for (var i = 1; i < 16; i++) {
+              var Nx = r * Math.cos(ang + ang8*i)+450,
+                  Ny = 450 - (r * Math.sin(ang + ang8*i)),
+                  NX = R * Math.cos(Ang + ang8*i)+450,
+                  NY = 450 - (R * Math.sin(Ang + ang8*i));
+
+            context.beginPath();
+            context.moveTo(Nx,Ny);
+            context.lineTo(NX,NY);
+            context.closePath();
+            context.stroke();
+          }
+        }
+      },
+      setCanvasSize: function(val) {
+          this.setState({canvasSize : val});
+      },
+      setTool: function(tool) {
+        return function () {
+            this.setState({tool : tool});
+        }.bind(this);
+      },
+      setSize: function(size) {
+        return function () {
+            this.setState({pointSize : size});
+        }.bind(this);
+      },
+      setColor: function(color) {
+        return function () {
+            if(this.state.tool == 'pencil') {
+              this.setState({pointColor : color});
+            } else if(this.state.tool == 'backgroundColor') {
+              this.setState({backgroundColor : color});
+            }
+        }.bind(this);
+      },
+      sendButtonClick: function() {
+        var img_src = this.refs.canvas.getDOMNode().toDataURL();
+        var $button = $(this.getDOMNode()).find('#send_img');
+
+        this.props.sendImage(img_src);
+        $button.attr('disabled', true);
+        setTimeout(function(){ $button.text('Resend Image').attr('disabled', false); }, 1000);
+      },
+      clearDrawTable: function() {
+        var clear = confirm ("Clear All ?")
+
+        if (clear) {
+          var context = this.state.context;
+          context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+          //context.fillStyle='white';
+          //context.fill();
+        }
+      },
+      revertDrawTable: function() {
+        var context = this.state.context;
+        var image = new Image();
+
+        image.src = localStorage.tmpImage;
+        image.onload = function(){
+            context.drawImage(image, 0, 0);
+        }
+        this.setState({tempImage:0});
+      },
+      googleTopic: function() {
+        window.open('http://images.google.com/search?tbm=isch&q='+this.props.topic);
+      },
+      rotateCard: function() {
+        this.setState({cardView: this.state.cardView == 'showFront' ? 'showBack' : 'showFront'});
+      },
+      render: function () {
+
+        return (
+          <div className={'drawtable'}>
+            <canvas 
+              ref='canvas'
+              id='canvas'
+              className={this.state.pointSize + ' bg_'+this.state.backgroundColor}
+              width={this.state.canvasSize}
+              height={this.state.canvasSize}
+              onMouseDown  ={this.onMouseDown}
+              onMouseMove  ={this.onMouseMove}
+              onMouseUp    ={this.paintFalse}
+              onMouseLeave ={this.paintFalse}
+              onTouchStart ={this.onHandleStart}
+              onTouchMove  ={this.onHandleMove}
+              onTouchEnd   ={this.paintFalse}
+              onTouchCancel={this.paintFalse}
+            >
+            </canvas>
+            <DrawTool
+              setCanvasSize={this.setCanvasSize}
+              canvasSize={this.state.canvasSize}
+              setTool={this.setTool}
+              tool={this.state.tool}
+              sizeMap={this.state.sizeMap}
+              setSize={this.setSize} 
+              size={this.state.pointSize}
+              colorMap={this.state.colorMap}
+              tempImage={this.state.tempImage}
+              setColor={this.setColor}
+              color={this.state.pointColor}
+              backgroundColor={this.state.backgroundColor}
+              clearDrawTable={this.clearDrawTable}
+              sendButtonClick={this.sendButtonClick}
+              revertDrawTable={this.revertDrawTable}
+            />
+          </div>
+        );
+      }
+    });   
+
+    var DrawTool = React.createClass({
+      render: function() {
+        var sizeOption = [],
+            sizeOptionClass,
+            colorOption = [],
+            colorOptionClass,
+            i;
+            
+            
+        for (i in this.props.sizeMap) {
+          sizeOptionClass = 'size_option'
+          if (i == this.props.size) {sizeOptionClass += ' active'}
+          sizeOption.push(<li 
+                              className={sizeOptionClass+' '+i}
+                              onClick={this.props.setSize(i)}
+                          ></li>)
+        };
+        
+        for (i in this.props.colorMap) {
+          var colorOptionClass = 'color_option';
+
+          if (i == this.props.color && this.props.tool == 'pencil' || i == this.props.backgroundColor && this.props.tool == 'backgroundColor') {colorOptionClass += ' active'}
+
+          colorOption.push(<li 
+                              className={colorOptionClass+' '+i}
+                              onClick={this.props.setColor(i)}
+                          ></li>);
+        };
+        
+        return (          
+          <div className='draw_tool'>
+            <ul className='tool_picker'>
+              <li onClick={this.props.setTool('pencil')} className={this.props.tool == 'pencil' ? 'size_picker active' : 'size_picker'}>
+                <a><i className='icon icon-draw'></i></a>
+                <ul>
+                  {sizeOption}
+                </ul>
+              </li>
+              <li onClick={this.props.setTool('eraser')} className={this.props.tool == 'eraser' ? 'active' : ''}><i className='icon icon-eraser'></i></li>
+              <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-gallery'></i></li>
+              <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? '' : 'hide'}><i className='icon icon-rollback'></i></li>
+            </ul>
+            <ul className='color_picker'>
+              {colorOption}
+            </ul>
+            <div className='btn-wrap'>
+              <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
+              <div onClick={this.props.sendButtonClick} className={'button button btn_complete'} id={'send_img'}>存成圖片</div>
+            </div>
+          </div>
+        );
+      }
+    });
+
+
+
+    React.render(
+      <App />,
+      document.getElementById('App')
+    );
+  </script>
+  </body>
+</html>
