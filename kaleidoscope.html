@@ -386,15 +386,15 @@
           clickColor: [],
           positionX: '',
           positionY: '',
-          pointSize: 'size_1',
+          pointSize: 'size_2',
           pointColor: 'color_1',
           backgroundColor: 'color_7',
           sizeMap: {
-            size_1  : 5,
-            size_2  : 9,
-            size_3  : 13,
-            size_4  : 17,
-            size_5  : 21
+            size_1  : 1,
+            size_2  : 3,
+            size_3  : 5,
+            size_4  : 7,
+            size_5  : 9
           },
           colorMap: {
             color_1: '#000000',
@@ -613,6 +613,29 @@
           context.clearRect(0, 0, context.canvas.width, context.canvas.height);
           //context.fillStyle='white';
           //context.fill();
+
+
+         context.beginPath();
+         context.strokeStyle = '#000';
+         context.lineJoin = "round";
+         context.lineWidth = 1;
+         context.moveTo(0,0);
+         context.lineTo(900,900);
+         context.moveTo(0,900);
+         context.lineTo(900,0);
+         context.moveTo(450,0);
+         context.lineTo(450,900);
+         context.moveTo(0,450);
+         context.lineTo(900,450);
+         context.moveTo(636,0);
+         context.lineTo(264,900);
+         context.moveTo(264,0);
+         context.lineTo(636,900);
+         context.moveTo(0,264);
+         context.lineTo(900,636);
+         context.moveTo(0,636);
+         context.lineTo(900,264);
+         context.stroke();
         }
       },
       revertDrawTable: function() {
