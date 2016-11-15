@@ -23,16 +23,9 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexyen.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexming.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/pure-min.css">
-    <link rel="stylesheet" href="css/pure-grid-min.css">
   </head>
   <body>
   <style type="text/css">
-    .admin {
-      display: none;
-    }
     /* rest */
 
     html, body, div, span, applet, object, iframe,
@@ -53,7 +46,7 @@
       border: 0;
       vertical-align: baseline;
       font-weight: normal;
-      line-height: 1.2;
+      line-height: 1;
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
@@ -75,15 +68,9 @@
       border-collapse: collapse;
       border-spacing: 0;
     }
-    a {
-      text-decoration: none;
-    }
     a:focus, a:hover {
       text-decoration: none;
       cursor: pointer;
-    }
-    .pure-g [class *="pure-u"] {
-      font-family: PingFang;
     }
 
     /* End of reset*/
@@ -120,948 +107,282 @@
     h3 {
       font-size: 22px;
     }
-    .input_wrap {
-      position: relative;
-    }
-    .input {
-      line-height: 59px;
-      border-radius: 100px;
-      padding-left: 70px;
-      border: 2px solid transparent;
-      color:#162038;
-      width: calc(100% - 70px);
-    }
-    .input:hover {
-      border-color: #B6B6B6;
-    }
-    .input:focus {
-      outline: none;
-      border-color: #36CEBC;
-    }
-    .input_wrap:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 30px;
-      transform: translate(0, -50%);
-      width: 30px;
-      height: 30px;
-      background-size: cover;
-    }
     .button {
+      color: #fff;
+      padding: 20px 0;
       text-align: center;
-      display: inline-block;
-      border-radius: 40px;
-      color: #fff;
-      line-height: 65px;
       width: 100%;
-      cursor: pointer;
-    }
-    .button-green {
-      background: #36CEBC;
-    }
-    .button-green:hover {
-      background: #29B3A4;
-    }
-    .button-green.disabled {
-      background: rgba(54,206,187,0.50);
-      cursor: default;
-    }
-    .button-thin {
       display: inline-block;
-      font-size: 13px;
-      padding: 10px 25px;
-      border: 2px solid #7b7b7b;
-      border-radius: 20px;
+      border-radius: 30px;
       cursor: pointer;
     }
-    .button-thin:hover {
-      background-color: #7B7B7B;
-      color: #fff;
+    .button-simple {
+      font-size: 0.75rem;
+      padding: 8px 26px;
+      display: inline-block;
+      border: 1px solid;
+      border-radius: 15px;
+      cursor: pointer;
     }
     .icon {
       display: inline-block;
       width: 30px;
       height: 30px;
       background-size: cover;
-      vertical-align: middle;
     }
-    .icon-Back-Black {
+    .icon-back {
       background-image: url('image/icon/Back-Black.svg');
     }
-    .icon-Back-Reload-Black {
+    .icon-reload {
       background-image: url('image/icon/Reload-Black.svg');
     }
-    .icon-Gallery-Black {
+    .icon-gallery {
       background-image: url('image/icon/Gallery-Black.svg');
     }
-    .icon-Player-Black {
+    .icon-player {
       background-image: url('image/icon/Player-Black.svg');
     }
-    .icon-Player-Grey, .input-Player-Grey:after {
-      background-image: url('image/icon/Player-Grey.svg');
-    }
-    .icon-Idea-Black {
+    .icon-idea {
       background-image: url('image/icon/Idea-Black.svg');
     }
-    .icon-BrushLarge-Black {
+    .icon-draw {
       background-image: url('image/icon/BrushLarge-Black.svg');
     }
-    .icon-EaserLarge-Black {
+    .icon-eraser {
       background-image: url('image/icon/EaserLarge-Black.svg');
     }
-    .icon-Talk-Black {
+    .icon-talk {
       background-image: url('image/icon/Talk-Black.svg');
     }    
-    .icon-Shared-Black {
+    .icon-rollback {
       background-image: url('image/icon/Shared-Black.svg');
     }
-    .icon-Public-Green {
-      background-image: url('image/icon/Public-Green.svg');
-    }
-    .icon-Public-White {
-      background-image: url('image/icon/Public-White.svg');
-    }
-    .icon-Public-GreenFill {
-      background-image: url('image/icon/Public-GreenFill.svg');
-    }
-    .icon-Private-GreyFill {
-      background-image: url('image/icon/Private-GreyFill.svg');
-    }
-    .icon-Password-Black {
-      background-image: url('image/icon/Password-Black.svg');
-    }
-    .icon-Password-Grey, .input-Password-Grey:after {
-      background-image: url('image/icon/Password-Grey.svg');
-    }
-    .icon-Password-White {
-      background-image: url('image/icon/Password-White.svg');
-    }
-    .icon-Feedback-Grey {
-      background-image: url('image/icon/Feedback-Grey.svg');
-    }
-    .icon-Next-Dark {
-      background-image: url('image/icon/Next-Dark.svg');
-    }
     
-    .card {
-      display:block;
-      background: #fff;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      margin: 15px;
-      height: 340px;
-      position: relative;
-      cursor: pointer;
-    }
-    .card:after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 6px;
-      border: 1px solid #ccc;
-      border-radius: 0 0 10px 10px;
-      border-width: 0 1px 3px 1px;
-      bottom: -1px;
-      left: -1px;
-    }
-    .card:hover {
-      -webkit-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
-      -moz-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
-      box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
-    }
-    .card:hover:after {
-      border-color: #aaa;
-    }
-    .card_bottom {
-      position: absolute;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, 0);
-      bottom: 17px;
-      width:100%;
-      border-top: 1px solid #ebebeb;
-    }
-    .card_bottom_content {
-      white-space: nowrap;
-      width: calc(100% - 40px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin: 17px auto 0;
-      text-align: center;
-    }
-    
-    .cross:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-      border-top: 1px solid #fff;
-      width: 100%;
-    }
-    .cross:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-      border-right: 1px solid #fff;
-      height: 100%;
-    }
-    
-    .hover_spin_item:hover .spin_target {
-      -webkit-animation-name: spin90;
-      -webkit-animation-duration: 400ms;
-      -webkit-animation-iteration-count: 1;
-      -webkit-animation-timing-function: linear;
-      -moz-animation-name: spin90;
-      -moz-animation-duration: 400ms;
-      -moz-animation-iteration-count: 1;
-      -moz-animation-timing-function: linear;
-      -ms-animation-name: spin90;
-      -ms-animation-duration: 400ms;
-      -ms-animation-iteration-count: 1;
-      -ms-animation-timing-function: linear;
-      
-      animation-name: spin90;
-      animation-duration: 400ms;
-      animation-iteration-count: 1;
-      animation-timing-function: linear;
-    }
-    
-    @-ms-keyframes spin90 {
-        from { -ms-transform: rotate(0deg); }
-        to { -ms-transform: rotate(90deg); }
-    }
-    @-moz-keyframes spin90 {
-        from { -moz-transform: rotate(0deg); }
-        to { -moz-transform: rotate(90deg); }
-    }
-    @-webkit-keyframes spin90 {
-        from { -webkit-transform: rotate(0deg); }
-        to { -webkit-transform: rotate(90deg); }
-    }
-    @keyframes spin90 {
-        from {
-            transform:rotate(0deg);
-        }
-        to {
-            transform:rotate(90deg);
-        }
-    }
-    
-    .tabs {
-      display: flex;
-    }
-    .tabs li {
-      flex: 1;
-      line-height: 60px;
-      text-align: center;
-      color: #7B7B7B;
-      cursor: pointer;
-    }
-    .tabs li:hover {
-      color: #000;
-    }
-    .tabs li.active {
-      border-bottom: 2px solid #36CEBC;
-      color: #000;
-    }
     /* End GLOBAL */
-    
-    html, body, #App, .page {
-      height: 100%;
+    .App {
+      padding: 20px;
     }
-    .page {
-      overflow: hidden;
-    }
-    body.body_disable_scorll {
-      position: fixed;
-      overflow-y:scroll;
-      width:100%;
-    }
-    .main_content {
-      background: #fafafa;
-      height: calc(100% - 80px);
+    .drawtable {
       position: relative;
     }
-    .header {
-      position: relative;
-      height: 80px;
+    canvas {
+      border: 1px solid #ccc;
+      cursor: pointer;
     }
-    .header:after {
-      content: '';
-      width: 100%;
+    #gridline {
+      pointer-events: none;
       position: absolute;
-      bottom: 0;
       left: 0;
-      border-bottom: 1px solid #ccc;
+      top: 0;
     }
-    .header_default {
-      padding: 0 30px;
+    .draw_tool {
+      display: inline-block;
+      vertical-align: top;
+      width: 600px;
+      padding: 60px;
     }
-    .header_default .logo {
-      float: left;
-      padding-top: 25px;
-      padding-right: 60px;
+    .draw_tool ul.tool_picker > li {
+      display: inline-block;
+      padding: 25px;
+      border-radius: 100%;
+      cursor: pointer;
     }
-    .logo img {
+    .draw_tool ul.tool_picker > li.hide {
+      display: none;
+    }
+    .draw_tool ul.tool_picker > li.active, .draw_tool ul.tool_picker > li:hover {
+      background: #dadada;
+    }
+    .draw_tool .size_picker {
+      position: relative;
+    }
+    .draw_tool .size_picker:hover {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .draw_tool .size_picker:hover ul {
+      display: block;
+    }
+    .draw_tool .size_picker ul {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: -70px;
+      width: 470px;
+    }
+    .draw_tool .size_picker li {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      background: #dadada;
+      position: relative;
+    }
+    .draw_tool .size_picker li:after {
+      content: '';
+      background: #000;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      border: 3px solid;
+    }
+    .draw_tool .size_picker li.active:after {
+      border-color: #fff;
+    }
+    .draw_tool .size_picker li:first-child {
+      border-top-right-radius: 100%;
+      border-top-left-radius: 100%;
+    }
+    .draw_tool .size_picker li:first-child:before {
+      content: '';
+      position: absolute;
+      background: #dadada;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      right: 0;
+    }
+    .draw_tool .size_picker li:last-child {
+      border-top-right-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
+    .size_1:after {
+      width: 14px;
+      height: 14px;
+    }
+    .size_2:after {
+      width: 20px;
+      height: 20px;
+    }
+    .size_3:after {
+      width: 30px;
       height: 30px;
     }
-    .logo span {
-      letter-spacing: 3px;
-      padding-left: 10px;
-      font-weight: bold;
+    .size_4:after {
+      width: 44px;
+      height: 44px;
     }
-    .nav_link {
-      position:absolute;
-      top: 50%;
-      right: 25px;
-      margin-left: -50%;
-      transform: translate(0, -50%);
+    .size_5:after {
+      width: 60px;
+      height: 60px;
     }
-    .nav_link li {
+    .grid_picker {
+      padding-bottom: 20px;
+    }
+    .grid_picker .option {
       display: inline-block;
-      padding-left: 30px;
-    }
-    .nav_link li a {
-      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
       line-height: 40px;
-    }
-    .nav_link i {
-      margin-right: 10px;
-    }
-    .nav_link i, .nav_link span {
-      vertical-align: middle;
-    }
-    .nav_link_mob, .leave_link_mob {
-      display: none;
-    }
-    .nav_create_button {
-      width: 180px;
-      text-align: center;
-      display: inline-block;
-      background: #36CEBC;
-      border-radius: 20px;
-      color: #fff;
-    }
-    .nav_create_button:hover {
-      background: #29B3A4;
-    }
-    .nav_create_button span {
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .nav_create_button .cross {
-      vertical-align: initial;
-      width: 10px;
-      height: 10px;
-      position: relative;
-      margin-right: 10px;
-    }
-    .nav_create_button .cross:after, .nav_create_button .cross:before {
-      border-width: 3px;
-    }
-    
-    /*** Nav Profile ***/
-    .nav_profile_content {
-      height: 640px;
-      width: 300px;
-      top:0;
-      right: 0; 
-      background: #212B41;
-      color: #B6B6B6;
-      position: absolute;
-    }
-    .nav_profile_content a:hover {
-      color: #fff;
-    }
-    .nav_profile_content:after {
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 5.5px 8px 5.5px;
-      border-color: transparent transparent #212B41 transparent;
-      position: absolute; 
-      top: -8px;
-      right: 80px;
-    }
-    .profile_info {
-      text-align: center;
-      padding: 30px 0;
-    }
-    .profile_info img {
-      width: 100px;
-      height: 100px;
+      border: 2px solid;
+      margin: 10px;
       border-radius: 100%;
+      cursor: pointer;
     }
-    .member_handle {
-      color: #fff;
-      font-size: 24px;
-      padding: 10px 0;
-    }
-    .member_email {
-      padding-bottom: 20px;
-    }
-    .profile_gallery {
-      text-align: center;
-    }
-    .profile_gallery > div {
-      display: inline-block;
-      width: 130px;
-    }
-    .profile_gallery a {
-      display: block;
-    }
-    .profile_gallery .count {
-      padding-top: 10px;
-      font-size: 32px;
-    }
-    .nav_profile_content .list, .mob_profile_content .list {
-      margin-top: 40px;
-    }
-    .nav_profile_content .list a, .mob_profile_content .list a {
-      display: block;
-      padding: 17px 15px;
-      border-bottom: 1px solid #4F5C7C;
-    }
-    .nav_profile_content .list .icon, .mob_profile_content .list .icon {
-      margin-right: 15px;
-    }
-    /*** Lobby ***/
-    .lobby {
-      height: 100%;
-      position: relative;
-    }
-    .lobby_content {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .lobby_content .pure-g  {
-      max-width:910px;
-      margin: 0 auto;
-    }
-    .lobby_photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 100%;
-      border: 1px solid transparent;
-      overflow: hidden;
-      background: #EBEBEB;
-      margin: 0px auto;
-    }
-    .lobby_photo img {
-      width: 60px;
-      height: 60px;
-      margin: -1px 0;
-      background: #fff;
-    }
-    .lobby_photo_wrap {
-      margin: 30px auto;
-      width: 120px;
-      position: relative;
-    }
-    .lobby_photo_wrap .icon {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-    .lobby_photo_wrap .icon-Public-White {
-      border-radius: 100%;
-      background-color: #36CEBC;
-    }
-    .lobby_room_name {
-      color: #000;
-      text-align: center;
-      font-size: 22px;
-      font-family: PingFang;
-      padding-bottom: 30px;
-    }
-    .create_room_button {
-      border-radius: 100%;
-      margin: 30px auto;
-      position: relative;
-      height: 120px;
-      width: 120px;
-    }
-    .create_room_button:before {
-      content: '';
-      display: block;
-      background: #EBEBEB;
-      height: 90px;
-      width: 90px;
-      border-radius: 100%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -45px;
-      margin-left: -45px;
-
-      -webkit-animation-name: scan;
-      -webkit-animation-duration: 1200ms;
-      -webkit-animation-iteration-count: infinite;
-      -webkit-animation-timing-function: ease-in-out;
-      -moz-animation-name: scan;
-      -moz-animation-duration: 1200ms;
-      -moz-animation-iteration-count: infinite;
-      -moz-animation-timing-function: ease-in-out;
-      -ms-animation-name: scan;
-      -ms-animation-duration: 1200ms;
-      -ms-animation-iteration-count: infinite;
-      -ms-animation-timing-function: ease-in-out;
-      
-      animation-name: scan;
-      animation-duration: 1200ms;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-    .create_room_button:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: #36CEBC;
-      border-radius: 100%;
-    }
-    .create_room_button .cross {
-      height: 20px;
-      width: 20px;
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-    .create_room_button .cross:after, .create_room_button .cross:before {
-      border-width: 5px;
-    }
-    @-ms-keyframes scan {
-        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
-        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-    }
-    @-moz-keyframes scan {
-        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
-        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-    }
-    @-webkit-keyframes scan {
-        0% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-        50% { width: 120px; height: 120px; margin-top: -60px; margin-left: -60px; }
-        100% { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
-    }
-    @keyframes scan {
-        0% {
-            width: 90px; height: 90px; margin-top: -45px; margin-left: -45px;
-        }
-        50% {
-            width: 120px; height: 120px; margin-top: -60px; margin-left: -60px;
-        }
-        100% {
-            width: 90px; height: 90px; margin-top: -45px; margin-left: -45px;
-        }
-    }
-    .create_room_disc {
-      font-size: 16px;
-      color: #7B7B7B;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .password_popup {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      height: 0;
-      transition: height 0.5s;
-    }
-    .password_popup.show {
-      height: calc( 100% + 80px );
-    }
-    .password_popup_mask {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-    .password_popup_body {
-      position: absolute;
-      bottom: -200px;
-      height: 200px;
-      background-color: rgba(22, 32, 56, 0.85);
-      width: 100%;
-      -webkit-transition: bottom 0.5s; /* Safari */
-      transition: bottom 0.5s;
-      /*
-      -webkit-animation-name: passwordPopup; /* Chrome, Safari, Opera */
-      -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
-      animation-name: passwordPopup;
-      animation-duration: 0.5s;
-      */
-    }
-    .password_popup.show .password_popup_body {
-      bottom: 0;
-    }
-    .password_popup_content {
-      max-width: 420px;
-      padding: 0 10px;
-      margin: 40px auto;
-    }
-    .password_popup .popup_title {
-      font-size: 24px;
-      color: #fff;
-      text-align: center;
-      padding-bottom: 20px;
-    }
-    .password_popup_bottom_section {
-      display: flex;
-    }
-    .password_popup_bottom_section .input_wrap {
-      flex: 2;
-    }
-    .password_popup_bottom_section .button {
-      margin-left: 20px;
-      flex: 1;
-    }
-    
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes passwordPopup {
-        0%   {bottom: -200px;}
-        100% {bottom: 0;}
-    }
-
-    /* Standard syntax */
-    @keyframes passwordPopup {
-        0%   {bottom: -200px;}
-        100% {bottom: 0;}
-    }
-    
-    /*** End of Lobby ***/
-    
-    /*** Create Room ***/
-    .create_room {
-      max-width: 470px;
-      margin: 0 auto;
-      padding: 60px 30px 20px;
-    }
-    .create_room_input_wrap {
-      width: 100%;
-      position: relative;
-      height: 100px;
-      margin-bottom: 30px;
-    }
-    .create_room_input_wrap:before {
-      content: '';
-      display: block;
-      width: 100px;
-      height: 100px;
-      background: #fff;
-      position: absolute;
-      border-radius: 100%;
-    }
-    .create_room_input_wrap:after {
-      content: '';
-      display: block;
-      width: 100%;
-      border-bottom: 1px solid #EBEBEB;
-      position: absolute;
-      bottom: -30px;
-    }
-    .create_room_input_wrap.hover:after,.create_room_input_wrap.complete:after {
-      border-color: #B6B6B6;
-    }
-    .create_room_input_wrap.focus:after {
+    .grid_picker .option.active {
       border-color: #36CEBC;
     }
-    .create_room_input {
-      position: absolute;
-      top: 50%;
-      left: 130px;
-      transform: translate(0, -50%);
-      outline: none;
-      border: none;
-      background: transparent;
-      font-size: 24px;
-      cursor: pointer;
-      color:#162038;
-      width: 150px;
-      line-height: inherit;
-    }
-    .room_name_count {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-    }
-    .create_room .row {
+    .color_picker {
       display: -webkit-flex;
       display: flex;
-      padding-top: 30px;
-      min-height: 40px;
-      align-items: center;
+      padding-bottom: 10px;
     }
-    .create_room .label {
-      -webkit-flex: 5;
-      flex: 5;
-    }
-    .create_room .options {
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex: 2;
-      flex: 2;
-    }
-    .create_room .option {
+    .color_picker li {
       -webkit-flex: 1;
-      flex: 1;
-      text-align: center;
+              flex: 1;
+      height: 60px;
       position: relative;
-      cursor: pointer;
     }
-    .create_room .option.selected {
-      color: #36CEBC;
-      cursor: default;
-    }
-    .create_room .option.selected:after {
+    .color_picker li:after {
       content: '';
-      display: block;
+      border-radius: 100%;
       position: absolute;
       top: 50%;
       left: 50%;
       margin-right: -50%;
       transform: translate(-50%, -50%);
-      width: 53px;
-      height: 35px;
-      border: 2px solid #36CEBC;
-      border-radius: 100px;
+      cursor: pointer;
+      width: 37.5px;
+      height: 37.5px;
     }
-    .create_room .option .icon {
+    .color_picker li:before {
+      content: '';
+      background: #fff;
+      border-radius: 100%;
       position: absolute;
       top: 50%;
       left: 50%;
       margin-right: -50%;
       transform: translate(-50%, -50%);
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #cbcbcb;
     }
-    .create_room  .input_wrap {
-      width: 100%;
+    .color_picker li.active:before {
+      border-color: #000;
     }
-    .create_room .button {
+    .color_picker li.color_1:after, .bg_color_1 {
+      background: #000000;
+    }
+    .color_picker li.color_2:after, .bg_color_2 {
+      background: #EE534C;
+    }
+    .color_picker li.color_3:after, .bg_color_3 {
+      background: #F79A2D;
+    }
+    .color_picker li.color_4:after, .bg_color_4 {
+      background: #FDED19;
+    }
+    .color_picker li.color_5:after, .bg_color_5 {
+      background: #36CEBC;
+    }
+    .color_picker li.color_6:after, .bg_color_6 {
+      background: #2E91F4;
+    }
+    .color_picker li.color_7:after, .bg_color_7 {
+      background: #ffffff;
+    }
+    .hide {
+      display:none;
+    }
+    .btn-wrap {
+      display: -webkit-flex;
+      display: flex;
+      margin: 0 -10px;
+    }
+    .btn-wrap .button {
+      -webkit-flex: 1;
+              flex: 1;
+      margin: 0 10px;
+    }
+    .btn_grid {
+      background: #2E91F4;
+    }
+    .btn_complete {
+      background: #36CEBC;
       margin-top: 30px;
     }
-    /*** End of Create Room ***/
-    
-    /*** Gallery Category ***/
-    .gallery_landing {
-      max-width: 910px;
-      margin: 0 auto;
-      padding-top: 60px;
+    .btn_reset_table {
+      background: #F16A51;
+      margin-top: 30px;
     }
-    .gellery_cell .gallery_img {
-      max-width: 125px;
-      padding: 0 10px;
-      margin: 30px auto;
-    }
-    .gellery_cell .gallery_date {
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-      padding-bottom: 16px;
-    }
-    .gellery_cell .gallery_name {
-      text-align: center;
-      font-size: 22px;
-    }
-    
-    
-    /*** Gallery Detail ***/
-    .gallery_detail {
-      position: relative;
-    }
-    .gellery_list {
-      width: 350px;
-      padding: 12px 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #fff;
-    }
-    .gellery_list_cell {
-      padding: 12px 24px;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-    .gellery_list_cell.selected {
-      background: #fafafa;
-      cursor: default;
-    }
-    .gellery_list_cell .gallery_img {
-      width: 65px;
-      height: 65px;
-      padding-right: 10px;
-    }
-    .gellery_list_cell img {
-      width: 100%;
-    }
-    .gellery_list_cell .gallery_info {
-      -webkit-flex: 1;
-      flex: 1;
-    }
-    .gellery_list_cell .gallery_name {
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
-    .gellery_list_cell .gallery_players {
-      font-size: 13px;
-      color: #7B7B7B;
-      overflow : hidden;
-      text-overflow : ellipsis;
-      white-space : nowrap;
-      width : 200px;
-    }
-    
-    
-    /*** Edit Profile ***/
-    .user_setting {
-      max-width: 470px;
-      margin: 0 auto;
-      padding-top: 60px;
-    }
-    .user_setting .tab_content {
-      padding-top: 40px;
-    }
-    .edit_photo {
-      display: -webkit-flex;
-      display: flex;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-    }
-    .edit_photo img {
-      width: 100px;
-      height: 100px;
-      border-radius: 100%;
-      margin-right: 40px;
-    }
-    .edit_photo_info {
-      -webkit-flex: 1;
-      flex: 1;
-    }
-    .edit_photo_info .email {
-      padding-bottom: 15px;
-      color: #B6B6B6;
-    }
-    .edit_profile .input_wrap {
-      padding: 30px 0;
-    }
-
-
-
-    /*** MOBonly ***/
-    .mob_profile_slider {
-      top:0;
-      right: -5px;
+    .mask {
       position: fixed;
-      overflow-x: hidden;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      margin-right: -100%;
-      transition: 0.5s;
-    }
-    .mob_profile_content {
-      background: #212B41;
-      color: #B6B6B6;
-      width: 265px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      overflow-y: auto;
-    }
-    .mob_profile_mask {
-      position: absolute;
+      transition: all 1s ease-in-out;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
-    }
-    .header_mobile {
-      display: none;
-    }
-    .header_mobile .left_nav {
-      position: absolute;
-      top: 50%;
-      left: 15px;
-      margin-right: -50%;
-      transform: translate(0, -50%); 
-    }
-    .header_mobile .page_name {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%); 
-      font-size: 22px;
-    }
-     .header_mobile .right_nav {
-      position: absolute;
-      top: 50%;
-      right: 15px;
-      margin-left: -50%;
-      transform: translate(0, -50%); 
-    }
-    @media screen and (max-width: 768px)  {
-      .main_content {
-        overflow-y: auto;
-      }
-      .nav_profile_content {
-        display: none;
-      }
-      /* input */
-      .input {
-        padding-left: 50px;
-        width: calc(100% - 50px);
-      }
-      .input_wrap:after {
-        left: 15px;
-      }
-      .header_default {
-        display: none;
-      }
-      .header_mobile {
-        display: block;
-      }
-      .create_room .label {
-        flex: 3;
-      }
-      .user_setting {
-        padding: 20px;
-      }
-      .open_slider .mob_profile_slider {
-        margin-right: 0;
-      }
+      background: #162038;
+      opacity: 0;
+      z-index: 1001;
+      cursor: pointer;
+      pointer-events: none;
     }
   </style>
 
@@ -1071,950 +392,413 @@
     var App = React.createClass({
       getInitialState() {
         return {
-          userName: 'Gino',
-          userPhoto: 'http://images5.fanpop.com/image/photos/28800000/sbob-spongebob-squarepants-28841799-500-500.jpg',
-          userEmail: 'gino_lin@gmail.com',
-          currentPage: window.location.hash.replace('#', '') || 'lobby',
-          //  lobby:      大廳
-          //  createRoom: 建立遊戲
-          //  gallery:    畫廊
-          //  feedback:   意見回覆
-          navProfileTab: 0,
-          mobProfile: 0
+          size: 900
         };
-      },
-      componentDidMount() {
-      },
-      setCurrentPage: function(page) {
-        this.setState({currentPage: page});
-        location.hash = page;
-      },
-      toggleNavProfile: function() {
-        this.setState({navProfileTab: this.state.navProfileTab ? 0 : 1});
-      },
-      setUserPhoto: function(url) {
-        this.setState({userPhoto: url});
-      },
-      toggleMobProfile: function() {
-        this.setState({mobProfile: this.state.mobProfile ? 0 : 1});
-      },
-      closeMobProfile: function() {
-        this.setState({mobProfile: 0});
       },
       render: function() {
         return (
-          <div className={this.state.mobProfile ? 'page open_slider' : 'page'} >
-            <Header 
-              currentPage={this.state.currentPage}
-              setCurrentPage={this.setCurrentPage}
-              userName={this.state.userName}
-              userPhoto={this.state.userPhoto}
-              navProfileTab={this.state.navProfileTab}
-              toggleNavProfile={this.toggleNavProfile}
-              toggleMobProfile={this.toggleMobProfile}
-            />
-            <MainContent 
-              currentPage={this.state.currentPage}
-              setCurrentPage={this.setCurrentPage}
-              userName={this.state.userName}
-              userPhoto={this.state.userPhoto}
-              setUserPhoto={this.setUserPhoto}
-              userEmail={this.state.userEmail}
-              navProfileTab={this.state.navProfileTab}
-              toggleNavProfile={this.toggleNavProfile}
-            />
-            <MobProfileSlider
-              currentPage={this.state.currentPage}
-              setCurrentPage={this.setCurrentPage}
-              userName={this.state.userName}
-              userPhoto={this.state.userPhoto}
-              setUserPhoto={this.setUserPhoto}
-              userEmail={this.state.userEmail}
-              toggleNavProfile={this.toggleNavProfile}
-              toggleMobProfile={this.toggleMobProfile}
-              closeMobProfile={this.closeMobProfile}
+          <div className='App'>
+            <DrawTable
+              size={this.state.size}
             />
           </div>
         );
       }
     });
 
-    var Header = React.createClass({
-      getInitialState() {
-        return {
 
+    var DrawTable = React.createClass({
+      getInitialState() {
+        return { 
+          canvasSize: 900,
+          gridLine: 32,
+          showGrid: 1,
+          tool: 'pencil',
+          paint : false,
+          clickX: [],
+          clickY: [],
+          clickDrag: [],
+          clickSize: [],
+          clickColor: [],
+          positionX: '',
+          positionY: '',
+          pointSize: 'size_2',
+          pointColor: 'color_1',
+          backgroundColor: 'color_7',
+          sizeMap: {
+            size_1  : 1,
+            size_2  : 3,
+            size_3  : 5,
+            size_4  : 7,
+            size_5  : 9
+          },
+          colorMap: {
+            color_1: '#000000',
+            color_2: '#EE534C',
+            color_3: '#F79A2D',
+            color_4: '#FDED19',
+            color_5: '#36CEBC',
+            color_6: '#2E91F4',
+            color_7: '#ffffff',
+          },
+          tempImage : 0
         };
       },
-      componentDidMount() {        
+      componentDidMount: function () {
+        var canvas = document.getElementById('canvas'),
+            context = canvas.getContext("2d");
 
-      },
-      render: function() {
-        return (
-          <div className='header'>
-            <HeaderDefault
-              currentPage={this.props.currentPage}
-              setCurrentPage={this.props.setCurrentPage}
-              userName={this.props.userName}
-              navProfileTab={this.props.navProfileTab}
-              toggleNavProfile={this.props.toggleNavProfile}
-            />
-            <HeaderMobile 
-              currentPage={this.props.currentPage}
-              setCurrentPage={this.props.setCurrentPage}
-              userName={this.props.userName}
-              toggleMobProfile={this.props.toggleMobProfile}
-            />
-          </div>
-        );
-      }
-    });
-    
-    var HeaderDefault = React.createClass({
-      getInitialState() {
-        return {
+        this.setState({context: context, gridline: gridline});
+        //$(context).attr('width',$(this.getDOMNode()).width());
 
-        };
-      },
-      componentDidMount() {        
+        //context.rect(0, 0, context.canvas.width, context.canvas.height);
+        //context.fillStyle='white';
+        //context.fill();
 
-      },
-      render: function() {
+        this.darwGridLine(this.state.gridLine);
 
-        return (
-          <div className='header_default'>
-            <Logo 
-              currentPage={this.props.currentPage}
-              setCurrentPage={this.props.setCurrentPage}
-            />
-            <ul className='nav_link'>
-              
-              <li>
-                {this.props.currentPage == 'lobby' ?
-                  <a className='nav_create_button hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}><span className='cross hover_spin spin_target'></span>建立新遊戲</a>
-                  :
-                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i> <span>回上頁</span></a>
-                 }
-              </li>
-              <li><a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i>畫廊</a></li>
-              <li className={this.props.navProfileTab ? 'nav_profile active' : 'nav_profile'}>
-                <a onClick={this.props.toggleNavProfile}><i className='icon icon-Player-Black'></i>{this.props.userName}</a>
-              </li>
-            </ul>
-          </div>
-        );
-      }
-    });
-    
-    var HeaderMobile = React.createClass({
-      getInitialState() {
-        return {
-          map: {
-            lobby:      <Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />,
-            createRoom: '開新遊戲',
-            gallery:    '畫廊'
-          }
-        };
-      },
-      componentDidMount() {        
-
-      },
-      render: function() {
-        var page_title = this.state.map[this.props.currentPage] || <Logo currentPage={this.props.currentPage} setCurrentPage={this.props.setCurrentPage} />;
-        return (
-          <div className='header_mobile'>
-            <div className='left_nav'>
-              {this.props.currentPage != 'lobby' ?
-                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i></a>
-                  :
-                  <a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i></a>
-              }
-            </div>
-            <div className='page_name'>{page_title}</div>
-            <div className='right_nav'>
-              <a onClick={this.props.toggleMobProfile}><i className='icon icon-Player-Black'></i></a>
-            </div>
-          </div>
-        );
-      }
-    });
-
-    var Logo = React.createClass({
-      render: function() {
-        return (
-          <a className='logo' onClick={this.props.setCurrentPage.bind(this,'lobby')}>
-            <img src='image/LogoSmall-Black.svg' />
-          </a>
-        );
-      }
-    });
-
-    var MainContent = React.createClass({
-      getInitialState() {
-        return {
-
-        };
-      },
-      componentDidMount() {        
-
-      },
-      render: function() {
-
-        return (
-          <div className='main_content'>
-            <div className='admin'>{this.props.currentPage}</div>
-            {this.props.currentPage == 'lobby' ?
-              <Lobby 
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-              />
-            :''}
-            {this.props.currentPage == 'createRoom' ?
-              <CreateRoom 
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-              />
-            :''}
-            {this.props.currentPage == 'gallery' ?
-              <Gallery
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-              />
-            :''}
-            {this.props.currentPage.match(/editProfile|changePassword|feedback/) ?
-              <UserSetting
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-                userName={this.props.userName}
-                userPhoto={this.props.userPhoto}
-                setUserPhoto={this.props.setUserPhoto}
-                userEmail={this.props.userEmail}
-              />
-            :''}
-            {this.props.navProfileTab ? 
-              <NavProfileContent 
-                userName={this.props.userName}
-                userPhoto={this.props.userPhoto}
-                userEmail={this.props.userEmail}
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-                toggleNavProfile={this.props.toggleNavProfile}
-              />
-            :''}
-          </div>
-        );
-      }
-    });
-
-    var NavProfileContent = React.createClass({
-      getInitialState() {
-        return {
-        };
-      },
-      componentDidMount() {        
-
-      },
-      render: function() {
-
-        return (
-          <div className='nav_profile_content'>
-            <ProfileComponent 
-              userName={this.props.userName}
-              userPhoto={this.props.userPhoto}
-              userEmail={this.props.userEmail}
-              currentPage={this.props.currentPage}
-              setCurrentPage={this.props.setCurrentPage}
-              toggleNavProfile={this.props.toggleNavProfile}
-            />
-          </div>
-        );
-      }
-    });
-
-    var MobProfileSlider = React.createClass({
-      getInitialState() {
-        return {
-        };
-      },
-      componentDidMount() {        
-
-      },
-      render: function() {
-
-        return (
-          <div className='mob_profile_slider'>
-            <div className='mob_profile_mask' onClick={this.props.closeMobProfile}></div>
-            <div className='mob_profile_content'>
-              <ProfileComponent 
-                userName={this.props.userName}
-                userPhoto={this.props.userPhoto}
-                userEmail={this.props.userEmail}
-                currentPage={this.props.currentPage}
-                setCurrentPage={this.props.setCurrentPage}
-                toggleNavProfile={this.props.toggleNavProfile}
-                closeMobProfile={this.props.closeMobProfile}
-              />
-            </div>
-          </div>
-        );
-      }
-    });
-
-    var ProfileComponent = React.createClass({
-      linkClick: function(linkTo) {
-        this.props.setCurrentPage(linkTo);
-        this.props.toggleNavProfile();
-        this.props.closeMobProfile();
-      },
-      render: function() {
-        return (
-          <div className='profile_component'>
-            <div className='profile_info'>
-              <img className='member_photo' src={this.props.userPhoto} />
-              <div className='member_handle'>{this.props.userName}</div>
-              <div className='member_email'>{this.props.userEmail}</div>
-              <div onClick={this.linkClick.bind(this, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
-            </div>
-            <div className='profile_gallery'>
-              <div>
-                <label>畫廊</label>
-                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>999+</a>
-              </div>
-              <div>
-                <label>你的畫廊</label>
-                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>33</a>
-              </div>
-            </div>
-            <ul className='list'>
-              <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
-              <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
-              <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
-            </ul>
-          </div>
-        );
-      }
-    });
-    
-    var UserSetting = React.createClass({
-      getInitialState() {
-        return {
-          currentTab: this.props.currentPage
-        };
-      },
-      componentDidUpdate() {
-        if(this.props.currentPage != this.state.currentTab) {
-          this.setState({currentTab: this.props.currentPage});
+        if ( 0 && localStorage.tmpImage) {
+            var image = new Image();
+            image.src = localStorage.tmpImage;
+            image.onload = function(){
+                context.drawImage(image, 0, 0);
+            }
         }
       },
-      setTab: function(name) {
-          this.setState({currentTab: name});
-      },
-      render: function() {
+      onMouseDown: function(e) {
+        var mouseX = e.pageX - $('#canvas').offset().left,
+            mouseY = e.pageY - $('#canvas').offset().top,
+            size   = this.state.sizeMap[this.state.pointSize],
+            color  = this.state.colorMap[this.state.pointColor];
+            
+        localStorage.tmpImage = canvas.toDataURL();
+        this.setState({tempImage:1});
 
-        return (
-          <div className='user_setting'>
-            <ul className={'tabs'}>
-              <li className={this.state.currentTab == 'editProfile' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'editProfile')}>編輯</li>
-              <li className={this.state.currentTab == 'changePassword' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'changePassword')}>更改密碼</li>
-              <li className={this.state.currentTab == 'feedback' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'feedback')}>意見回饋</li>
-            </ul>
-            <div className={'tab_content'}>
-              {this.state.currentTab == 'editProfile' ? 
-                <div className='edit_profile'>
-                  <div className='edit_photo'>
-                    <img src={this.props.userPhoto} />
-                    <div className='edit_photo_info'>
-                      <div className='email'>{this.props.userEmail}</div>
-                      <div className='button-thin'>編輯頭像</div>
-                    </div>
-                  </div>
-                  <div className='input_wrap input-Player-Grey'>
-                    <input 
-                      className='input'
-                      type='test'
-                      value={this.props.userName}
-                      ref=''
-                    />
-                  </div>
-                  <div className='button button-green'>確認</div>
-                </div>
-              : ''}
-              {this.state.currentTab == 'changePassword' ?
-                'changePassword'
-              :''}
-              {this.state.currentTab == 'feedback' ?
-                'feedback'
-              :''}
-            </div>
-          </div>
-        );
-      }
-    });
-    
-    
-    var Lobby = React.createClass({
-      getInitialState() {
-        return {
-          joinRoomName: '',
-          joinRoomId: '',
-          joinRoomPassword: '',
-          showPasswordPopup: 0,
-          list:[
-            {
-              id: 1,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            { 
-              id: 2,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            {
-              id: 3,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 4,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 5,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            { 
-              id: 2,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            {
-              id: 3,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 4,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 5,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            { 
-              id: 2,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            },
-            {
-              id: 3,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 4,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 0
-            },
-            {
-              id: 5,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              photos: [
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54bfbe74a.gif',
-                'http://a1.att.hudong.com/65/94/01300000252101123649943439655_s.jpg',
-                'http://mepopedia.com/~web101c/hw03/hw03-1015445255/images/4a6d54c0b0cab.gif',
-                'https://farm6.staticflickr.com/5557/14770055150_ff9c9b49d4.jpg'
-              ],
-              private: 1
-            }
-          ]
-        };
-      },
-      componentDidMount() {        
-
-      },
-      clickLobbyCell: function(roomInfo) {
-        if(roomInfo.is_private) {
-          this.setState({
-            joinRoomName: roomInfo.name,
-            joinRoomId: roomInfo.id,
-            joinRoomPassword: '',
-            showPasswordPopup: 1
-          });
-        } else {
-          alert('join room:'+roomInfo.name+' id:'+roomInfo.id)
-        }
-      },
-      inputChange: function() {
-        this.setState({
-           joinRoomPassword: this.refs.passwordInput.value
-        });
-      },
-      buttonClick: function() {
-        alert('join room:'+this.state.joinRoomName+' id:'+this.state.joinRoomId+' password:'+this.state.joinRoomPassword)
-      },
-      popup_click: function() {
-        this.setState({showPasswordPopup:0});
-      },
-      render: function() {
-        var list = [];
-
-        this.state.list.forEach(function(room) {
-          var photos  = [],
-              players = [],
-              roomInfo = {};
-
-          roomInfo.name = room.name;
-          roomInfo.id = room.id;
-          roomInfo.is_private = room.private;
-              
-          room.photos.forEach(function(photo){
-            if(photos.length < 3) {
-              photos.push(
-                <img src={photo} />
-              );
-            }
-
-          }.bind(this));
-          
-          room.players.forEach(function(player){
-            if(players.length == 0) {
-              players.push(
-                player
-              );
-            } else {
-              players.push(
-                ', '+player
-              );
-            }
-
-          }.bind(this));
-          
-          list.push(
-            <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
-              <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(this, roomInfo)}>
-                <div className='lobby_photo_wrap'>
-                  <div className='lobby_photo'>{photos}</div>
-                  {room.private ? <i className='icon icon-Private-GreyFill'></i> : <i className='icon icon-Public-White'></i>}
-                </div>
-                <div className='lobby_room_name'>{room.name}</div>
-                <div className='card_bottom'><div className='card_bottom_content'>{players}</div></div>
-              </div>
-            </div>
-          );
-        }.bind(this));
-        return (
-          <div className='lobby'>
-            <div className='lobby_content'>
-              <div className='pure-g'>
-                <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
-                  <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
-                    <div className='create_room_button spin_target'><span className='cross'></span></div>
-                    <div className='lobby_room_name'>建立新遊戲</div>
-                    <div className='create_room_disc'>立即建立新遊戲 邀請朋友一起玩</div>
-                  </a>
-                </div>
-                {list}
-              </div>
-            </div>
-            <div className={this.state.showPasswordPopup ? 'password_popup show' : 'password_popup'}>
-              <div className='password_popup_mask' onClick={this.popup_click}></div>
-              <div className='password_popup_body'>
-                <div className='password_popup_content'>
-                  <div className='popup_title'>"{this.state.joinRoomName}" 為私人群組</div>
-                  <div className='password_popup_bottom_section'>
-                    <div className='input_wrap input-Password-Grey'>
-                      <input 
-                        className='input'
-                        type='passwrod'
-                        value={this.state.joinRoomPassword}
-                        placeholder='請輸入群組密碼'
-                        ref='passwordInput'
-                        onChange={this.inputChange}
-                      />
-                    </div>
-                    <div className='button button-green' onClick={this.buttonClick}>確認</div>
-                  </div>                
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    });
-
-    var CreateRoom = React.createClass({
-      getInitialState() {
-        return {
-          roomName: '',
-          inputState: '',
-          playerSetting: 5,
-          privateSetting: 0,
-          joinRoomPassword: ''
-        };
-      },
-      componentDidMount() {        
-
-      },
-      inputChange:function() {
-        if(this.refs.roomNameInput.value.length < 8 ) { //>
-          this.setState({
-             roomName: this.refs.roomNameInput.value
-          });
-        }
+        this.setState({paint:true});
+        this.setState({positionX:mouseX,positionY:mouseY});
+        this.drawDot(mouseX,mouseY,size,color);
         
       },
-      mouseOver:function() {
-        $('.create_room_input_wrap').addClass('hover');
+      onHandleStart: function(e) {
+        e.preventDefault();
+        var touchX = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
+            touchY = e.targetTouches[0].pageY - $('#canvas').offset().top - 5,
+            size   = this.state.sizeMap[this.state.pointSize]/3,
+            color  = this.state.colorMap[this.state.pointColor];
+
+        localStorage.tmpImage = canvas.toDataURL();
+        this.setState({tempImage:1});
+          
+        this.setState({paint:true});
+        this.setState({positionX:touchX,positionY:touchY});
+        this.drawDot(touchX,touchY, size, color);
       },
-      mouseOut:function() {
-        $('.create_room_input_wrap').removeClass('hover')
-      },
-      focus:function() {
-        $('.create_room_input_wrap').addClass('focus');
-      },
-      blur:function() {
-        $('.create_room_input_wrap').removeClass('focus');
-        if(this.refs.roomNameInput.value.length > 0){
-          $('.create_room_input_wrap').addClass('complete');
-        } else {
-          $('.create_room_input_wrap').removeClass('complete');
+      onMouseMove: function(e) {
+        if(this.state.paint) {
+          var mouseX    = e.pageX - $('#canvas').offset().left,
+              mouseY    = e.pageY - $('#canvas').offset().top,
+              positionX = this.state.positionX,
+              positionY = this.state.positionY,
+              size      = this.state.sizeMap[this.state.pointSize],
+              color     = this.state.colorMap[this.state.pointColor];
+          
+          this.setState({positionX:mouseX, positionY:mouseY});
+          this.drawLine(mouseX, mouseY, positionX, positionY, size, color);
         }
       },
-      setPlayer: function(num) {
-        this.setState({playerSetting: num});
+      onHandleMove: function(e) {
+        e.preventDefault();
+        if(this.state.paint) {
+          var touchX    = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
+              touchY    = e.targetTouches[0].pageY - $('#canvas').offset().top - 5,
+              positionX = this.state.positionX,
+              positionY = this.state.positionY,
+              size      = this.state.sizeMap[this.state.pointSize]/3,
+              color     = this.state.colorMap[this.state.pointColor];
+              
+          this.setState({positionX:touchX, positionY:touchY});
+          this.drawLine(touchX, touchY, positionX, positionY, size, color);
+        }
       },
-      setPrivate: function(isPrivate) {
-        this.setState({privateSetting: isPrivate});
+      paintFalse: function() {
+        this.setState({paint:false});
       },
-      createGame: function() {
-         if(!!this.state.roomName) {
-          alert('create a room: ' + this.state.roomName + ' need ' + this.state.playerSetting + ' players and Private is' + this.state.privateSetting);
-         }
+      drawDot: function(X, Y, size, color) {
+        var context = this.state.context;
+        
+        if(this.state.tool == 'eraser') {
+          context.clearRect(X-10, Y-10, 20, 20);
+        } else {
+
+        var Tx = X-450,
+            Ty = 450-Y,
+            r = Math.sqrt(Tx*Tx + Ty*Ty),
+            ang = Math.atan2(Ty, Tx);
+
+         var ang8 = (2*Math.PI)/(this.state.gridLine);
+
+          context.fillStyle = color;
+          context.beginPath();
+          context.arc(X, Y, size/2, 0, 2 * Math.PI);
+          context.fill();
+
+          for (var i = 1; i < this.state.gridLine; i++) {
+              var Nx = r * Math.cos(ang + ang8*i)+450,
+                  Ny = 450 - (r * Math.sin(ang + ang8*i));
+
+              context.beginPath();
+              context.arc(Nx, Ny, size/2, 0, 2 * Math.PI);
+              context.fill();
+          }
+        }
       },
-      inputPasswrodChange: function() {
-          this.setState({
-             joinRoomPassword: this.refs.passwordInput.value
-          });
+      drawLine: function(X, Y, positionX, positionY, size, color) {
+        var context = this.state.context;
+        
+        if(this.state.tool == 'eraser') {
+          context.clearRect(X-10, Y-10, 20, 20);
+        } else {    
+          context.strokeStyle = color;
+          context.lineJoin = "round";
+          context.lineWidth = size;
+          context.beginPath();
+          context.moveTo(positionX,positionY);
+          context.lineTo(X,Y);
+          context.closePath();
+          context.stroke();
+
+          var Tx = positionX-450,
+              Ty = 450-positionY,
+              r = Math.sqrt(Tx*Tx + Ty*Ty),
+              ang = Math.atan2(Ty, Tx),
+              TX = X-450,
+              TY = 450-Y,
+              R = Math.sqrt(TX*TX + TY*TY),
+              Ang = Math.atan2(TY, TX);
+
+          var ang8 = (2*Math.PI)/(this.state.gridLine);
+
+            for (var i = 1; i < this.state.gridLine; i++) {
+              var Nx = r * Math.cos(ang + ang8*i)+450,
+                  Ny = 450 - (r * Math.sin(ang + ang8*i)),
+                  NX = R * Math.cos(Ang + ang8*i)+450,
+                  NY = 450 - (R * Math.sin(Ang + ang8*i));
+
+            context.beginPath();
+            context.moveTo(Nx,Ny);
+            context.lineTo(NX,NY);
+            context.closePath();
+            context.stroke();
+          }
+        }
       },
-      render: function() {
+      darwGridLine: function(line) {
+
+        var girdcanvas = document.getElementById('gridline'),
+            context = girdcanvas.getContext("2d"),
+            width = this.state.canvasSize,
+            R = width/2,
+            ang = (2*Math.PI)/line,
+            X = this.standardToCanvasX,
+            Y = this.standardToCanvasY;
+
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+        context.beginPath();
+
+        for (var i = 0; i < this.state.gridLine; i++) {
+          var r =  Math.tan(ang*i);
+
+          if (Math.abs(r) < 1) {
+            context.moveTo(X(R),Y(R*r));
+            context.lineTo(X(-R),Y(-R*r));
+
+          } else {
+            context.moveTo(X(R/r),Y(R));
+            context.lineTo(X(-R/r),Y(-R));
+          }
+
+
+        }
+        context.stroke();
+      },
+      standardToCanvasX: function(x) {
+        return x + this.state.canvasSize/2;
+      },
+      standardToCanvasY: function(y) {
+        return this.state.canvasSize/2 - y ;
+      },
+      toggleGrid: function() {
+        this.setState({showGrid: this.state.showGrid ? 0 : 1});
+      },
+      setGridLine: function(val) {
+        return function () {
+            this.setState({gridLine : val});
+            this.darwGridLine(val);
+        }.bind(this);
+      },
+      setTool: function(tool) {
+        return function () {
+            this.setState({tool : tool});
+        }.bind(this);
+      },
+      setSize: function(size) {
+        return function () {
+            this.setState({pointSize : size});
+        }.bind(this);
+      },
+      setColor: function(color) {
+        return function () {
+            if(this.state.tool == 'pencil') {
+              this.setState({pointColor : color});
+            } else if(this.state.tool == 'backgroundColor') {
+              this.setState({backgroundColor : color});
+            }
+        }.bind(this);
+      },
+      sendButtonClick: function() {
+        var url = this.refs.canvas.toDataURL('image/png');
+        var tmp_a = $('<a></a>',{
+          download: "YourFileName.jpg",
+          src: url
+        }).click();
+      },
+      clearDrawTable: function() {
+        var clear = confirm ("Clear All ?")
+
+        if (clear) {
+          var context = this.state.context;
+          context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+          //context.fillStyle='white';
+          //context.fill();
+        }
+      },
+      revertDrawTable: function() {
+        var context = this.state.context;
+        var image = new Image();
+
+        image.src = localStorage.tmpImage;
+        image.onload = function(){
+            context.drawImage(image, 0, 0);
+        }
+        this.setState({tempImage:0});
+      },
+      render: function () {
 
         return (
-          <div className='create_room'>
-            <div className='create_room_input_wrap'>
-              <input
-                className='create_room_input'
-                type='text'
-                value={this.state.roomName}
-                placeholder='輸入群組名稱'
-                ref='roomNameInput'
-                onChange={this.inputChange}
-                onMouseOver={this.mouseOver}
-                onMouseOut={this.mouseOut}
-                onFocus={this.focus}
-                onBlur={this.blur}
-              />
-              <span className='room_name_count'>{this.state.roomName.length}/7</span>
-            </div>
-            <div className='row'>
-              <div className='label'>請選擇遊戲人數</div>
-              <div className='options'>
-                <div className={this.state.playerSetting == 5 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,5)}>5</div>
-                <div className={this.state.playerSetting == 7 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,7)}>7</div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='label'>公開或需要密碼</div>
-              {this.state.privateSetting == 0 ?
-                <div className='options'>
-                  <div className='option selected'><i className='icon icon-Public-Green'></i></div>
-                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,1)}></i></div>
-                </div>
-               :
-                <div className='options'>
-                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,0)}></i></div>
-                  <div className='option selected'><i className='icon icon-Password-Grey'></i></div>
-                </div>
-              } 
-            </div>
-            {this.state.privateSetting == 0 ? '' :
-              <div className='row'>
-                <div className='input_wrap input-Password-Grey'>
-                  <input 
-                    className='input'
-                    type='passwrod'
-                    value={this.state.joinRoomPassword}
-                    placeholder='請輸入群組密碼'
-                    ref='passwordInput'
-                    onChange={this.inputPasswrodChange}
-                  />
-                </div>
-              </div>
-            }
-            <a className={this.state.roomName ? 'button button-green' : 'button button-green disabled'} onClick={this.createGame}>建立新遊戲</a>
+          <div className={'drawtable'}>
+            <canvas 
+              ref='canvas'
+              id='canvas'
+              className={this.state.pointSize + ' bg_'+this.state.backgroundColor}
+              width={this.state.canvasSize}
+              height={this.state.canvasSize}
+              onMouseDown  ={this.onMouseDown}
+              onMouseMove  ={this.onMouseMove}
+              onMouseUp    ={this.paintFalse}
+              onMouseLeave ={this.paintFalse}
+              onTouchStart ={this.onHandleStart}
+              onTouchMove  ={this.onHandleMove}
+              onTouchEnd   ={this.paintFalse}
+              onTouchCancel={this.paintFalse}
+            >Your browser does not support the HTML5 canvas tag.
+            </canvas>
+            <canvas
+              id='gridline'
+              className={this.state.showGrid ? '' : 'hide'}
+              width={this.state.canvasSize}
+              height={this.state.canvasSize}
+            >Your browser does not support the HTML5 canvas tag.
+            </canvas>
+            <DrawTool
+              canvasSize={this.state.canvasSize}
+              toggleGrid={this.toggleGrid}
+              showGrid={this.state.showGrid}
+              setGridLine={this.setGridLine}
+              gridLine={this.state.gridLine}
+              setTool={this.setTool}
+              tool={this.state.tool}
+              sizeMap={this.state.sizeMap}
+              setSize={this.setSize} 
+              size={this.state.pointSize}
+              colorMap={this.state.colorMap}
+              tempImage={this.state.tempImage}
+              setColor={this.setColor}
+              color={this.state.pointColor}
+              backgroundColor={this.state.backgroundColor}
+              clearDrawTable={this.clearDrawTable}
+              sendButtonClick={this.sendButtonClick}
+              revertDrawTable={this.revertDrawTable}
+            />
           </div>
         );
       }
-    });
-    
-    var Gallery = React.createClass({
-      getInitialState() {
-        return {
-          pageView: 'landing',
-          galleryList:[
-            {
-              id: 1,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              date: '3/5'
-            },
-            {
-              id: 2,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              date: '3/5'
-            },
-            {
-              id: 3,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              date: '3/5'
-            },
-            {
-              id: 4,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              date: '3/5'
-            },
-            {
-              id: 5,
-              name:'大湖遊藝場',
-              players:['Gino','Hunk','Patrick','Tiny','Didi','Do','Howl'],
-              date: '3/5'
-            }
-          ],
-          currentGalleryId: ''
-          
-        };
-      },
-      componentDidMount() {        
+    });   
 
-      },
-      setPageView: function(view) {
-        this.setState({pageView:view});
-      },
-      setCurrentGalleryId: function(id) {
-        this.setState({currentGalleryId:id});
-      },
+    var DrawTool = React.createClass({
       render: function() {
-
-        return (
-          <div className='gallery'>
-            {this.state.pageView == 'landing' ? 
-              <GalleryLanding 
-                galleryList={this.state.galleryList}
-                setPageView={this.setPageView}
-                setCurrentGalleryId={this.setCurrentGalleryId }
-              />
-            :''}
-            {this.state.pageView == 'detail' ? 
-              <GalleryDetail
-                galleryList={this.state.galleryList}
-                currentGalleryId={this.state.currentGalleryId}
-                setCurrentGalleryId={this.setCurrentGalleryId}
-              />
-            :''}
-          </div>
-        );
-      }
-    });
-    
-    var GalleryLanding = React.createClass({
-      getInitialState() {
-        return {
-        };
-      },
-      componentDidMount() {        
-
-      },
-      cellClick: function(id) {
-        this.props.setPageView('detail');
-        this.props.setCurrentGalleryId(id);
-      },
-      render: function() {
-        var list = [];
-
-        this.props.galleryList.forEach(function(data) {
-          var players = '', i = 0;
-          data.players.forEach(function(player){
-            if(i == 0) {
-              players = player;
-            } else {
-              players += ', '+player;
-            }
-            i++;
-          }.bind(this));
-
-          list.push(
-            <div className='pure-u-lg-1-4 pure-u-md-1-3 pure-u-1-2'>
-              <div className='card gellery_cell' onClick={this.cellClick.bind(this, data.id)}>
-                <div className='gallery_img'><img src='image/Cat.svg' /></div>
-                <div className='gallery_date'>{data.date}</div>
-                <div className='gallery_name'>{data.name}</div>
-                <div className='card_bottom'><div className='card_bottom_content'>{players}</div></div>
-              </div>
-            </div>
-          );
-        }.bind(this));
-        return (
-          <div className='gallery_landing'>
-            <div className='pure-g'>
-              {list}
-            </div>
-          </div>
-        );
-      }
-    });
-    
-    var GalleryDetail = React.createClass({
-      getInitialState() {
-        return {
-    
-        };
-      },
-      componentDidMount() {        
-
-      },
-      render: function() {
-        var list = [];
-
-        this.props.galleryList.forEach(function(data) {
-          var players = '', i = 0;
-          data.players.forEach(function(player){
-            if(i == 0) {
-              players = player;
-            } else {
-              players += ', '+player;
-            }
-            i++;
-          }.bind(this));
-
-          list.push(
-            <div className={data.id == this.props.currentGalleryId ? 'gellery_list_cell selected' : 'gellery_list_cell'}
-                 onClick={this.props.setCurrentGalleryId.bind(this, data.id)}
-              >
-              <div className='gallery_img'><img src='image/Cat.svg' /></div>
-              <div className='gallery_info'>
-                <div className='gallery_name'>{data.name}</div>
-                <div className='gallery_players'>{players}</div>
-              </div>
-            </div>
-          );
-        }.bind(this));
-        return (
-          <div className='gallery_detail'>
-            <div className='gellery_list'>
-              {list}
-            </div>
-            <div className='gallery_detail_content'>
+        var sizeOption = [],
+            sizeOptionClass,
+            colorOption = [],
+            colorOptionClass,
+            i;
             
+            
+        for (i in this.props.sizeMap) {
+          sizeOptionClass = 'size_option'
+          if (i == this.props.size) {sizeOptionClass += ' active'}
+          sizeOption.push(<li 
+                              className={sizeOptionClass+' '+i}
+                              onClick={this.props.setSize(i)}
+                          ></li>)
+        };
+        
+        for (i in this.props.colorMap) {
+          var colorOptionClass = 'color_option';
+
+          if (i == this.props.color && this.props.tool == 'pencil' || i == this.props.backgroundColor && this.props.tool == 'backgroundColor') {colorOptionClass += ' active'}
+
+          colorOption.push(<li 
+                              className={colorOptionClass+' '+i}
+                              onClick={this.props.setColor(i)}
+                          ></li>);
+        };
+        
+        return (          
+          <div className='draw_tool'>
+            <ul className='grid_picker'>
+              <li>軸數</li>
+              <li onClick={this.props.setGridLine('4')} className={this.props.gridLine == 4 ? 'active option' : 'option'}>4</li>
+              <li onClick={this.props.setGridLine('8')} className={this.props.gridLine == 8 ? 'active option' : 'option'}>8</li>
+              <li onClick={this.props.setGridLine('16')} className={this.props.gridLine == 16 ? 'active option' : 'option'}>16</li>
+              <li onClick={this.props.setGridLine('32')} className={this.props.gridLine == 32 ? 'active option' : 'option'}>32</li>
+              <li onClick={this.props.setGridLine('64')} className={this.props.gridLine == 64 ? 'active option' : 'option'}>64</li>
+              <li onClick={this.props.setGridLine('128')} className={this.props.gridLine == 128 ? 'active option' : 'option'}>128</li>
+            </ul>
+            <ul className='tool_picker'>
+              <li onClick={this.props.setTool('pencil')} className={this.props.tool == 'pencil' ? 'size_picker active' : 'size_picker'}>
+                <a><i className='icon icon-draw'></i></a>
+                <ul>
+                  {sizeOption}
+                </ul>
+              </li>
+              <li onClick={this.props.setTool('eraser')} className={this.props.tool == 'eraser' ? 'active' : ''}><i className='icon icon-eraser'></i></li>
+              <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-gallery'></i></li>
+              <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? 'hide' : 'hide'}><i className='icon icon-rollback'></i></li>
+            </ul>
+            <ul className='color_picker'>
+              {colorOption}
+            </ul>
+            <div className='btn-wrap'>
+              <div onClick={this.props.toggleGrid} className={'button btn_grid'}>{this.props.showGrid ? '隱藏' : '顯示'}格線</div>
+              <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
+              <div onClick={this.props.sendButtonClick} className={'button hide btn_complete'} id={'send_img'}>存成圖片</div>
             </div>
           </div>
         );
       }
     });
-    
-    
-    
-    
+
     React.render(
       <App />,
       document.getElementById('App')
