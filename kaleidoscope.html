@@ -604,9 +604,13 @@
 
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
+        context.strokeStyle = '#333';
+        context.lineJoin = "round";
+        context.lineWidth = 0.2;
+
         context.beginPath();
 
-        for (var i = 0; i < this.state.gridLine; i++) {
+        for (var i = 0; i < line; i++) {
           var r =  Math.tan(ang*i);
 
           if (Math.abs(r) < 1) {
