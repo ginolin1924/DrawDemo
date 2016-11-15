@@ -446,9 +446,7 @@
       },
       componentDidMount: function () {
         var canvas = document.getElementById('canvas'),
-            context = canvas.getContext("2d"),
-            girdcanvas = document.getElementById('gridline'),
-            gridline = girdcanvas.getContext("2d");
+            context = canvas.getContext("2d");
 
         this.setState({context: context, gridline: gridline});
         //$(context).attr('width',$(this.getDOMNode()).width());
@@ -457,7 +455,7 @@
         //context.fillStyle='white';
         //context.fill();
 
-        this.darwGridLine(gridline);
+        this.darwGridLine(this.state.gridLine);
 
         if ( 0 && localStorage.tmpImage) {
             var image = new Image();
@@ -594,27 +592,41 @@
           }
         }
       },
-      darwGridLine: function(target) {
-        var context = target;
+      darwGridLine: function(line) {
+
+        var girdcanvas = document.getElementById('gridline'),
+            context = girdcanvas.getContext("2d"),
+            width = this.state.canvasSize,
+            R = width/2,
+            ang = (2*Math.PI)/line,
+            X = this.standardToCanvasX,
+            Y = this.standardToCanvasY;
+
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
         context.beginPath();
-        context.moveTo(0,0);
-        context.lineTo(900,900);
-        context.moveTo(0,900);
-        context.lineTo(900,0);
-        context.moveTo(450,0);
-        context.lineTo(450,900);
-        context.moveTo(0,450);
-        context.lineTo(900,450);
-        context.moveTo(636,0);
-        context.lineTo(264,900);
-        context.moveTo(264,0);
-        context.lineTo(636,900);
-        context.moveTo(0,264);
-        context.lineTo(900,636);
-        context.moveTo(0,636);
-        context.lineTo(900,264);
+
+        for (var i = 0; i < this.state.gridLine; i++) {
+          var r =  Math.tan(ang*i);
+
+          if (Math.abs(r) < 1) {
+            context.moveTo(X(R),Y(R*r));
+            context.lineTo(X(-R),Y(-R*r));
+
+          } else {
+            context.moveTo(X(R/r),Y(R));
+            context.lineTo(X(-R/r),Y(-R));
+          }
+
+
+        }
         context.stroke();
+      },
+      standardToCanvasX: function(x) {
+        return x + this.state.canvasSize/2;
+      },
+      standardToCanvasY: function(y) {
+        return this.state.canvasSize/2 - y ;
       },
       toggleGrid: function() {
         this.setState({showGrid: this.state.showGrid ? 0 : 1});
@@ -622,6 +634,7 @@
       setGridLine: function(val) {
         return function () {
             this.setState({gridLine : val});
+            this.darwGridLine(val);
         }.bind(this);
       },
       setTool: function(tool) {
@@ -644,12 +657,11 @@
         }.bind(this);
       },
       sendButtonClick: function() {
-        var img_src = this.refs.canvas.getDOMNode().toDataURL();
-        var $button = $(this.getDOMNode()).find('#send_img');
-
-        this.props.sendImage(img_src);
-        $button.attr('disabled', true);
-        setTimeout(function(){ $button.text('Resend Image').attr('disabled', false); }, 1000);
+        var url = this.refs.canvas.toDataURL('image/png');
+        var tmp_a = $('<a></a>',{
+          download: "YourFileName.jpg",
+          src: url
+        }).click();
       },
       clearDrawTable: function() {
         var clear = confirm ("Clear All ?")
