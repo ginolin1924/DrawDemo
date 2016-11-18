@@ -135,6 +135,9 @@
       color: #B6B6B6;
       position: absolute;
     }
+    .nav_profile_content a {
+      color: #B6B6B6;
+    }
     .nav_profile_content a:hover {
       color: #fff;
     }
@@ -1041,7 +1044,7 @@
             <ul className='list'>
               <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
               <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
-              <li><a><i className='icon icon-Next-Dark'></i>登出</a></li>
+              <li><a href='welcome.html'><i className='icon icon-Next-Dark'></i>登出</a></li>
             </ul>
           </div>
         );
