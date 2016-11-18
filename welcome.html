@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <!-- react -->
+    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    
+    <!-- bootstrap
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+     -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexming.css">
+
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/pure-grid-min.css">
+    <link rel="stylesheet" href="css/global.css"> 
+  </head>
+  <body>
+  <style type="text/css">
+    /* rest */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    body {
+      line-height: 1;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    a:focus, a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* End of reset*/
+    
+    
+    
+    
+    /* Base */
+    html, body, #App {
+      height: 100%;
+    }
+    
+    body {
+      background: #f1f1f1;
+      letter-spacing: 2px;
+      color: #888;
+      font-size: 20px;
+    }
+    
+    /*
+    .tabs {
+      display: flex;
+      flex-flow: row wrap;
+      padding: 10px;
+    }
+    .tabs > li {
+      -webkit-flex: 1;
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .tabs > li > span {
+      width: 100%;
+      display: inline-block;
+      padding: 10px;
+      max-width: 120px;
+      border-bottom: 3px solid;
+      border-color: transparent;
+    }
+    .tabs > li.active > span {
+      border-color: #50d2c2;
+    }
+    .tab_content {
+      padding: 0 10px 10px;
+    }
+    
+    
+    .input_wrap {
+      position: relative;
+    }
+    input[type='text'], input[type='password'] {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 30px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    input[type='text']:focus, input[type='password']:focus {
+      outline: none;
+    }
+    .input_wrap input[type='text'], .input_wrap input[type='password'] {
+      padding-left: 50px;
+    }
+    .input_wrap .fa {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      margin-top: -10px;
+    }
+    */
+    
+    .header {
+      line-height: 50px;
+      height: 50px;
+      position: relative;
+      text-align: center;
+      background: #fff;
+    }
+    .header .fa.left {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      margin-top: -10px;
+      cursor: pointer;
+    }
+    .page_name {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%,-50%);
+    }
+    
+    
+    @media screen and (max-width: 767px) {
+        body {
+            font-size: 14px;
+        }
+    }
+    /* end of Base*/
+    
+    .view {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    .welcome {
+      padding: 0 20px;
+    }
+    .hero_image {
+      width: 100%;
+    }
+    .input_wrap {
+      margin: 20px 0;
+    }
+    
+    .forget_password_link {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      margin-top: -10px;
+      color: #aaa;
+    }
+    .signup {
+      padding-top: 20px;
+      text-align: center;
+    }
+    .signup_link {
+      padding-left: 10px;
+    }
+
+    .new_user_form, .forget_password_form {
+      padding: 20px;
+    }
+  </style>
+
+  <div id="App" class=""></div>
+
+  <script type="text/babel">
+    var App = React.createClass({
+      getInitialState() {
+        return {
+          currentPage: 'welcome'
+        };
+      },
+      componentDidMount() {        
+
+      },
+      setPage: function(page_name) {
+        this.setState({currentPage:page_name});
+      },
+      render: function() {
+        var currentPage = this.state.currentPage;
+        return (
+          <div className={'view'}>
+            { currentPage == 'welcome'         ? <Welcome 
+                                                  setPage={this.setPage}
+                                                 /> : 
+              currentPage == 'new_user'        ? <NewUser
+                                                  setPage={this.setPage}
+                                                 /> :
+              currentPage == 'forget_password' ? <ForgetPassword
+                                                  setPage={this.setPage}
+                                                 /> :
+              ''
+            }
+          </div>
+        );
+      }
+    });
+
+    var Welcome = React.createClass({
+      getInitialState() {
+        return {
+          currentTab: 'member'
+        };
+      },
+      componentDidMount() {        
+
+      },
+      setTap: function(tab_name) {
+        this.setState({currentTab:tab_name});
+      },
+      render: function() {
+
+        return (
+          <div className='welcome'>
+            <div className='left_seticon'>
+              <img className='hero_image' src='Hero_image.png' />
+              <a className='button button-fb'>用 Facebook 登入</a>
+              <ul className='tabs'>
+                <li className={this.state.currentTab == 'member' ? 'active' : ''} onClick={this.setTap.bind(this, 'member')}><span>會員登入</span></li>
+                <li className={this.state.currentTab == 'guest'  ? 'active' : ''} onClick={this.setTap.bind(this, 'guest' )}><span>訪客</span></li>
+              </ul>
+              <div className='tab_content'>
+                {this.state.currentTab == 'member' ?
+                  <div className='member_form'>
+                    <div className='input_wrap input-Email-Grey'>
+                      <input className='input' type='text' placeholder='信箱' />
+                    </div>
+                    <div className='input_wrap input-Password-Grey'>
+                      <input className='input' type='password' placeholder='密碼' />
+                      <a className='forget_password_link' onClick={this.props.setPage.bind(this, 'forget_password')}>忘記密碼?</a>
+                    </div>
+                    <a  href='index.html' className='button button-default'>會員登入</a>
+                  </div> :
+                  this.state.currentTab == 'guest' ?
+                  <div className='guest_form'>
+                    <div className='input_wrap input-Player-Grey'>
+                      <input className='input' type='text' placeholder='暱稱' />
+                    </div>
+                    <a href='index.html' className='button button-green'>訪客登入</a>
+                  </div>
+                  : ''
+                }
+              </div>
+              <div className='signup'>
+                還沒有帳號? <a className='signup_link' onClick={this.props.setPage.bind(this, 'new_user')}>註冊新帳號</a>
+              </div>
+            </div>
+            <div className='right_seticon intro'>
+              
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    var Header = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='header'>
+            <i className="fa fa-chevron-left left" aria-hidden="true" onClick={this.props.setPage.bind(this, 'welcome')}></i>
+            <div className='page_name'>{this.props.title}</div>
+          </div>
+        );
+      }
+    });
+    
+    
+    var NewUser = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='new_user'>
+            <Header 
+              title={'註冊新帳號'}
+              setPage={this.props.setPage}
+            />
+            <div className="new_user_form">
+              <div className='input_wrap input-Player-Grey'>
+                <input className='input' type='text' placeholder='暱稱' />
+              </div>
+              <div className='input_wrap input-Email-Grey'>
+                <input className='input' type='text' placeholder='信箱' />
+              </div>
+              <div className='input_wrap input-Password-Grey'>
+                <input className='input' type='password' placeholder='密碼' />
+              </div>
+              <a className='button button-default'>完成註冊</a>
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    var ForgetPassword = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='forget_password'>
+            <Header 
+              title={'忘記密碼'}
+              setPage={this.props.setPage}
+            />
+            <div className="forget_password_form">
+              <div className='input_wrap input-Email-Grey'>
+                <input className='input' type='text' placeholder='信箱' />
+              </div>
+              <a className='button button-default'>重設密碼</a>
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    React.render(
+      <App />,
+      document.getElementById('App')
+    );
+  </script>
+  </body>
+</html>
