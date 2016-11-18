@@ -47,7 +47,7 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .pure-g [class *="pure-u"] {
+    html, .pure-g [class *="pure-u"] {
       font-family: PingFang;
     }
 
