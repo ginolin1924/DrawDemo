@@ -660,13 +660,6 @@
             }
         }.bind(this);
       },
-      sendButtonClick: function() {
-        var url = this.refs.canvas.toDataURL('image/png');
-        var tmp_a = $('<a></a>',{
-          download: "YourFileName.jpg",
-          src: url
-        }).click();
-      },
       clearDrawTable: function() {
         var clear = confirm ("Clear All ?")
 
@@ -731,7 +724,6 @@
               color={this.state.pointColor}
               backgroundColor={this.state.backgroundColor}
               clearDrawTable={this.clearDrawTable}
-              sendButtonClick={this.sendButtonClick}
               revertDrawTable={this.revertDrawTable}
             />
           </div>
@@ -740,6 +732,23 @@
     });   
 
     var DrawTool = React.createClass({
+      downloadImg: function() {
+        var size = this.props.canvasSize,
+            img =  $('<img />', {
+                     'src' : $('#canvas').get(0).toDataURL('image/png'),
+                      width: size,
+                      height: size
+                   }).get(0),
+            bg_color = this.props.colorMap[this.props.backgroundColor],
+            tmp_c = $('<canvas></canvas>').attr('width', size).attr('height', size).get(0),
+            ctx = tmp_c.getContext("2d");
+
+        ctx.fillStyle=bg_color;
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(img,0,0);
+
+        this.refs.downloadImg.href = tmp_c.toDataURL('image/png');
+      },
       render: function() {
         var sizeOption = [],
             sizeOptionClass,
@@ -796,7 +805,7 @@
             <div className='btn-wrap'>
               <div onClick={this.props.toggleGrid} className={'button btn_grid'}>{this.props.showGrid ? '隱藏' : '顯示'}格線</div>
               <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
-              <div onClick={this.props.sendButtonClick} className={'button hide btn_complete'} id={'send_img'}>存成圖片</div>
+              <a onClick={this.downloadImg} className={'button btn_complete'} download="dl.png" ref='downloadImg'>另存圖片</a>
             </div>
           </div>
         );
