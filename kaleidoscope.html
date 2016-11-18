@@ -806,8 +806,8 @@
             </ul>
             <div className='btn-wrap'>
               <div onClick={this.props.toggleGrid} className={'button btn_grid'}>{this.props.showGrid ? '隱藏' : '顯示'}格線</div>
-              <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
               <a onClick={this.downloadImg} className={'button btn_complete'} download="dl.png" ref='downloadImg'>另存圖片</a>
+              <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
             </div>
           </div>
         );
