@@ -123,6 +123,13 @@
       width: 100%;
       cursor: pointer;
     }
+
+    .button-fb {
+      background: #3c5d96;
+    }
+    .button-default {
+      background: #50d2c2;
+    }
     .button-green {
       background: #36CEBC;
     }
@@ -158,41 +165,26 @@
     .icon-Back-Reload-Black {
       background-image: url('../image/icon/Reload-Black.svg');
     }
-    .icon-Gallery-Black {
-      background-image: url('../image/icon/Gallery-Black.svg');
-    }
-    .icon-Player-Black {
-      background-image: url('../image/icon/Player-Black.svg');
-    }
-    .icon-Player-Grey, .input-Player-Grey:after {
-      background-image: url('../image/icon/Player-Grey.svg');
-    }
-    .icon-Idea-Black {
-      background-image: url('../image/icon/Idea-Black.svg');
-    }
     .icon-BrushLarge-Black {
       background-image: url('../image/icon/BrushLarge-Black.svg');
     }
     .icon-EaserLarge-Black {
       background-image: url('../image/icon/EaserLarge-Black.svg');
     }
-    .icon-Talk-Black {
-      background-image: url('../image/icon/Talk-Black.svg');
-    }    
-    .icon-Shared-Black {
-      background-image: url('../image/icon/Shared-Black.svg');
+    .icon-Email-Grey, .input-Email-Grey:after {
+      background-image: url('../image/icon/Email-Grey.svg');
     }
-    .icon-Public-Green {
-      background-image: url('../image/icon/Public-Green.svg');
+    .icon-Feedback-Grey {
+      background-image: url('../image/icon/Feedback-Grey.svg');
     }
-    .icon-Public-White {
-      background-image: url('../image/icon/Public-White.svg');
+    .icon-Gallery-Black {
+      background-image: url('../image/icon/Gallery-Black.svg');
     }
-    .icon-Public-GreenFill {
-      background-image: url('../image/icon/Public-GreenFill.svg');
+    .icon-Idea-Black {
+      background-image: url('../image/icon/Idea-Black.svg');
     }
-    .icon-Private-GreyFill {
-      background-image: url('../image/icon/Private-GreyFill.svg');
+    .icon-Next-Dark {
+      background-image: url('../image/icon/Next-Dark.svg');
     }
     .icon-Password-Black {
       background-image: url('../image/icon/Password-Black.svg');
@@ -203,13 +195,30 @@
     .icon-Password-White {
       background-image: url('../image/icon/Password-White.svg');
     }
-    .icon-Feedback-Grey {
-      background-image: url('../image/icon/Feedback-Grey.svg');
+    .icon-Player-Black {
+      background-image: url('../image/icon/Player-Black.svg');
     }
-    .icon-Next-Dark {
-      background-image: url('../image/icon/Next-Dark.svg');
+    .icon-Player-Grey, .input-Player-Grey:after {
+      background-image: url('../image/icon/Player-Grey.svg');
     }
-    
+    .icon-Private-GreyFill {
+      background-image: url('../image/icon/Private-GreyFill.svg');
+    }
+    .icon-Public-Green {
+      background-image: url('../image/icon/Public-Green.svg');
+    }
+    .icon-Public-GreenFill {
+      background-image: url('../image/icon/Public-GreenFill.svg');
+    }
+    .icon-Public-White {
+      background-image: url('../image/icon/Public-White.svg');
+    }
+    .icon-Shared-Black {
+      background-image: url('../image/icon/Shared-Black.svg');
+    }
+    .icon-Talk-Black {
+      background-image: url('../image/icon/Talk-Black.svg');
+    }
     .card {
       display:block;
       background: #fff;
