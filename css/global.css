@@ -1,0 +1,342 @@
+    /* rest */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:focus, a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .pure-g [class *="pure-u"] {
+      font-family: PingFang;
+    }
+
+    /* End of reset*/
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    /*::-webkit-scrollbar-track {
+        background-color: #eaeaea;
+        border-left: 1px solid #ccc;
+    }*/
+    ::-webkit-scrollbar-thumb {
+        background-color: #999;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #333;
+    }
+    
+    /* font */
+    @font-face {
+    font-family: PingFang;
+      src: url(../font/DroidSansFallback.ttf);
+    }
+    body {
+      line-height: 1;
+      font-family: PingFang;
+    }
+    
+    /* GLOBAL */
+    h2 {
+      font-size: 23px;
+    }
+    h3 {
+      font-size: 22px;
+    }
+    .input_wrap {
+      position: relative;
+    }
+    .input {
+      line-height: 59px;
+      border-radius: 100px;
+      padding-left: 70px;
+      border: 2px solid transparent;
+      color:#162038;
+      width: calc(100% - 70px);
+    }
+    .input:hover {
+      border-color: #B6B6B6;
+    }
+    .input:focus {
+      outline: none;
+      border-color: #36CEBC;
+    }
+    .input_wrap:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translate(0, -50%);
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+    }
+    .button {
+      text-align: center;
+      display: inline-block;
+      border-radius: 40px;
+      color: #fff;
+      line-height: 65px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .button-green {
+      background: #36CEBC;
+    }
+    .button-green:hover {
+      background: #29B3A4;
+    }
+    .button-green.disabled {
+      background: rgba(54,206,187,0.50);
+      cursor: default;
+    }
+    .button-thin {
+      display: inline-block;
+      font-size: 13px;
+      padding: 10px 25px;
+      border: 2px solid #7b7b7b;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .button-thin:hover {
+      background-color: #7B7B7B;
+      color: #fff;
+    }
+    .icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      vertical-align: middle;
+    }
+    .icon-Back-Black {
+      background-image: url('../image/icon/Back-Black.svg');
+    }
+    .icon-Back-Reload-Black {
+      background-image: url('../image/icon/Reload-Black.svg');
+    }
+    .icon-Gallery-Black {
+      background-image: url('../image/icon/Gallery-Black.svg');
+    }
+    .icon-Player-Black {
+      background-image: url('../image/icon/Player-Black.svg');
+    }
+    .icon-Player-Grey, .input-Player-Grey:after {
+      background-image: url('../image/icon/Player-Grey.svg');
+    }
+    .icon-Idea-Black {
+      background-image: url('../image/icon/Idea-Black.svg');
+    }
+    .icon-BrushLarge-Black {
+      background-image: url('../image/icon/BrushLarge-Black.svg');
+    }
+    .icon-EaserLarge-Black {
+      background-image: url('../image/icon/EaserLarge-Black.svg');
+    }
+    .icon-Talk-Black {
+      background-image: url('../image/icon/Talk-Black.svg');
+    }    
+    .icon-Shared-Black {
+      background-image: url('../image/icon/Shared-Black.svg');
+    }
+    .icon-Public-Green {
+      background-image: url('../image/icon/Public-Green.svg');
+    }
+    .icon-Public-White {
+      background-image: url('../image/icon/Public-White.svg');
+    }
+    .icon-Public-GreenFill {
+      background-image: url('../image/icon/Public-GreenFill.svg');
+    }
+    .icon-Private-GreyFill {
+      background-image: url('../image/icon/Private-GreyFill.svg');
+    }
+    .icon-Password-Black {
+      background-image: url('../image/icon/Password-Black.svg');
+    }
+    .icon-Password-Grey, .input-Password-Grey:after {
+      background-image: url('../image/icon/Password-Grey.svg');
+    }
+    .icon-Password-White {
+      background-image: url('../image/icon/Password-White.svg');
+    }
+    .icon-Feedback-Grey {
+      background-image: url('../image/icon/Feedback-Grey.svg');
+    }
+    .icon-Next-Dark {
+      background-image: url('../image/icon/Next-Dark.svg');
+    }
+    
+    .card {
+      display:block;
+      background: #fff;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      margin: 15px;
+      height: 340px;
+      position: relative;
+      cursor: pointer;
+    }
+    .card:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      border: 1px solid #ccc;
+      border-radius: 0 0 10px 10px;
+      border-width: 0 1px 3px 1px;
+      bottom: -1px;
+      left: -1px;
+    }
+    .card:hover {
+      -webkit-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+      -moz-box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+      box-shadow: 0px 3px 5px 3px rgba(218,218,218,1);
+    }
+    .card:hover:after {
+      border-color: #aaa;
+    }
+    .card_bottom {
+      position: absolute;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, 0);
+      bottom: 17px;
+      width:100%;
+      border-top: 1px solid #ebebeb;
+    }
+    .card_bottom_content {
+      white-space: nowrap;
+      width: calc(100% - 40px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 17px auto 0;
+      text-align: center;
+    }
+    
+    .cross:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-top: 1px solid #fff;
+      width: 100%;
+    }
+    .cross:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-right: 1px solid #fff;
+      height: 100%;
+    }
+    
+    .hover_spin_item:hover .spin_target {
+      -webkit-animation-name: spin90;
+      -webkit-animation-duration: 400ms;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: linear;
+      -moz-animation-name: spin90;
+      -moz-animation-duration: 400ms;
+      -moz-animation-iteration-count: 1;
+      -moz-animation-timing-function: linear;
+      -ms-animation-name: spin90;
+      -ms-animation-duration: 400ms;
+      -ms-animation-iteration-count: 1;
+      -ms-animation-timing-function: linear;
+      
+      animation-name: spin90;
+      animation-duration: 400ms;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+    }
+    
+    @-ms-keyframes spin90 {
+        from { -ms-transform: rotate(0deg); }
+        to { -ms-transform: rotate(90deg); }
+    }
+    @-moz-keyframes spin90 {
+        from { -moz-transform: rotate(0deg); }
+        to { -moz-transform: rotate(90deg); }
+    }
+    @-webkit-keyframes spin90 {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(90deg); }
+    }
+    @keyframes spin90 {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(90deg);
+        }
+    }
+    
+    .tabs {
+      display: flex;
+    }
+    .tabs li {
+      flex: 1;
+      line-height: 60px;
+      text-align: center;
+      color: #7B7B7B;
+      cursor: pointer;
+    }
+    .tabs li:hover {
+      color: #000;
+    }
+    .tabs li.active {
+      border-bottom: 2px solid #36CEBC;
+      color: #000;
+    }
+    /* End GLOBAL */
