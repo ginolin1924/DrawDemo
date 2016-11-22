@@ -73,11 +73,25 @@
     /* end of Base*/
     
     .view {
-      max-width: 450px;
-      margin: 0 auto;
+      height: 100%;
     }
     .welcome {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+    }
+    .left_seticon {
+      width: 450px;
       padding: 0 20px;
+    }
+    .right_seticon {
+      flex: 1;
+      background: #151f36;
+      color: #fff;
+      height: 100%;
+      position: relative;
     }
     .hero_image {
       width: 100%;
@@ -99,6 +113,25 @@
     }
     .signup_link {
       padding-left: 10px;
+    }
+    #intro_carousel {
+      position: absolute;
+      top: 50%;
+      margin-right: -50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .carousel_item {
+      text-align: center;
+      font-size: 32px;
+    }
+    .carousel_item .subtext {
+      font-size: 16px;
+      padding-top: 20px;
+      line-height: 1.6;
+    }
+    #intro_carousel .dots {
+      padding-top: 150px;
     }
 
     .new_user_form, .forget_password_form {
@@ -144,7 +177,49 @@
     var Welcome = React.createClass({
       getInitialState() {
         return {
-          currentTab: 'member'
+          currentTab: 'member',
+          introData: [
+            {
+              img: '',
+              content:  <div className='content'>
+                          <img src='' />
+                          <div>
+                            <div><span className='color_green'>呼朋引伴</span>一起玩畫畫接龍</div>
+                            <div className='subtext'>與五位或七位朋友一起享受<br />最輕鬆、最爆笑的畫畫接龍遊戲。</div>
+                          </div>
+                        </div>
+            },
+            {
+              img: '',
+              content:  <div className='content'>
+                          <img src='' />
+                          <div>
+                            <div><span className='color_green'>寫下</span>你想讓別人畫的題目</div>
+                            <div className='subtext'>電影經典片段、名人、時事、甚至是外星語......</div>
+                          </div>
+                        </div>
+            },
+            {
+              img: '',
+              content:  <div className='content'>
+                          <img src='' />
+                          <div>
+                            <div><span className='color_green'>畫出</span>你拿到的題目</div>
+                            <div className='subtext'>畫不在精，在......你開心！</div>
+                          </div>
+                        </div>
+            },
+            {
+              img: '',
+              content:  <div className='content'>
+                          <img src='' />
+                          <div>
+                            <div><span className='color_green'>猜出</span>別人畫的內容</div>
+                            <div className='subtext'>寫下你最得意的答案！</div>
+                          </div>
+                        </div>
+            }
+          ]
         };
       },
       componentDidMount() {        
@@ -190,14 +265,83 @@
                 還沒有帳號? <a className='signup_link' onClick={this.props.setPage.bind(this, 'new_user')}>註冊新帳號</a>
               </div>
             </div>
-            <div className='right_seticon intro'>
-              
+            <div className='right_seticon'>
+              <Carousel 
+                id={'intro_carousel'}
+                data={this.state.introData}
+              />
             </div>
           </div>
         );
       }
     });
     
+
+    var Carousel = React.createClass({
+      getInitialState() {
+        return {
+          index:    this.props.index    || 0,
+          width:    this.props.width    || 640,
+          speed:    this.props.speed    || 0.5,
+          showItem: this.props.showItem ||   1
+        };
+      },
+      componentDidMount() {        
+
+      },
+      setIndex: function(index) {
+        this.setState({index: index});
+      },
+      render: function() {
+        var items = [],
+            dots = [],
+            i,
+            viewStyle,
+            contentStyle,
+            itemStyle;
+
+        viewStyle = {
+          overflow: 'hidden',
+          width: this.state.width+'px',
+          position: 'relative'
+        };
+
+        contentStyle = {
+          width: this.state.width*(this.props.data.length/this.state.showItem) + 'px',
+          position: 'relative',
+          transition: 'left ' + this.state.speed + 's',
+          left: '-' + this.state.index*this.state.width + 'px'
+        };
+
+        itemStyle = {
+          width: this.state.width/this.state.showItem+'px',
+          display: 'inline-block'
+        };
+
+        for (i in this.props.data) {
+          items.push(
+            <div className='carousel_item' style={itemStyle}>{this.props.data[i].content}</div>
+          );
+        }
+
+        for (i=0 ; i < this.props.data.length/this.state.showItem; i++) {
+          dots.push(<li className={i == this.state.index ? 'active' : ''} onClick={this.setIndex.bind(this, i)}></li>);
+        }
+
+        return (
+          <div id={this.props.id} className='carousel'>
+            <div className='carousel_view' style={viewStyle}>
+              <div className='carousel_content' style={contentStyle}>{items}</div>
+            </div>
+            <ul className='dots'>{dots}</ul>
+          </div>
+        );
+      }
+    });
+
+
+
+
     var Header = React.createClass({
       getInitialState() {
         return {
