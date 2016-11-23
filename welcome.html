@@ -78,13 +78,15 @@
     .welcome {
       display: flex;
       align-items: center;
+      justify-content: center;
       max-width: 1200px;
       margin: 0 auto;
       height: 100%;
+      min-height: 820px;
     }
     .left_seticon {
-      width: 450px;
-      padding: 0 20px;
+      width: 350px;
+      padding: 20px;
     }
     .right_seticon {
       flex: 1;
@@ -98,6 +100,9 @@
     }
     .input_wrap {
       margin: 20px 0;
+    }
+    .tab_content {
+      min-height: 235px;
     }
     
     .forget_password_link {
@@ -125,6 +130,9 @@
       text-align: center;
       font-size: 32px;
     }
+    .carousel_item img {
+      padding-bottom: 20px;
+    }
     .carousel_item .subtext {
       font-size: 16px;
       padding-top: 20px;
@@ -136,6 +144,16 @@
 
     .new_user_form, .forget_password_form {
       padding: 20px;
+    }
+    @media screen and (max-height : 820px) {
+      .right_seticon {
+        height: 820px;
+      }
+    }
+    @media screen and (max-width : 1050px) {
+      .right_seticon {
+        display: none;
+      }
     }
   </style>
 
@@ -182,7 +200,7 @@
             {
               img: '',
               content:  <div className='content'>
-                          <img src='' />
+                          <img src='image/intro1.png' />
                           <div>
                             <div><span className='color_green'>呼朋引伴</span>一起玩畫畫接龍</div>
                             <div className='subtext'>與五位或七位朋友一起享受<br />最輕鬆、最爆笑的畫畫接龍遊戲。</div>
@@ -192,7 +210,7 @@
             {
               img: '',
               content:  <div className='content'>
-                          <img src='' />
+                          <img src='image/intro2.png' />
                           <div>
                             <div><span className='color_green'>寫下</span>你想讓別人畫的題目</div>
                             <div className='subtext'>電影經典片段、名人、時事、甚至是外星語......</div>
@@ -202,7 +220,7 @@
             {
               img: '',
               content:  <div className='content'>
-                          <img src='' />
+                          <img src='image/intro3.png' />
                           <div>
                             <div><span className='color_green'>畫出</span>你拿到的題目</div>
                             <div className='subtext'>畫不在精，在......你開心！</div>
@@ -212,7 +230,7 @@
             {
               img: '',
               content:  <div className='content'>
-                          <img src='' />
+                          <img src='image/intro4.png' />
                           <div>
                             <div><span className='color_green'>猜出</span>別人畫的內容</div>
                             <div className='subtext'>寫下你最得意的答案！</div>
