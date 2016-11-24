@@ -294,6 +294,7 @@
               <Carousel 
                 id={'intro_carousel'}
                 data={this.state.introData}
+                autoScroll={true}
               />
             </div>
           </div>
@@ -305,14 +306,22 @@
     var Carousel = React.createClass({
       getInitialState() {
         return {
-          index:    this.props.index    || 0,
-          width:    this.props.width    || 640,
-          speed:    this.props.speed    || 0.5,
-          showItem: this.props.showItem ||   1
+          index     : this.props.index      || 1,
+          showItem  : this.props.showItem   || 1,
+          width     : this.props.width      || 640,
+          speed     : this.props.speed      || 0.5,
+          autoScroll: this.props.autoScroll || false,
+          scrollTime: this.props.scrollTime || 4000
         };
       },
       componentDidMount() {        
-
+        if(this.state.autoScroll) {
+          var intervalId = setInterval(this.autoScroll, this.state.scrollTime);
+          this.setState({intervalId: intervalId});
+        }
+      },
+      autoScroll: function() {
+        this.setState({index: this.state.index == Math.ceil(this.props.data.length/this.state.showItem) ? 1 : this.state.index+1});
       },
       setIndex: function(index) {
         this.setState({index: index});
@@ -335,7 +344,7 @@
           width: this.state.width*(this.props.data.length/this.state.showItem) + 'px',
           position: 'relative',
           transition: 'left ' + this.state.speed + 's',
-          left: '-' + this.state.index*this.state.width + 'px'
+          left: '-' + (this.state.index-1)*this.state.width + 'px'
         };
 
         itemStyle = {
@@ -350,11 +359,36 @@
         }
 
         for (i=0 ; i < this.props.data.length/this.state.showItem; i++) {
-          dots.push(<li className={i == this.state.index ? 'active' : ''} onClick={this.setIndex.bind(this, i)}></li>);
+          dots.push(<li className={i == this.state.index-1 ? 'active' : ''} onClick={this.setIndex.bind(this, i+1)}></li>);
         }
 
         return (
           <div id={this.props.id} className='carousel'>
+            <style>{"\
+              .carousel_item img{\
+                max-width: 100%;\
+              }\
+              .carousel .dots {\
+                text-align: center;\
+                padding-top: 20px;\
+              }\
+              .carousel .dots li {\
+                width: 12px;\
+                height: 12px;\
+                border: 3px solid #fff;\
+                border-radius: 100%;\
+                display: inline-block;\
+                vertical-align: middle;\
+                margin: 0 5px;\
+                cursor: pointer;\
+              }\
+              .carousel .dots li.active {\
+                width: 27px;\
+                height: 27px;\
+                background: #fff;\
+                cursor: default;\
+              }\
+            "}</style>
             <div className='carousel_view' style={viewStyle}>
               <div className='carousel_content' style={contentStyle}>{items}</div>
             </div>
@@ -363,9 +397,6 @@
         );
       }
     });
-
-
-
 
     var Header = React.createClass({
       getInitialState() {
@@ -386,7 +417,6 @@
         );
       }
     });
-    
     
     var NewUser = React.createClass({
       getInitialState() {
