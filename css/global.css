@@ -155,6 +155,14 @@
       background-color: #7B7B7B;
       color: #fff;
     }
+    .button-simple {
+      font-size: 0.75rem;
+      padding: 8px 26px;
+      display: inline-block;
+      border: 1px solid;
+      border-radius: 15px;
+      cursor: pointer;
+    }
     .icon {
       display: inline-block;
       width: 30px;
@@ -165,11 +173,11 @@
     .icon-Back-Black {
       background-image: url('../image/icon/Back-Black.svg');
     }
-    .icon-Back-Reload-Black {
-      background-image: url('../image/icon/Reload-Black.svg');
-    }
     .icon-BrushLarge-Black {
       background-image: url('../image/icon/BrushLarge-Black.svg');
+    }
+    .icon-Close-White {
+      background-image: url('../image/icon/Close-White.svg');
     }
     .icon-EaserLarge-Black {
       background-image: url('../image/icon/EaserLarge-Black.svg');
@@ -189,6 +197,9 @@
     .icon-Next-Dark {
       background-image: url('../image/icon/Next-Dark.svg');
     }
+    .icon-PaintBucketLarge-Black {
+      background-image: url('../image/icon/PaintBucketLarge-Black.svg');
+    }
     .icon-Password-Black {
       background-image: url('../image/icon/Password-Black.svg');
     }
@@ -207,6 +218,9 @@
     .icon-Private-GreyFill {
       background-image: url('../image/icon/Private-GreyFill.svg');
     }
+    .icon-Public-Black {
+      background-image: url('../image/icon/Public-Black.svg');
+    }
     .icon-Public-Green {
       background-image: url('../image/icon/Public-Green.svg');
     }
@@ -216,8 +230,17 @@
     .icon-Public-White {
       background-image: url('../image/icon/Public-White.svg');
     }
+    .icon-Reload-Black {
+      background-image: url('../image/icon/Reload-Black.svg');
+    }
+    .icon-Rollback-Black {
+      background-image: url('image/icon/Shared-Black.svg');
+    }
     .icon-Shared-Black {
       background-image: url('../image/icon/Shared-Black.svg');
+    }
+    .icon-SignOut-Grey {
+      background-image: url('../image/icon/SignOut-Grey.svg');
     }
     .icon-Talk-Black {
       background-image: url('../image/icon/Talk-Black.svg');
