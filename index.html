@@ -631,9 +631,12 @@
       color: #B6B6B6;
     }
     .edit_profile .input_wrap {
-      padding: 30px 0;
+      margin: 30px 0;
     }
 
+    .change_password .input_wrap {
+      margin-bottom: 30px;
+    }
 
 
     /*** MOBonly ***/
@@ -1044,7 +1047,7 @@
             <ul className='list'>
               <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
               <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
-              <li><a href='welcome.html'><i className='icon icon-Next-Dark'></i>登出</a></li>
+              <li><a href='welcome.html'><i className='icon icon-SignOut-Grey'></i>登出</a></li>
             </ul>
           </div>
         );
@@ -1096,7 +1099,33 @@
                 </div>
               : ''}
               {this.state.currentTab == 'changePassword' ?
-                'changePassword'
+                <div className='change_password'>
+                  <div className='input_wrap input-Password-Grey'>
+                    <input 
+                      className='input'
+                      type='password'
+                      placeholder='舊的密碼'
+                      ref=''
+                    />
+                  </div>
+                  <div className='input_wrap input-Password-Grey'>
+                    <input 
+                      className='input'
+                      type='password'
+                      placeholder='新的密碼'
+                      ref=''
+                    />
+                  </div>
+                  <div className='input_wrap input-Password-Grey'>
+                    <input 
+                      className='input'
+                      type='password'
+                      placeholder='再輸入一次'
+                      ref=''
+                    />
+                  </div>
+                  <div className='button button-green'>確認</div>
+                </div>
               :''}
               {this.state.currentTab == 'feedback' ?
                 'feedback'
@@ -1287,7 +1316,7 @@
             showPasswordPopup: 1
           });
         } else {
-          alert('join room:'+roomInfo.name+' id:'+roomInfo.id)
+          window.location.href = 'draw.html';
         }
       },
       inputChange: function() {
@@ -1477,7 +1506,7 @@
                 </div>
                :
                 <div className='options'>
-                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,0)}></i></div>
+                  <div className='option'><i className='icon icon-Public-Black' onClick={this.setPrivate.bind(this,0)}></i></div>
                   <div className='option selected'><i className='icon icon-Password-Grey'></i></div>
                 </div>
               } 
