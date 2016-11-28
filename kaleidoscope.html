@@ -136,8 +136,8 @@
     .icon-reload {
       background-image: url('image/icon/Reload-Black.svg');
     }
-    .icon-gallery {
-      background-image: url('image/icon/Gallery-Black.svg');
+    .icon-paintbucket {
+      background-image: url('image/icon/PaintBucketLarge-Blackk.svg');
     }
     .icon-player {
       background-image: url('image/icon/Player-Black.svg');
@@ -798,7 +798,7 @@
                 </ul>
               </li>
               <li onClick={this.props.setTool('eraser')} className={this.props.tool == 'eraser' ? 'active' : ''}><i className='icon icon-eraser'></i></li>
-              <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-gallery'></i></li>
+              <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-paintbucket'></i></li>
               <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? '' : 'hide'}><i className='icon icon-rollback'></i></li>
             </ul>
             <ul className='color_picker'>
