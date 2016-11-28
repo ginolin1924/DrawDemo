@@ -34,14 +34,12 @@
     html, body, #App {
       height: 100%;
     }
-    
     body {
       background: #f1f1f1;
       letter-spacing: 2px;
       color: #888;
       font-size: 20px;
     }
-    
     .header {
       line-height: 50px;
       height: 50px;
@@ -63,8 +61,6 @@
       margin-right: -50%;
       transform: translate(-50%,-50%);
     }
-    
-    
     @media screen and (max-width: 767px) {
         body {
             font-size: 14px;
@@ -311,7 +307,8 @@
           width     : this.props.width      || 640,
           speed     : this.props.speed      || 0.5,
           autoScroll: this.props.autoScroll || false,
-          scrollTime: this.props.scrollTime || 4000
+          scrollTime: this.props.scrollTime || 4000,
+          showArrow : this.props.showArrow  || 1
         };
       },
       componentDidMount() {        
@@ -323,7 +320,8 @@
       autoScroll: function() {
         this.setState({index: this.state.index == Math.ceil(this.props.data.length/this.state.showItem) ? 1 : this.state.index+1});
       },
-      setIndex: function(index) {
+      dotClick: function(index) {
+        clearInterval(this.state.intervalId);
         this.setState({index: index});
       },
       render: function() {
@@ -359,7 +357,7 @@
         }
 
         for (i=0 ; i < this.props.data.length/this.state.showItem; i++) {
-          dots.push(<li className={i == this.state.index-1 ? 'active' : ''} onClick={this.setIndex.bind(this, i+1)}></li>);
+          dots.push(<li className={i == this.state.index-1 ? 'active' : ''} onClick={this.dotClick.bind(this, i+1)}></li>);
         }
 
         return (
@@ -392,6 +390,8 @@
             <div className='carousel_view' style={viewStyle}>
               <div className='carousel_content' style={contentStyle}>{items}</div>
             </div>
+            <div className='left_arrow'></div>
+            <div className='right_arrow'></div>
             <ul className='dots'>{dots}</ul>
           </div>
         );
