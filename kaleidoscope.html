@@ -8,9 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
     <!-- react -->
-    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
-    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     
     <!-- bootstrap 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -763,6 +763,7 @@
           sizeOptionClass = 'size_option'
           if (i == this.props.size) {sizeOptionClass += ' active'}
           sizeOption.push(<li 
+                              key={i}
                               className={sizeOptionClass+' '+i}
                               onClick={this.props.setSize(i)}
                           ></li>)
@@ -773,7 +774,8 @@
 
           if (i == this.props.color && this.props.tool == 'pencil' || i == this.props.backgroundColor && this.props.tool == 'backgroundColor') {colorOptionClass += ' active'}
 
-          colorOption.push(<li 
+          colorOption.push(<li
+                              key={i}
                               className={colorOptionClass+' '+i}
                               onClick={this.props.setColor(i)}
                           ></li>);
@@ -814,7 +816,7 @@
       }
     });
 
-    React.render(
+    ReactDOM.render(
       <App />,
       document.getElementById('App')
     );
