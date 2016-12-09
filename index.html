@@ -8,9 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
     <!-- react -->
-    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
-    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     
     <!-- bootstrap 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -360,6 +360,12 @@
       left: 0;
       right: 0;
     }
+    .closs_popup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
     .password_popup_body {
       position: absolute;
       bottom: -200px;
@@ -381,7 +387,7 @@
     .password_popup_content {
       max-width: 420px;
       padding: 0 10px;
-      margin: 40px auto;
+      margin: 50px auto;
     }
     .password_popup .popup_title {
       font-size: 24px;
@@ -783,6 +789,7 @@
               userEmail={this.state.userEmail}
               navProfileTab={this.state.navProfileTab}
               toggleNavProfile={this.toggleNavProfile}
+              closeMobProfile={this.closeMobProfile}
             />
             <MobProfileSlider
               currentPage={this.state.currentPage}
@@ -851,12 +858,12 @@
               
               <li>
                 {this.props.currentPage == 'lobby' ?
-                  <a className='nav_create_button hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}><span className='cross hover_spin spin_target'></span>建立新遊戲</a>
+                  <a className='nav_create_button hover_spin_item' onClick={this.props.setCurrentPage.bind(null,'createRoom')}><span className='cross hover_spin spin_target'></span>建立新遊戲</a>
                   :
-                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i> <span>回上頁</span></a>
+                  <a className='' onClick={this.props.setCurrentPage.bind(null,'lobby')}><i className='icon icon-Back-Black'></i> <span>回上頁</span></a>
                  }
               </li>
-              <li><a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i>畫廊</a></li>
+              <li><a onClick={this.props.setCurrentPage.bind(null,'gallery')}><i className='icon icon-Gallery-Black'></i>畫廊</a></li>
               <li className={this.props.navProfileTab ? 'nav_profile active' : 'nav_profile'}>
                 <a onClick={this.props.toggleNavProfile}><i className='icon icon-Player-Black'></i>{this.props.userName}</a>
               </li>
@@ -885,9 +892,9 @@
           <div className='header_mobile'>
             <div className='left_nav'>
               {this.props.currentPage != 'lobby' ?
-                  <a className='' onClick={this.props.setCurrentPage.bind(this,'lobby')}><i className='icon icon-Back-Black'></i></a>
+                  <a className='' onClick={this.props.setCurrentPage.bind(null,'lobby')}><i className='icon icon-Back-Black'></i></a>
                   :
-                  <a onClick={this.props.setCurrentPage.bind(this,'gallery')}><i className='icon icon-Gallery-Black'></i></a>
+                  <a onClick={this.props.setCurrentPage.bind(null,'gallery')}><i className='icon icon-Gallery-Black'></i></a>
               }
             </div>
             <div className='page_name'>{page_title}</div>
@@ -902,7 +909,7 @@
     var Logo = React.createClass({
       render: function() {
         return (
-          <a className='logo' onClick={this.props.setCurrentPage.bind(this,'lobby')}>
+          <a className='logo' onClick={this.props.setCurrentPage.bind(null,'lobby')}>
             <img src='image/LogoSmall-Black.svg' />
           </a>
         );
@@ -958,6 +965,7 @@
                 currentPage={this.props.currentPage}
                 setCurrentPage={this.props.setCurrentPage}
                 toggleNavProfile={this.props.toggleNavProfile}
+                closeMobProfile={this.props.closeMobProfile}
               />
             :''}
           </div>
@@ -984,6 +992,7 @@
               currentPage={this.props.currentPage}
               setCurrentPage={this.props.setCurrentPage}
               toggleNavProfile={this.props.toggleNavProfile}
+              closeMobProfile={this.props.closeMobProfile}
             />
           </div>
         );
@@ -1032,21 +1041,21 @@
               <img className='member_photo' src={this.props.userPhoto} />
               <div className='member_handle'>{this.props.userName}</div>
               <div className='member_email'>{this.props.userEmail}</div>
-              <div onClick={this.linkClick.bind(this, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
+              <div onClick={this.linkClick.bind(null, 'editProfile')} className='button-thin'>編輯頭像及暱稱</div>
             </div>
             <div className='profile_gallery'>
               <div>
                 <label>畫廊</label>
-                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>999+</a>
+                <a onClick={this.linkClick.bind(null, 'gallery')} className='count'>999+</a>
               </div>
               <div>
                 <label>你的畫廊</label>
-                <a onClick={this.linkClick.bind(this, 'gallery')} className='count'>33</a>
+                <a onClick={this.linkClick.bind(null, 'gallery')} className='count'>33</a>
               </div>
             </div>
             <ul className='list'>
-              <li><a onClick={this.linkClick.bind(this, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
-              <li><a onClick={this.linkClick.bind(this, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
+              <li><a onClick={this.linkClick.bind(null, 'changePassword')}><i className='icon icon-Password-White'></i>變更密碼</a></li>
+              <li><a onClick={this.linkClick.bind(null, 'feedback')}><i className='icon icon-Feedback-Grey'></i>意見回饋</a></li>
               <li><a href='welcome.html'><i className='icon icon-SignOut-Grey'></i>登出</a></li>
             </ul>
           </div>
@@ -1073,9 +1082,9 @@
         return (
           <div className='user_setting'>
             <ul className={'tabs'}>
-              <li className={this.state.currentTab == 'editProfile' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'editProfile')}>編輯</li>
-              <li className={this.state.currentTab == 'changePassword' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'changePassword')}>更改密碼</li>
-              <li className={this.state.currentTab == 'feedback' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(this,'feedback')}>意見回饋</li>
+              <li className={this.state.currentTab == 'editProfile' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(null,'editProfile')}>編輯</li>
+              <li className={this.state.currentTab == 'changePassword' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(null,'changePassword')}>更改密碼</li>
+              <li className={this.state.currentTab == 'feedback' ? 'active' : ''} onClick={this.props.setCurrentPage.bind(null,'feedback')}>意見回饋</li>
             </ul>
             <div className={'tab_content'}>
               {this.state.currentTab == 'editProfile' ? 
@@ -1093,6 +1102,7 @@
                       type='test'
                       value={this.props.userName}
                       ref=''
+                      readOnly
                     />
                   </div>
                   <div className='button button-green'>確認</div>
@@ -1331,7 +1341,8 @@
         this.setState({showPasswordPopup:0});
       },
       render: function() {
-        var list = [];
+        var list = [],
+            index = 0;
 
         this.state.list.forEach(function(room) {
           var photos  = [],
@@ -1345,7 +1356,7 @@
           room.photos.forEach(function(photo){
             if(photos.length < 3) {
               photos.push(
-                <img src={photo} />
+                <img key={photos.length} src={photo} />
               );
             }
 
@@ -1365,8 +1376,8 @@
           }.bind(this));
           
           list.push(
-            <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
-              <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(this, roomInfo)}>
+            <div key={index} className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
+              <div className='card lobby_cell' onClick={this.clickLobbyCell.bind(null, roomInfo)}>
                 <div className='lobby_photo_wrap'>
                   <div className='lobby_photo'>{photos}</div>
                   {room.private ? <i className='icon icon-Private-GreyFill'></i> : <i className='icon icon-Public-White'></i>}
@@ -1376,13 +1387,14 @@
               </div>
             </div>
           );
+          index++;
         }.bind(this));
         return (
           <div className='lobby'>
             <div className='lobby_content'>
               <div className='pure-g'>
                 <div className='pure-u-lg-1-4 pure-u-sm-1-3 pure-u-1-2'>
-                  <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(this,'createRoom')}>
+                  <a className='card lobby_cell hover_spin_item' onClick={this.props.setCurrentPage.bind(null,'createRoom')}>
                     <div className='create_room_button spin_target'><span className='cross'></span></div>
                     <div className='lobby_room_name'>建立新遊戲</div>
                     <div className='create_room_disc'>立即建立新遊戲 邀請朋友一起玩</div>
@@ -1410,6 +1422,7 @@
                     <div className='button button-green' onClick={this.buttonClick}>確認</div>
                   </div>                
                 </div>
+                <div className='closs_popup'><i onClick={this.popup_click} className='icon icon-Close-White'></i></div>
               </div>
             </div>
           </div>
@@ -1493,8 +1506,8 @@
             <div className='row'>
               <div className='label'>請選擇遊戲人數</div>
               <div className='options'>
-                <div className={this.state.playerSetting == 5 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,5)}>5</div>
-                <div className={this.state.playerSetting == 7 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(this,7)}>7</div>
+                <div className={this.state.playerSetting == 5 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(null,5)}>5</div>
+                <div className={this.state.playerSetting == 7 ? 'option selected' : 'option'} onClick={this.setPlayer.bind(null,7)}>7</div>
               </div>
             </div>
             <div className='row'>
@@ -1502,11 +1515,11 @@
               {this.state.privateSetting == 0 ?
                 <div className='options'>
                   <div className='option selected'><i className='icon icon-Public-Green'></i></div>
-                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(this,1)}></i></div>
+                  <div className='option'><i className='icon icon-Password-Black' onClick={this.setPrivate.bind(null,1)}></i></div>
                 </div>
                :
                 <div className='options'>
-                  <div className='option'><i className='icon icon-Public-Black' onClick={this.setPrivate.bind(this,0)}></i></div>
+                  <div className='option'><i className='icon icon-Public-Black' onClick={this.setPrivate.bind(null,0)}></i></div>
                   <div className='option selected'><i className='icon icon-Password-Grey'></i></div>
                 </div>
               } 
@@ -1616,7 +1629,8 @@
         this.props.setCurrentGalleryId(id);
       },
       render: function() {
-        var list = [];
+        var list = [],
+            index=0;
 
         this.props.galleryList.forEach(function(data) {
           var players = '', i = 0;
@@ -1630,8 +1644,8 @@
           }.bind(this));
 
           list.push(
-            <div className='pure-u-lg-1-4 pure-u-md-1-3 pure-u-1-2'>
-              <div className='card gellery_cell' onClick={this.cellClick.bind(this, data.id)}>
+            <div key={index} className='pure-u-lg-1-4 pure-u-md-1-3 pure-u-1-2'>
+              <div className='card gellery_cell' onClick={this.cellClick.bind(null, data.id)}>
                 <div className='gallery_img'><img src='image/Cat.svg' /></div>
                 <div className='gallery_date'>{data.date}</div>
                 <div className='gallery_name'>{data.name}</div>
@@ -1639,6 +1653,7 @@
               </div>
             </div>
           );
+          index++;
         }.bind(this));
         return (
           <div className='gallery_landing'>
@@ -1675,7 +1690,7 @@
 
           list.push(
             <div className={data.id == this.props.currentGalleryId ? 'gellery_list_cell selected' : 'gellery_list_cell'}
-                 onClick={this.props.setCurrentGalleryId.bind(this, data.id)}
+                 onClick={this.props.setCurrentGalleryId.bind(null, data.id)}
               >
               <div className='gallery_img'><img src='image/Cat.svg' /></div>
               <div className='gallery_info'>
@@ -1701,7 +1716,7 @@
     
     
     
-    React.render(
+    ReactDOM.render(
       <App />,
       document.getElementById('App')
     );
