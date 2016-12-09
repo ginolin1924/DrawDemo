@@ -287,6 +287,17 @@
     .draw_tool .size_picker:hover ul {
       display: block;
     }
+    .draw_tool .size_picker ul:before {
+      content: '';
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      background: #dadada;
+      position: absolute;
+      right: 0px;
+      border-top-right-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
     .draw_tool .size_picker ul {
       display: none;
       position: absolute;
@@ -300,10 +311,11 @@
       height: 80px;
       background: #dadada;
       position: relative;
+      padding-right: 10px;
     }
-    .draw_tool .size_picker li:after {
+    .draw_tool .size_picker li .dot:after {
       content: '';
-      background: #000;
+      background: #B7B7B7;
       border-radius: 100%;
       position: absolute;
       top: 50%;
@@ -311,6 +323,30 @@
       margin-right: -50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
+    }
+    .draw_tool .size_picker li .dot:before {
+      content: '';
+      background: #fff;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+    }
+    .draw_tool .size_picker li.active:after {
+      content: '';
+      border: 3px #7B7B7B solid;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      width: 67px;
+      height: 67px;
     }
     .draw_tool .size_picker li:first-child {
       border-top-right-radius: 100%;
@@ -329,23 +365,23 @@
       border-top-right-radius: 100%;
       border-bottom-right-radius: 100%;
     }
-    .size_1:after {
+    .size_1 .dot:after {
       width: 14px;
       height: 14px;
     }
-    .size_2:after {
+    .size_2 .dot:after {
       width: 20px;
       height: 20px;
     }
-    .size_3:after {
+    .size_3 .dot:after {
       width: 30px;
       height: 30px;
     }
-    .size_4:after {
+    .size_4 .dot:after {
       width: 44px;
       height: 44px;
     }
-    .size_5:after {
+    .size_5 .dot:after {
       width: 60px;
       height: 60px;
     }
@@ -357,7 +393,7 @@
     .color_picker li {
       -webkit-flex: 1;
               flex: 1;
-      height: 60px;
+      height: 35px;
       position: relative;
     }
     .color_picker li:after {
@@ -369,8 +405,8 @@
       margin-right: -50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
-      width: 37.5px;
-      height: 37.5px;
+      width: 22.5px;
+      height: 22.5px;
     }
     .color_picker li:before {
       content: '';
@@ -382,41 +418,20 @@
       margin-right: -50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
-      width: 44px;
-      height: 44px;
-      border: 3px solid #cbcbcb;
+      width: 29px;
+      height: 29px;
+      border: 3px solid #ebebeb;
     }
     .color_picker li.active:before {
-      border-color: #000;
-    }
-    .color_picker li.color_1:after, .bg_color_1 {
-      background: #000000;
-    }
-    .color_picker li.color_2:after, .bg_color_2 {
-      background: #EE534C;
-    }
-    .color_picker li.color_3:after, .bg_color_3 {
-      background: #F79A2D;
-    }
-    .color_picker li.color_4:after, .bg_color_4 {
-      background: #FDED19;
-    }
-    .color_picker li.color_5:after, .bg_color_5 {
-      background: #36CEBC;
-    }
-    .color_picker li.color_6:after, .bg_color_6 {
-      background: #2E91F4;
-    }
-    .color_picker li.color_7:after, .bg_color_7 {
-      background: #ffffff;
+      border-color: #7B7B7B;
     }
     .hide {
       display:none;
     }
-    .btn-wrap {
+    .draw_tool .btn-wrap {
       display: -webkit-flex;
       display: flex;
-      margin: 0 -10px;
+      margin: 40px -10px 0;
     }
     .btn-wrap .button {
       -webkit-flex: 1;
@@ -894,7 +909,7 @@
           positionY: '',
           pointSize: 'size_1',
           pointColor: 'color_1',
-          backgroundColor: 'color_7',
+          backgroundColor: 'color_10',
           sizeMap: {
             size_1  : 7,
             size_2  : 11,
@@ -903,13 +918,16 @@
             size_5  : 27
           },
           colorMap: {
-            color_1: '#000000',
-            color_2: '#EE534C',
-            color_3: '#F79A2D',
-            color_4: '#FDED19',
-            color_5: '#36CEBC',
-            color_6: '#2E91F4',
-            color_7: '#ffffff',
+            color_1:  '#000000',
+            color_2:  '#EE534C',
+            color_3:  '#FC60A5',
+            color_4:  '#FEEDC3',
+            color_5:  '#FDED19',
+            color_6:  '#50E3C2',
+            color_7:  '#89DBFF',
+            color_8:  '#228BF4',
+            color_9:  '#8B572A',
+            color_10: '#FFFFFF'
           },
           tempImage : 0,
           cardView: 'showFront'
@@ -1124,7 +1142,8 @@
             sizeOptionClass,
             colorOption = [],
             colorOptionClass,
-            i;
+            i,
+            colorStyle = '';
             
             
         for (i in this.props.sizeMap) {
@@ -1133,7 +1152,7 @@
           sizeOption.push(<li key={i}
                               className={sizeOptionClass+' '+i}
                               onClick={this.props.setSize(i)}
-                          ></li>)
+                          ><div className='dot'></div></li>)
         };
         
         for (i in this.props.colorMap) {
@@ -1145,10 +1164,17 @@
                                className={colorOptionClass+' '+i}
                                onClick={this.props.setColor(i)}
                           ></li>);
+
+          colorStyle += '.color_picker li.' + i + ':after, .bg_' + i + '{background:' + this.props.colorMap[i] + ';}';
+
         };
         
         return (          
           <div className='draw_tool'>
+            <style>{colorStyle}</style>
+            <ul className='color_picker'>
+              {colorOption}
+            </ul>
             <ul className='tool_picker'>
               <li onClick={this.props.setTool('pencil')} className={this.props.tool == 'pencil' ? 'size_picker active' : 'size_picker'}>
                 <a><i className='icon icon-BrushLarge-Black'></i></a>
@@ -1159,9 +1185,6 @@
               <li onClick={this.props.setTool('eraser')} className={this.props.tool == 'eraser' ? 'active' : ''}><i className='icon icon-EaserLarge-Black'></i></li>
               <li onClick={this.props.setTool('backgroundColor')} className={this.props.tool == 'backgroundColor' ? 'active' : ''}><i className='icon icon-PaintBucketLarge-Black'></i></li>
               <li onClick={this.props.revertDrawTable} className={this.props.tempImage ? '' : 'hide'}><i className='icon icon-Rollback-Black'></i></li>
-            </ul>
-            <ul className='color_picker'>
-              {colorOption}
             </ul>
             <div className='btn-wrap'>
               <div onClick={this.props.clearDrawTable} className={'button btn_reset_table'}>清空畫布</div>
