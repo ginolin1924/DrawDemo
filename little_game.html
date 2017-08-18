@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <!-- react -->
+    <script src="https://fb.me/react-with-addons-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+  <body>
+  <style type="text/css">
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    body {
+      line-height: 1;
+      font-family: 'Lato', sans-serif;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    
+    .input_wrap {
+      position: relative;
+    }
+    input[type='text'] {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 100%;
+      font-size: 22px;
+      padding-right: 45px;
+    }
+    #handleTextIcon {
+      font-size: 21px;
+      position: absolute;
+      right: 10px;
+      line-height: 22px;
+      border: 1px solid #000;
+      padding: 2px 5px 4px;
+      border-radius: 100%;
+      color: #fff;
+      background: #000;
+      top: 50%;
+      margin-top: -15px;
+      cursor: pointer;
+    }
+    
+    
+    html, body {
+      height: 100%;
+    }
+    #App {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      border: 3px solid #ccc;
+      border-radius: 10px;
+      width: 600px;
+    }
+    .square {
+      width: 74px;
+      display: inline-block;
+      border: 1px solid;
+      vertical-align: middle;
+      margin: 0 30px;
+      text-align: center;
+    }
+    .welcome h2 {
+      padding-bottom: 15px;
+      font-size: 36px;
+    }
+    .prepare .flex_button_wrap {
+      padding: 20px 0;
+      
+    }
+    
+    .count {
+      font-size: 22px;
+      overflow: hidden;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #ccc;
+    }
+    .count .time {
+      float: left;
+      font-weight: bold;
+    }
+    .count .rate {
+      float: right;
+    }
+    .count .rate .fa {
+      padding-left: 10px;
+    }
+    .count .rate .fa-circle-o {
+      color: green;
+    }
+    .count .rate .fa-times {
+      color: red;
+    }
+    .question {
+      font-size: 72px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .color_question {
+      font-size: 40px;
+    }
+    .question .number, .question .operator {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 10px;
+      width: 60px;
+    }
+    .question .number {
+    
+    }
+    .question .operator {
+    
+    }
+    .option {
+      margin-top: 40px;
+    }
+    .flex_button_wrap {
+      display: flex;
+      flex-flow: row wrap;
+    }
+    .flex_button_wrap .flex_button_label {
+      -webkit-flex: 1;
+      flex: 1;
+      margin: 20px;
+      height: 60px;
+      line-height: 58px;
+      font-size: 36px;
+    }
+    .flex_button_wrap .flex_button {
+      -webkit-flex: 1;
+      flex: 1;
+      text-align: center;
+      border: 1px solid #ccc;
+      margin: 20px;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      height: 60px;
+      line-height: 58px;
+    }
+    .flex_button:hover {
+      background: #ccc;
+    }
+    .flex_button.active {
+      background: #ccc;
+      cursor: default;
+    }
+    .flex_space {
+      -webkit-flex: 1;
+      flex: 1;
+    }
+    .flex_button_wrap .color_button {
+      min-width: 90px;
+    }
+    
+    .check_answer, .time_up {
+      display: none;
+    }
+    .check_answer .fa, .time_up .text {
+      position: absolute;
+      font-size: 72px;
+      top: 50%;
+      color: green;
+      left: 50%;
+      z-index: 1;
+      background: #fff;
+      padding: 20px 40px;
+      border: 5px solid;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+    }
+    .check_answer .fa-times {
+      color: red;
+    }
+    .time_up .text {
+      font-size: 48px;
+      color: orange;
+    }
+    .check_answer .mask, .time_up .mask {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: #000;
+      opacity: 0.7;
+    }
+    
+    .ending .fa-circle-o {
+      color: green;
+    }
+    .ending .fa-times {
+      color: red;
+    }
+    .ending h2 {
+      padding-bottom: 15px;
+    }
+    .number_1 {
+      color: Black;
+    }
+    .number_2 {
+      color: Blue;
+    }
+    .number_3 {
+      color: BlueViolet;
+    }
+    .number_4 {
+      color: Brown;
+    }
+    .number_5 {
+      color: CadetBlue;
+    }
+    .number_6 {
+      color: Chartreuse;
+    }
+    .number_7 {
+      color: CornflowerBlue;
+    }
+    .number_8 {
+      color: Crimson;
+    }
+    .number_9 {
+      color: DarkBlue;
+    }
+    .number_0 {
+      color: DarkCyan;
+    }
+    .operator_1 {
+      color: DarkGoldenRod;
+    }
+    .operator_2 {
+      color: DarkRed;
+    }
+    .operator_3 {
+      color: DarkTurquoise;
+    }
+    .operator_0 {
+      color: DimGrey;
+    }
+  </style>
+  <div id="App"></div>
+
+  <script type="text/babel">
+    var App = React.createClass({
+      getInitialState() {
+        return {
+          userName: 'test'
+        };
+      },
+      componentDidMount() {        
+
+      },
+      sendUserName: function(name) {
+        this.setState({userName:name});
+      },
+      render: function() {
+
+        return (
+          <div className={'page'}>
+          {this.state.userName == '' ?
+            <Welcome 
+              sendUserName = {this.sendUserName}
+            />
+          :
+            <Game />
+          }
+          </div>
+        );
+      }
+    });
+
+    var Welcome = React.createClass({
+      getInitialState() {
+        return {
+
+        };
+      },
+      componentDidMount() {        
+
+      },
+      onKeyDown: function(e) {
+        if(e.keyCode == 13) {
+          var name = this.refs.handleTextInput.value;
+          if(name) {
+            this.props.sendUserName(name);
+          }
+        }
+      },
+      iconOnclick: function() {
+          var name = this.refs.handleTextInput.value;
+          if(name) {
+            this.props.sendUserName(name);
+          }
+      },
+      render: function() {
+        return (
+          <div className='welcome'>
+            <h2>Welcome!</h2>
+            <h2>What`s your name?</h2>
+            <div className={'input_wrap'}>
+              <input
+                className="handle_input"
+                type="text"
+                placeholder="Please enter your name..."
+                ref="handleTextInput"
+                onKeyDown={this.onKeyDown}
+              />
+              <i onClick={this.iconOnclick} id="handleTextIcon" className="fa fa-arrow-right" aria-hidden="true"></i>
+            </div>
+          </div>
+        );
+      }
+    });
+
+    var Game = React.createClass({
+      getInitialState() {
+        return {
+          gameStatus: 'prepare',
+          timeLimit: 30,
+          questionType: 'math',
+          right: 0,
+          wrong: 0
+        };
+      },
+      componentDidMount() {        
+
+      },
+      setGameState: function(status) {
+        this.setState({gameStatus:status});
+      },
+      setGameTime: function(seconds) {
+        this.setState({timeLimit:seconds});
+      },
+      setQuestionType: function(type) {
+        this.setState({questionType:type});
+      },
+      setRate: function(right,wrong) {
+        this.setState({right:right,wrong:wrong});
+      },
+      render: function() {
+        var status = this.state.gameStatus,
+            content = status == 'prepare' ? <Prepare 
+                                              timeLimit={this.state.timeLimit}
+                                              questionType={this.state.questionType}
+                                              setGameState={this.setGameState}
+                                              setGameTime={this.setGameTime}
+                                              setQuestionType={this.setQuestionType}
+                                            /> :
+                      status == 'playing' ? <GameZone
+                                              timeLimit={this.state.timeLimit}
+                                              questionType={this.state.questionType}
+                                              setGameState={this.setGameState}
+                                              setRate={this.setRate}
+                                            />:
+                      status == 'ending'  ? <Ending
+                                              right={this.state.right}
+                                              wrong={this.state.wrong}
+                                              timeLimit={this.state.timeLimit}
+                                              setGameState={this.setGameState}
+                                            />:
+                      '';
+        return (
+          <div className='game'>
+            <div className='view'></div>
+            {content}
+          </div>
+        );
+      }
+    });
+
+    var Prepare = React.createClass({
+      getInitialState() {
+        return {
+          
+        };
+      },
+      componentDidMount() {        
+
+      },
+      isActive:function(button,value){
+        return 'flex_button'+((button==value) ?' active':'');
+      },
+      render: function() {
+
+        return (
+          <div className='prepare'>
+            <h2>Game Setting</h2>
+            <div className='flex_button_wrap'>
+              <div className='flex_button_label'>Time:</div>
+              <div className={this.isActive(30, this.props.timeLimit)} onClick={this.props.setGameTime.bind(this, 30)}>30s</div>
+              <div className={this.isActive(60, this.props.timeLimit)} onClick={this.props.setGameTime.bind(this, 60)}>60s</div>
+              <div className={this.isActive(90, this.props.timeLimit)} onClick={this.props.setGameTime.bind(this, 90)}>90s</div>
+            </div>
+            <div className='flex_button_wrap'>
+              <div className={'flex_button_label'}>Type:</div>
+              <div className={this.isActive('math', this.props.questionType)}  onClick={this.props.setQuestionType.bind(this, 'math')} >Math</div>
+              <div className={this.isActive('color', this.props.questionType)} onClick={this.props.setQuestionType.bind(this, 'color')}>Color</div>
+            </div>
+            <div className='flex_button_wrap'>
+              <div className={'flex_button'} onClick={this.props.setGameState.bind(this, 'playing')}>GO</div>
+            </div>
+          </div>
+        );
+      }
+    });    
+    
+    var SetIntervalMixin = {
+      componentWillMount: function() {
+        this.intervals = [];
+      },
+      setInterval: function() {
+        this.intervals.push(setInterval.apply(null, arguments));
+      },
+      componentWillUnmount: function() {
+        this.intervals.forEach(clearInterval);
+      }
+    };
+    
+    var GameZone = React.createClass({
+      mixins: [SetIntervalMixin],
+      getInitialState() {
+        return {
+          questionType : this.props.questionType,
+          question     : '',
+          option       : '',
+          answer       : '',
+          checkAnswer  : '',
+          seconds      : this.props.timeLimit,
+          right        : 0,
+          wrong        : 0
+        };
+      },
+      componentDidMount() {
+        this.setInterval(this.tick, 1000);
+        this.setQuestion();
+      },
+      getRandomNumber: function(min,max) {
+        return Math.floor((Math.random() * max) + min);
+      },
+      tick: function() {
+          if(this.state.seconds > 0) {
+            this.setState({seconds: this.state.seconds - 1});
+          } else {
+            this.intervals.forEach(clearInterval);
+            $('.time_up').show();
+            this.props.setRate(this.state.right, this.state.wrong);
+            setTimeout(function(){
+              this.props.setGameState('ending');
+            }.bind(this), 2000);
+          }
+      },
+      setQuestion: function() {
+        if (this.props.questionType == 'math') {
+          var n1 = this.getRandomNumber(0,10),
+              n2 = this.getRandomNumber(0,10),
+              n3 = this.getRandomNumber(0,10),
+              n4 = this.getRandomNumber(0,10);
+              
+          var operator_array = ['+', '-', '*', '/'],
+              operator_text_array = ['+', '-', 215, 247],
+              o1_index =  n2 == 0 ? this.getRandomNumber(0,3): this.getRandomNumber(0,4),
+              o2_index =  n4 == 0 ? this.getRandomNumber(0,3): this.getRandomNumber(0,4),
+              o1       = operator_array[o1_index],
+              o2       = operator_array[o2_index],
+              o1_text  = o1_index < 2 ? operator_text_array[o1_index] : String.fromCharCode(operator_text_array[o1_index]),
+              o2_text  = o2_index < 2 ? operator_text_array[o2_index] : String.fromCharCode(operator_text_array[o2_index]);
+
+          this.setState({question: 
+                          <div>
+                            <div className={'number number_'+n1}>{n1}</div>
+                            <div className={'operator operator_'+o1_index}>{o1_text}</div>
+                            <div className={'number number_'+n2}>{n2}</div>
+                            <div className='square'>?</div>
+                            <div className={'number number_'+n3}>{n3}</div>
+                            <div className={'operator operator_'+o2_index}>{o2_text}</div>
+                            <div className={'number number_'+n4}>{n4}</div>
+                          </div>
+                        });
+          
+          if(eval(n1+o1+n2) < eval(n3+o2+n4)) {
+            this.setState({answer: '<'});
+          } else if (eval(n1+o1+n2) > eval(n3+o2+n4)) {
+            this.setState({answer: '>'});
+          } else {
+            this.setState({answer: '='});
+          }
+          this.setOption('math');
+        } else {
+          this.setState({question: <div className='color_question'></div>});
+          this.setOption('color');
+        }
+      },
+      setOption: function(type) {
+        if (type == 'math') {
+          this.setState({option: <div className='flex_button_wrap'>
+                                   <div className={'flex_button'} onClick={this.sendAnswer.bind(this,'>')}>></div>
+                                   <div className={'flex_button'} onClick={this.sendAnswer.bind(this,'=')}>=</div>
+                                   <div className={'flex_button'} onClick={this.sendAnswer.bind(this,'<')}>{'<'}</div>
+                                 </div>
+                       });
+        } else {
+          var color1 = [this.getRandomNumber(0,256),this.getRandomNumber(0,256),this.getRandomNumber(0,256)],
+              color2 = [],
+              level = this.state.right < 3   ? 40 :
+                      this.state.right < 5   ? 30 :
+                      this.state.right < 7   ? 25 :
+                      this.state.right < 10  ? 20 :
+                      this.state.right < 15  ? 15 : 
+                      this.state.right < 20  ? 10 : 5
+              ;
+          
+          color1.forEach(function(val,index){
+            var data = val + level > 255 ? val - level : val + level;
+            color2.push(data)
+          });
+          
+          var ans = this.getRandomNumber(0,8);
+          this.setState({answer: ans});
+          
+          var row = [];
+          for (var i=0; i<8; i++) {
+            var divStyle = i == ans ? { background: 'rgb('+color1[0]+','+ color1[1]+','+ color1[2]+')' } : { background: 'rgb('+color2[0]+','+ color2[1]+','+ color2[2]+')' };
+            row.push(<div className='flex_button color_button' style={divStyle} onClick={this.sendAnswer.bind(this,i)}></div>);
+          }
+          this.setState({option: <div className='flex_button_wrap'>
+                                   {row}
+                                 </div>
+                       });
+        }
+      },
+      sendAnswer: function(ans){
+        this.setState({checkAnswer: ans == this.state.answer});
+        if (ans == this.state.answer) {
+          this.setState({right:this.state.right+1});
+        } else {
+          this.setState({wrong:this.state.wrong+1});
+        }
+        $('.check_answer').show();
+        setTimeout(function(){
+          $('.check_answer').hide();
+          this.setQuestion();
+        }.bind(this), 300);
+      },
+      render: function() {
+        var question    = this.state.question,
+            option      = this.state.option,
+            checkAnswer = this.state.checkAnswer == 1 ? 'circle-o':'times';
+        return (
+          <div className='game_zone'>
+            <div className='count'>
+              <div className='time'>time: <span>{this.state.seconds}</span></div>
+              <div className='rate'>
+                <i className='fa fa-circle-o'></i>: <span>{this.state.right}</span>
+                <i className='fa fa-times'></i>: <span>{this.state.wrong}</span>
+              </div>
+            </div>
+            <div className='question'>{question}</div>
+            <div className='option'>{option}</div>
+            <div className='check_answer'>
+              <i className={'fa fa-'+checkAnswer}></i>
+              <div className='mask'></div>
+            </div>
+            <div className='time_up'>
+              <div className='text'>Time Up!!</div>
+              <div className='mask'></div>
+            </div>
+            <div className='flex_button_wrap'>
+              <div className='flex_space'></div>
+              <div className='flex_space'></div>
+              <div className={'flex_button'} onClick={this.props.setGameState.bind(this, 'prepare')}>Exit</div>
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    var Ending = React.createClass({
+      getInitialState() {
+        return {
+          
+        };
+      },
+      componentDidMount() {        
+
+      },
+      render: function() {
+
+        return (
+          <div className='ending'>
+            <h2>Finish!</h2>                
+            <h2>Time: {this.props.timeLimit}</h2>
+            <h2><i className='fa fa-circle-o'></i>: {this.props.right}</h2>
+            <h2><i className='fa fa-times'></i>: {this.props.wrong}</h2>
+            <div className='flex_button_wrap'>
+              <div className='flex_space'></div>
+              <div className='flex_space'></div>
+              <div className='flex_button' onClick={this.props.setGameState.bind(this, 'prepare')}>Play again</div>
+            </div>
+          </div>
+        );
+      }
+    });
+    
+    
+    React.render(
+      <App />,
+      document.getElementById('App')
+    );
+  </script>
+  </body>
+</html>
