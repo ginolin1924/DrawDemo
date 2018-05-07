@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
     <!-- react -->
-    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     
     <!-- bootstrap 
@@ -389,13 +390,15 @@
   <div id="App" class=""></div>
 
   <script type="text/babel">
-    var App = React.createClass({
-      getInitialState() {
-        return {
-          size: 900
+
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          size: 900,
         };
-      },
-      render: function() {
+      }
+      render() {
         return (
           <div className='App'>
             <DrawTable
@@ -404,12 +407,13 @@
           </div>
         );
       }
-    });
+    }
 
 
-    var DrawTable = React.createClass({
-      getInitialState() {
-        return { 
+    class DrawTable extends React.Component {
+      constructor() {
+        super();
+        this.state = {
           canvasSize: 900,
           gridLine: 32,
           showGrid: 1,
@@ -443,8 +447,9 @@
           },
           tempImage : 0
         };
-      },
-      componentDidMount: function () {
+      }
+
+      componentDidMount() {
         var canvas = document.getElementById('canvas'),
             context = canvas.getContext("2d");
 
@@ -464,8 +469,8 @@
                 context.drawImage(image, 0, 0);
             }
         }
-      },
-      onMouseDown: function(e) {
+      }
+      onMouseDown = e => {
         var canvas = $('#canvas').get(0),
             mouseX = e.pageX - $('#canvas').offset().left,
             mouseY = e.pageY - $('#canvas').offset().top,
@@ -479,8 +484,8 @@
         this.setState({positionX:mouseX,positionY:mouseY});
         this.drawDot(mouseX,mouseY,size,color);
         
-      },
-      onHandleStart: function(e) {
+      }
+      onHandleStart = e => {
         e.preventDefault();
         var touchX = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
             touchY = e.targetTouches[0].pageY - $('#canvas').offset().top - 5,
@@ -493,8 +498,8 @@
         this.setState({paint:true});
         this.setState({positionX:touchX,positionY:touchY});
         this.drawDot(touchX,touchY, size, color);
-      },
-      onMouseMove: function(e) {
+      }
+      onMouseMove = e => {
         if(this.state.paint) {
           var mouseX    = e.pageX - $('#canvas').offset().left,
               mouseY    = e.pageY - $('#canvas').offset().top,
@@ -506,8 +511,8 @@
           this.setState({positionX:mouseX, positionY:mouseY});
           this.drawLine(mouseX, mouseY, positionX, positionY, size, color);
         }
-      },
-      onHandleMove: function(e) {
+      }
+      onHandleMove = e => {
         e.preventDefault();
         if(this.state.paint) {
           var touchX    = e.targetTouches[0].pageX - $('#canvas').offset().left - 5,
@@ -520,11 +525,11 @@
           this.setState({positionX:touchX, positionY:touchY});
           this.drawLine(touchX, touchY, positionX, positionY, size, color);
         }
-      },
-      paintFalse: function() {
+      }
+      paintFalse = () => {
         this.setState({paint:false});
-      },
-      drawDot: function(X, Y, size, color) {
+      }
+      drawDot = (X, Y, size, color) => {
         var context = this.state.context;
         
         if(this.state.tool == 'eraser') {
@@ -552,8 +557,8 @@
               context.fill();
           }
         }
-      },
-      drawLine: function(X, Y, positionX, positionY, size, color) {
+      }
+      drawLine = (X, Y, positionX, positionY, size, color) => {
         var context = this.state.context;
         
         if(this.state.tool == 'eraser') {
@@ -592,8 +597,8 @@
             context.stroke();
           }
         }
-      },
-      darwGridLine: function(line) {
+      }
+      darwGridLine = (line) => {
 
         var girdcanvas = document.getElementById('gridline'),
             context = girdcanvas.getContext("2d"),
@@ -626,33 +631,33 @@
 
         }
         context.stroke();
-      },
-      standardToCanvasX: function(x) {
+      }
+      standardToCanvasX = x => {
         return x + this.state.canvasSize/2;
-      },
-      standardToCanvasY: function(y) {
+      }
+      standardToCanvasY = (y) => {
         return this.state.canvasSize/2 - y ;
-      },
-      toggleGrid: function() {
+      }
+      toggleGrid = () => {
         this.setState({showGrid: this.state.showGrid ? 0 : 1});
-      },
-      setGridLine: function(val) {
+      }
+      setGridLine = val => {
         return function () {
             this.setState({gridLine : val});
             this.darwGridLine(val);
         }.bind(this);
-      },
-      setTool: function(tool) {
+      }
+      setTool = tool => {
         return function () {
             this.setState({tool : tool});
         }.bind(this);
-      },
-      setSize: function(size) {
+      }
+      setSize = size => {
         return function () {
             this.setState({pointSize : size});
         }.bind(this);
-      },
-      setColor: function(color) {
+      }
+      setColor = color => {
         return function () {
             if(this.state.tool == 'pencil') {
               this.setState({pointColor : color});
@@ -660,8 +665,8 @@
               this.setState({backgroundColor : color});
             }
         }.bind(this);
-      },
-      clearDrawTable: function() {
+      }
+      clearDrawTable = () => {
         var clear = confirm ("Clear All ?")
 
         if (clear) {
@@ -670,8 +675,8 @@
           //context.fillStyle='white';
           //context.fill();
         }
-      },
-      revertDrawTable: function() {
+      }
+      revertDrawTable = () => {
         var context = this.state.context;
         var image = new Image();
 
@@ -681,8 +686,8 @@
             context.drawImage(image, 0, 0);
         }
         this.setState({tempImage:0});
-      },
-      render: function () {
+      }
+      render() {
 
         return (
           <div className={'drawtable'}>
@@ -731,10 +736,10 @@
           </div>
         );
       }
-    });   
+    }
 
-    var DrawTool = React.createClass({
-      downloadImg: function() {
+    class DrawTool extends React.Component {
+      downloadImg = () => {
         var size = this.props.canvasSize,
             img =  $('<img />', {
                      'src' : $('#canvas').get(0).toDataURL('image/png'),
@@ -750,8 +755,8 @@
         ctx.drawImage(img,0,0);
 
         this.refs.downloadImg.href = tmp_c.toDataURL('image/png');
-      },
-      render: function() {
+      }
+      render() {
         var sizeOption = [],
             sizeOptionClass,
             colorOption = [],
@@ -814,7 +819,7 @@
           </div>
         );
       }
-    });
+    }
 
     ReactDOM.render(
       <App />,
